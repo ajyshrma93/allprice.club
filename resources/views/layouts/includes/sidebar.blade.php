@@ -33,13 +33,13 @@
                         </a>
                     </li>
                     <li class="sidebar-list">
-                        <a href="#" class="sidebar-link sidebar-title">
+                        <a href="#" class="sidebar-link sidebar-title {{$menu =='search'?'active':''}}">
                             <i data-feather="globe"></i>
                             <span>Public list</span>
                         </a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="public-list-grid.html">Public list (Grid)</a></li>
-                            <li><a href="public-list-list.html">Public list (list)</a></li>
+                        <ul class="sidebar-submenu" style="display: block;">
+                            <li><a class="{{Request::is('search/grid') ?'active':''}}" href="{{route('search','grid')}}">Public list (Grid)</a></li>
+                            <li><a class="{{Request::is('search/list') ?'active':''}}" href="{{route('search','list')}}">Public list (list)</a></li>
                         </ul>
                     </li>
                     <li class="sidebar-list">

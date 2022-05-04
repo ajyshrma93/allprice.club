@@ -3,6 +3,9 @@
     "use strict";
     // Single Search Select
     $(".js-example-basic-single").select2();
+    $(".select2").select2({
+        dropdownParent: $(".card-body"),
+    });
     $(".js-example-disabled-results").select2();
     $(".js-example-basic-multiple").select2();
 
@@ -39,6 +42,7 @@
         templateSelection: iformat,
         templateResult: iformat,
         allowHtml: true,
+          dropdownParent: $(".card-body"),
     });
     $("#edit_product_country").select2({
         width: "100%",

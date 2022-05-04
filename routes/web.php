@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShopController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
@@ -43,10 +44,11 @@ Route::group(['middleware' => 'auth'], function () {
     ///// shop routes
     Route::post('shops/ajax-update', [ShopController::class, 'ajaxUpdate'])->name('shops.ajax-update');
     Route::resource('shops', ShopController::class)->except(['show', 'update']);
-
-
     /// Product routes
     Route::post('products/ajax-update', [ProductController::class, 'ajaxUpdate'])->name('products.ajax-update');
     Route::post('products/clone', [ProductController::class, 'clone'])->name('products.clone');
     Route::resource('products', ProductController::class)->except(['show', 'update']);
 });
+
+
+Route::get('search/{type}', [SearchController::class, 'index'])->name('search');
