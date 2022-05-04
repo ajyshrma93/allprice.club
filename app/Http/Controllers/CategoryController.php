@@ -60,7 +60,7 @@ class CategoryController extends Controller
             } else {
                 $data['image'] = 'assets/images/no-data-available.jpg';
             }
-            Shop::create($data);
+            Category::create($data);
             Session::flash('success', 'Category has been created successfuly');
         } catch (\Exception $e) {
             dd($e);
