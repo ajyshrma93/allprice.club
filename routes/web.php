@@ -46,5 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     /// Product routes
+    Route::post('products/ajax-update', [ProductController::class, 'ajaxUpdate'])->name('products.ajax-update');
+    Route::post('products/clone', [ProductController::class, 'clone'])->name('products.clone');
     Route::resource('products', ProductController::class)->except(['show', 'update']);
 });

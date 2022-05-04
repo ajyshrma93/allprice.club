@@ -65,7 +65,7 @@ $("body").on("click", "#ajax_add_category_button", function () {
                 if ($("#category-list").length > 0) {
                     $("#category-list").html(response.html);
                 } else if ($("#product_cat").length > 0) {
-                    $("#product_cat").append(
+                    $("[name='category_id']").append(
                         '<option value="' +
                             response.data.id +
                             '" selected> ' +
@@ -92,6 +92,7 @@ $("body").on("click", "#ajax_add_category_button", function () {
 /** Shop js */
 
 $("body").on("click", "#ajax_add_shop_button", function () {
+    $(".invalid-feedback").remove();
     $("input").removeClass("is-invalid");
     var fdata = new FormData();
     var myform = $("#ajax_add_shop"); // specify the form element
@@ -115,7 +116,7 @@ $("body").on("click", "#ajax_add_shop_button", function () {
                 if ($("#shop-list").length > 0) {
                     $("#shop-list").html(response.html);
                 } else if ($("#product_shop").length > 0) {
-                    $("#product_shop").append(
+                    $("[name='shop_id']").append(
                         '<option value="' +
                             response.data.id +
                             '" selected> ' +
@@ -141,6 +142,7 @@ $("body").on("click", "#ajax_add_shop_button", function () {
 });
 
 $("#editShop").on("show.bs.modal", function (event) {
+    $(".invalid-feedback").remove();
     var button = $(event.relatedTarget); // Button that triggered the modal
     var url = button.data("url"); // Extract info from data-* attributes
     $.ajax({
@@ -155,7 +157,9 @@ $("#editShop").on("show.bs.modal", function (event) {
 });
 
 $("body").on("click", "#update_shop", function () {
+    $(".invalid-feedback").remove();
     var fdata = new FormData();
+
     var myform = $("#edit_shop_form"); // specify the form element
     let action = myform.attr("action");
     var idata = myform.serializeArray();
@@ -183,6 +187,7 @@ $("body").on("click", "#update_shop", function () {
 
 ///product Page js
 $("#editProductModal").on("show.bs.modal", function (event) {
+    $(".invalid-feedback").remove();
     var button = $(event.relatedTarget); // Button that triggered the modal
     var url = button.data("url"); // Extract info from data-* attributes
     var modal = $(this);
@@ -194,6 +199,7 @@ $("#editProductModal").on("show.bs.modal", function (event) {
                 $("#edit_product_category")
                     .val(product.category_id)
                     .trigger("change");
+                $("#edit_product_id").val(product.id);
                 $("#edit_product_shop").val(product.shop_id).trigger("change");
                 modal.find("#edit_product_name").val(product.name);
                 modal.find("#edit_product_country").val(product.country);
@@ -206,10 +212,145 @@ $("#editProductModal").on("show.bs.modal", function (event) {
                 if (product.is_offer) {
                     modal.find("#edit_product_offer").prop("checked", "true");
                 }
-                modal.find("#edit_product_image").attr("src", product.image);
+                modal
+                    .find("#edit_product_image_preview")
+                    .attr("src", product.image);
                 modal
                     .find("#edit_product_delete")
                     .attr("data-url", button.data("destroy"));
+            }
+        },
+    });
+});
+
+$("body").on("click", "#update_product_btn", function () {
+    $(".invalid-feedback").remove();
+    var fdata = new FormData();
+    var myform = $("#edit_product_form"); // specify the form element
+    let action = myform.attr("action");
+    var idata = myform.serializeArray();
+    var image = $("#edit_product_image")[0].files[0];
+    if (image != undefined) {
+        fdata.append("product_image", image);
+    }
+    $.each(idata, function (key, input) {
+        fdata.append(input.name, input.value);
+    });
+    $.ajax({
+        url: action,
+        data: fdata,
+        method: "POST",
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            if (response.success == true) {
+                $(".product_list_grid").html(response.html);
+                showToast(response.message);
+                $("#editProductModal").modal("hide");
+            }
+        },
+        error: function (e) {
+            let productEditModal = $("#editProductModal");
+            if (e.status === 422) {
+                var response = $.parseJSON(e.responseText);
+                $.each(response.errors, function (key, val) {
+                    productEditModal
+                        .find('[name="' + key + '"]')
+                        .addClass("is-invalid");
+                    productEditModal
+                        .find('[name="' + key + '"]')
+                        .parent()
+                        .append(
+                            ' <span class="invalid-feedback" role="alert"><strong>' +
+                                val +
+                                "</strong></span>"
+                        );
+                });
+            }
+        },
+    });
+});
+
+$("#cloneProductModal").on("show.bs.modal", function (event) {
+    $(".invalid-feedback").remove();
+    var button = $(event.relatedTarget); // Button that triggered the modal
+    var url = button.data("url"); // Extract info from data-* attributes
+    var modal = $(this);
+    $.ajax({
+        url: url,
+        success: function (response) {
+            if (response.success == true) {
+                let product = response.product;
+                $("#clone_product_category")
+                    .val(product.category_id)
+                    .trigger("change");
+                $("#clone_product_id").val(product.id);
+                $("#clone_product_shop").val(product.shop_id).trigger("change");
+                modal.find("#clone_product_name").val(product.name);
+                modal.find("#clone_product_country").val(product.country);
+                modal.find("#clone_product_value").val(product.value);
+                modal.find("#clone_product_price").val(product.price);
+                modal.find("#clone_product_price").val(product.price);
+                modal
+                    .find("input[name=clone_type][value=" + product.type + "]")
+                    .attr("checked", "checked");
+                if (product.is_offer) {
+                    modal.find("#clone_product_offer").prop("checked", "true");
+                }
+                modal
+                    .find("#clone_product_image_preview")
+                    .attr("src", product.image);
+                modal
+                    .find("#clone_product_delete")
+                    .attr("data-url", button.data("destroy"));
+            }
+        },
+    });
+});
+
+$("body").on("click", "#clone_product_btn", function () {
+    $(".invalid-feedback").remove();
+    var fdata = new FormData();
+    var myform = $("#clone_product_form"); // specify the form element
+    let action = myform.attr("action");
+    var idata = myform.serializeArray();
+    var image = $("#clone_product_image")[0].files[0];
+    if (image != undefined) {
+        fdata.append("product_image", image);
+    }
+    $.each(idata, function (key, input) {
+        fdata.append(input.name, input.value);
+    });
+    $.ajax({
+        url: action,
+        data: fdata,
+        method: "POST",
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            if (response.success == true) {
+                $(".product_list_grid").html(response.html);
+                showToast(response.message);
+                $("#cloneProductModal").modal("hide");
+            }
+        },
+        error: function (e) {
+            let productEditModal = $("#cloneProductModal");
+            if (e.status === 422) {
+                var response = $.parseJSON(e.responseText);
+                $.each(response.errors, function (key, val) {
+                    productEditModal
+                        .find('[name="' + key + '"]')
+                        .addClass("is-invalid");
+                    productEditModal
+                        .find('[name="' + key + '"]')
+                        .parent()
+                        .append(
+                            ' <span class="invalid-feedback" role="alert"><strong>' +
+                                val +
+                                "</strong></span>"
+                        );
+                });
             }
         },
     });
@@ -287,3 +428,7 @@ function increaseByTen(input) {
     let newWeight = parseFloat(weight) + 10;
     $(input).val(newWeight.toFixed(2));
 }
+
+$(".custom-input-label").click(function () {
+    $(this).parent().find("input").prop("checked", true);
+});

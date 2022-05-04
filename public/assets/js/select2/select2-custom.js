@@ -4,16 +4,13 @@
     // Single Search Select
     $(".js-example-basic-single").select2();
     $(".js-example-disabled-results").select2();
-
-    // Multi Select
     $(".js-example-basic-multiple").select2();
 
-    // With Placeholder
-    $(".js-example-placeholder-multiple").select2({
-        placeholder: "Select Your Name",
-    });
     $("#edit_product_shop, #edit_product_category").select2({
         dropdownParent: $("#editProductModal .modal-content"),
+    });
+    $("#clone_product_shop, #clone_product_category").select2({
+        dropdownParent: $("#cloneProductModal .modal-content"),
     });
     $("#modalSelect-6, #modalSelect-7").select2({
         dropdownParent: $("#product-modal-3 .modal-content"),
@@ -50,13 +47,13 @@
         allowHtml: true,
         dropdownParent: $("#editProductModal .modal-content"),
     });
-    // $('#modalSelect-8').select2({
-    //     width: "100%",
-    //     templateSelection: iformat,
-    //     templateResult: iformat,
-    //     allowHtml: true,
-    //     dropdownParent: $('#product-modal-3 .modal-content')
-    // });
+    $("#clone_product_country").select2({
+        width: "100%",
+        templateSelection: iformat,
+        templateResult: iformat,
+        allowHtml: true,
+        dropdownParent: $("#cloneProductModal .modal-content"),
+    });
 
     // With Placeholder
     $("#bm-group").select2({

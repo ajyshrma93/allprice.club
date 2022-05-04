@@ -190,7 +190,9 @@
             </div>
             <!-- new product form end -->
             <!-- product cards view start -->
-            @include('products.partials.product-list')
+            <div class="product_list_grid">
+                @include('products.partials.product-list')
+            </div>
             <!-- product cards view end -->
         </div>
     </div>
@@ -201,5 +203,6 @@
 @section('modals')
 @include('partials.modals.add-category')
 @include('partials.modals.add-shop')
-@include('partials.modals.product-edit')
+@include('partials.modals.edit-product')
+@include('partials.modals.clone-product')
 @endsection
