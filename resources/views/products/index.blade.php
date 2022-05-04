@@ -19,7 +19,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-md-6 col-sm-8 col-6">
-                    <h3 class="user-itesm-title">User Items (Grid View)</h3>
+                    <h3 class="user-itesm-title">My Favorites</h3>
                 </div>
                 <div class="col-md-6 col-sm-4 col-6">
                     <div class="create-new-items">

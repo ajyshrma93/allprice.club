@@ -21,7 +21,7 @@
                 </div>
                 <div class="mb-3">
                     <div class="product-img text-center">
-                        <img class="img-fluid" src="{{asset('assets/images/no-data-available.jpg')}}" id="edit_shop_image_preview" alt="shop image">
+                        <img class="img-fluid" src="{{asset('assets/images/no-data-available.png')}}" id="edit_shop_image_preview" alt="shop image">
                     </div>
                 </div>
             </form>

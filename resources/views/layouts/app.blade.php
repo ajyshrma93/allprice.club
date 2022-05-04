@@ -48,7 +48,7 @@
             <!-- Page Sidebar Ends-->
             @yield('content')
             <!-- footer start-->
-            <footer class="footer">
+            <!-- <footer class="footer">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12 footer-copyright text-center">
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                 </div>
-            </footer>
+            </footer> -->
         </div>
     </div>
     @yield('modals')

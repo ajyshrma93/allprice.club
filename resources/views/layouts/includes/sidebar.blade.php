@@ -29,7 +29,7 @@
                     <li class="sidebar-list">
                         <a class="{{$menu =='product'?'active':''}} sidebar-link sidebar-title link-nav" href="{{route('home')}}">
                             <i data-feather="user"></i>
-                            <span>User items (Grid)</span>
+                            <span>Home Page</span>
                         </a>
                     </li>
                     <li class="sidebar-list">

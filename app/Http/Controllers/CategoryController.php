@@ -58,7 +58,7 @@ class CategoryController extends Controller
                 $filePath = $file->storeAs('uploads/category', $fileName, 'public');
                 $data['image'] = 'storage/' . $filePath;
             } else {
-                $data['image'] = 'assets/images/no-data-available.jpg';
+                $data['image'] = 'assets/images/no-data-available.png';
             }
             Category::create($data);
             Session::flash('success', 'Category has been created successfuly');

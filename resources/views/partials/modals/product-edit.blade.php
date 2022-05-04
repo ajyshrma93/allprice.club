@@ -103,7 +103,7 @@
                 </div>
                 <div class="mb-3">
                     <div class="product-img text-center">
-                        <img src="../assets/images/products/thumb/01.jpg" alt="product image" width="100%" id="edit_product_image" height="150px">
+                        <img src="{{asset('assets/images/no-data-available.png')}}" alt="product image" width="100%" id="edit_product_image" height="150px">
                     </div>
                 </div>
                 <div class="modal-footer text-center text-sm-end" style="padding: 0px;">

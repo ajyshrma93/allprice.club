@@ -3,7 +3,6 @@
         <div class="modal-content p-4">
             <div class="modal-header border-0 mb-3 p-0 d-flex flex-column align-items-start">
                 <h4 class="modal-title"><a href="#">Add New Shop</a></h4>
-                <span>Please fill up the form below to add new shop</span>
             </div>
             <form action="{{route('shops.store')}}" class="theme-form" id="ajax_add_shop" onsubmit=" event.preventDefault()">
                 @csrf

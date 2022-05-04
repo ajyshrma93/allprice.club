@@ -55,7 +55,7 @@ class ShopController extends Controller
         $shop = new Shop();
         $shop->name = $request->name;
         $shop->user_id = auth()->user()->id;
-        $shop->image = 'assets/images/no-data-available.jpg';
+        $shop->image = 'assets/images/no-data-available.png';
         if ($request->file('shop_image')) {
             $file = $request->file('shop_image');
             $fileName = Str::random(20) . '_' . $file->getExtension();

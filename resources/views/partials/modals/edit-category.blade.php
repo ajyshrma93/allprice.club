@@ -21,7 +21,7 @@
                 </div>
                 <div class="mb-3">
                     <div class="product-img text-center">
-                        <img class="img-fluid" src="{{asset('assets/images/no-data-available.jpg')}}" id="edit_catgeory_image_preview" alt="product image">
+                        <img class="img-fluid" src="{{asset('assets/images/no-data-available.png')}}" id="edit_catgeory_image_preview" alt="product image">
                     </div>
                 </div>
             </form>

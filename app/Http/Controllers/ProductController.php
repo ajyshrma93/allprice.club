@@ -65,8 +65,8 @@ class ProductController extends Controller
             $product->type = $request->type;
             $product->user_id = auth()->id();
             $product->country = $request->country;
-            $product->image = 'assets/images/no-data-available.jpg';
-            $product->thumbnail = 'assets/images/no-data-available.jpg';
+            $product->image = 'assets/images/no-data-available.png';
+            $product->thumbnail = 'assets/images/no-data-available.png';
             if ($request->has('product_image') && $request->file != 'undefined') {
 
 

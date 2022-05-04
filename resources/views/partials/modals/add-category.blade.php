@@ -3,7 +3,6 @@
         <div class="modal-content p-4">
             <div class="modal-header border-0 mb-3 p-0 d-flex flex-column align-items-start">
                 <h4 class="modal-title"><a href="#">Add New Category</a></h4>
-                <span>Please fill up the form below to add new Category</span>
             </div>
             <form action="{{route('category.ajax-add')}}" class="theme-form" id="ajax_add_category" onsubmit=" event.preventDefault()">
                 @csrf

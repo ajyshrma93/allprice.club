@@ -14,7 +14,7 @@
                     <div class="create-new-items justify-content-end">
                         <button class="btn btn-primary d-md-none" type="button" data-bs-toggle="modal" data-bs-target="#add_catgeory_modal">
                             <i data-feather="plus"></i>
-                            <span class="ms-2">Add New Category</span>
+                            <span class="ms-2">Add New</span>
                         </button>
                     </div>
                 </div>

@@ -85,6 +85,7 @@ div.dataTables_wrapper div.dataTables_filter input {
 	.product-wrapper-grid .col-xl-3.col-sm-6 {
 		-webkit-box-flex: 0;
 		-ms-flex: 0 0 auto;
+        padding: 4px;
 		flex: 0 0 auto;
 		width: 50%;
 	}
