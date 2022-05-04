@@ -84,10 +84,10 @@ class ProductController extends Controller
                 $name = Str::random(20) . '.' . $file->getClientOriginalExtension();
                 $filePath = $path . $name;
                 $img = Image::make($file->path());
-                $img->resize(110, 110, function ($const) {
+                $img->resize(200, 200, function ($const) {
                     $const->aspectRatio();
                 })->save(storage_path('app/' . $filePath));
-                $product->thumbnail = 'storage/' . $filePath;
+                $product->thumbnail =  str_replace('public', 'storage', $filePath);
             }
             $product->save();
             Session::flash('success', 'Product has been added successfully');
@@ -172,7 +172,7 @@ class ProductController extends Controller
                 $img->resize(110, 110, function ($const) {
                     $const->aspectRatio();
                 })->save(storage_path('app/' . $filePath));
-                $product->thumbnail = 'storage/' . $filePath;
+                $product->thumbnail =  str_replace('public', 'storage', $filePath);
             }
             $product->save();
             $products = Product::where('user_id', auth()->id())->get();
@@ -247,7 +247,7 @@ class ProductController extends Controller
                 $img->resize(110, 110, function ($const) {
                     $const->aspectRatio();
                 })->save(storage_path('app/' . $filePath));
-                $product->thumbnail = 'storage/' . $filePath;
+                $product->thumbnail =  str_replace('public', 'storage', $filePath);
             } else {
                 $product->image = $oldProduct->image;
                 $product->thumbnail = $oldProduct->thumbnail;
