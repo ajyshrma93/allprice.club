@@ -117,7 +117,6 @@ class ShopController extends Controller
         $shop = Shop::findOrFail($request->id);
         $shop->name = $request->name;
         $shop->user_id = auth()->user()->id;
-        $shop->image = 'assets/images/no-data-available.jpg';
         if ($request->file('shop_image')) {
             Storage::delete($shop->image);
             $file = $request->file('shop_image');
