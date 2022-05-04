@@ -142,7 +142,7 @@ class CategoryController extends Controller
         }
         $category = new Category();
         $category->name = $request->name;
-        $image  = 'assets/images/no-data-available.jpg';
+        $image  = 'assets/images/no-data-available.png';
 
         if ($request->file('category_image')) {
             $file = $request->file('category_image');
