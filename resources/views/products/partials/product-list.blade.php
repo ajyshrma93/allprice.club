@@ -3,7 +3,7 @@
         <div class="row">
 
             @forelse ($products as $product)
-            <div class="col-xl-3 col-sm-6">
+            <div class="col-xl-3 col-sm-6" id="product_box_{{$product->id}}">
                 <div class="card">
                     <div class="product-box">
                         <div class="product-img">
@@ -12,7 +12,7 @@
                             <div class="product-hover">
                                 <ul>
                                     <li>
-                                        <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#editProductModal">
+                                        <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#editProductModal" data-destroy="{{route('products.destroy',$product->id)}}" data-url="{{route('products.edit',$product->id)}}">
                                             <i data-feather="edit"></i>
                                         </button>
                                     </li>

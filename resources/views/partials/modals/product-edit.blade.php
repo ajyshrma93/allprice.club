@@ -31,12 +31,12 @@
                     </div>
                     <div class="mb-3">
                         <label class="col-form-label pt-0">Product Name</label>
-                        <input class="form-control" type="text" placeholder="Name" value="Product dummy Name">
+                        <input class="form-control" type="text" placeholder="Name" id="edit_product_name" value="Product dummy Name">
                     </div>
                 </div>
                 <div class="mb-3">
                     <label class="col-form-label pt-0">Select Country</label>
-                    <select class="js-example-basic-single col-sm-12" id="country_edit">
+                    <select class="js-example-basic-single col-sm-12" id="edit_product_country">
                         @foreach ($countries as $country)
                         <option value="{{$country->name}}" {{$country->sortname =='MY' ?'selected':''}} data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>
 
@@ -61,12 +61,12 @@
                     <div class=" col-xxl-4 col-xl-6 col-md-6 col-6 mb-3 field-area">
                         <div class="d-flex justify-content-end align-items-center cus-justify-content-center">
                             <div class="d-block cursor-pointer custom-input-design w-100">
-                                <input class="checkbox_animated custom-input" value="pcs" type="radio" name="edit_type" checked>
-                                <label for="edo-ani-2" class="custom-input-label w-100">PCS</label>
+                                <input class="checkbox_animated custom-input" value="pcs" type="radio" name="edit_type">
+                                <label for="edit_type_pcs" class="custom-input-label w-100">PCS</label>
                             </div>
                             <div class="d-block cursor-pointer custom-input-design w-100">
                                 <input class="checkbox_animated custom-input" value="gram" type="radio" name="edit_type">
-                                <label for="edo-ani1-2" class="custom-input-label reverse w-100">gram</label>
+                                <label for="edit_type_gram" class="custom-input-label reverse w-100">gram</label>
                             </div>
                         </div>
                     </div>
@@ -88,8 +88,8 @@
                     <div class="col-lg-6 col-6 mb-3 d-flex  field-area">
                         <div class=" offer-price-checkbox text-nowrap">
                             <div>
-                                <input type="checkbox" id="offer-price-id" name="is_offer">
-                                <label for="offer-price-id" style="font-size: 12px; color: #898989">Offer Price</label>
+                                <input type="checkbox" id="edit_product_offer" name="is_offer">
+                                <label for="edit_product_offer" style="font-size: 12px; color: #898989">Offer Price</label>
                             </div>
                         </div>
                     </div>
@@ -103,11 +103,11 @@
                 </div>
                 <div class="mb-3">
                     <div class="product-img text-center">
-                        <img src="../assets/images/products/thumb/01.jpg" alt="product image" width="100%" height="150px">
+                        <img src="../assets/images/products/thumb/01.jpg" alt="product image" width="100%" id="edit_product_image" height="150px">
                     </div>
                 </div>
                 <div class="modal-footer text-center text-sm-end" style="padding: 0px;">
-                    <button class="btn btn-outline-danger delete-product" type="button" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'delete-product']);">Delete Product</button>
+                    <button id="edit_product_delete" class="btn btn-outline-danger" type="button" onclick="deleteProduct($(this))">Delete Product</button>
                     <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button class="btn btn-primary">Save</button>
                 </div>

@@ -43,7 +43,7 @@
         templateResult: iformat,
         allowHtml: true,
     });
-    $("#country_edit").select2({
+    $("#edit_product_country").select2({
         width: "100%",
         templateSelection: iformat,
         templateResult: iformat,

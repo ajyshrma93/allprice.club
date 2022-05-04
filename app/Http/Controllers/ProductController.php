@@ -27,7 +27,7 @@ class ProductController extends Controller
         $countries = Country::get();
         $shops = Shop::get();
         $categories = Category::get();
-        $products = Product::get();
+        $products = Product::where('user_id', auth()->id())->get();
         return view('products.index', compact('products', 'countries', 'categories', 'shops'));
     }
 
@@ -64,6 +64,9 @@ class ProductController extends Controller
             $product->category_id = $request->category_id;
             $product->type = $request->type;
             $product->user_id = auth()->id();
+            $product->country = $request->country;
+            $product->image = 'assets/images/no-data-available.jpg';
+            $product->thumbnail = 'assets/images/no-data-available.jpg';
             if ($request->has('product_image') && $request->file != 'undefined') {
 
 
@@ -100,9 +103,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        $data['success'] = true;
+        $data['product'] = $product;
+
+        return response()->json($data);
     }
 
     /**
@@ -123,8 +129,15 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        if ($product->user_id = auth()->id()) {
+            if ($product->delete()) {
+
+                return response()->json(['success' => true, 'product_id' => $product->id, 'message' => 'Product has been deleted successfully']);
+            }
+        }
+
+        return response()->json(['success' => false, 'message' => 'Something went wrong. While deleteing product']);
     }
 }

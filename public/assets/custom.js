@@ -181,8 +181,65 @@ $("body").on("click", "#update_shop", function () {
     });
 });
 
+///product Page js
+$("#editProductModal").on("show.bs.modal", function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+    var url = button.data("url"); // Extract info from data-* attributes
+    var modal = $(this);
+    $.ajax({
+        url: url,
+        success: function (response) {
+            if (response.success == true) {
+                let product = response.product;
+                $("#edit_product_category")
+                    .val(product.category_id)
+                    .trigger("change");
+                $("#edit_product_shop").val(product.shop_id).trigger("change");
+                modal.find("#edit_product_name").val(product.name);
+                modal.find("#edit_product_country").val(product.country);
+                modal.find("#edit_product_value").val(product.value);
+                modal.find("#edit_product_price").val(product.price);
+                modal.find("#edit_product_price").val(product.price);
+                modal
+                    .find("input[name=edit_type][value=" + product.type + "]")
+                    .attr("checked", "checked");
+                if (product.is_offer) {
+                    modal.find("#edit_product_offer").prop("checked", "true");
+                }
+                modal.find("#edit_product_image").attr("src", product.image);
+                modal
+                    .find("#edit_product_delete")
+                    .attr("data-url", button.data("destroy"));
+            }
+        },
+    });
+});
+
+function deleteProduct(button) {
+    $.ajax({
+        url: button.attr("data-url"),
+        type: "DELETE",
+        success: function (response) {
+            $("#editProductModal").modal("hide");
+            if (response.success == true) {
+                showToast(response.message);
+                $("#product_box_" + response.product_id).remove();
+            } else {
+                showToast(response.message, "error");
+            }
+        },
+        error: function () {
+            $("#editProductModal").modal("hide");
+
+            showToast(
+                "Something went wrong. While completeing you request",
+                "danger"
+            );
+        },
+    });
+}
 //// common function
-function showToast(message, type) {
+function showToast(message, type = "success") {
     $.notify("<strong>" + message + "</strong>", {
         type: type,
         allow_dismiss: true,
