@@ -37,10 +37,10 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label class="col-form-label pt-0">Select Country</label>
-                    <select name="country" class="js-example-basic-single col-sm-12" id="edit_product_country">
+                    <select name="country" class=" col-sm-12" id="edit_product_country">
+                        <option value="choose" selected>Choose Country</option>
                         @foreach ($countries as $country)
-                        <option value="{{$country->name}}" {{$country->sortname =='MY' ?'selected':''}} data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>
+                        <option value="{{$country->name}}" data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>
 
                         @endforeach
                     </select>
