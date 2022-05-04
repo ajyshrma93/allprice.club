@@ -14,6 +14,8 @@
             <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
             <div id="sidebar-menu">
                 <ul class="sidebar-links" id="simple-bar">
+                    @auth
+
                     <li class="back-btn"><a href="{{route('home')}}">
                             <img class="img-fluid" src="{{asset('assets/images/logo/logo-icon.png')}}" alt=""></a>
                         <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
@@ -58,6 +60,21 @@
                             <span>Reports</span>
                         </a>
                     </li>
+                    @else
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav" href="{{route('register')}}">
+                            <i data-feather="user-plus"></i>
+                            <span>Signup</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav" href="{{route('login')}}">
+                            <i data-feather="log-in"></i>
+                            <span>Login</span>
+                        </a>
+                    </li>
+
+                    @endauth
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

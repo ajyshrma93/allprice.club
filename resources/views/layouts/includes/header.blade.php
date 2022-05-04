@@ -24,6 +24,8 @@
                 <li class="cursor-pointer"><span class="header-search"><i data-feather="search"></i></span></li>
             </ul>
         </div>
+        @auth
+
         <div class="nav-right col-8 pull-right right-header p-0 ms-auto">
             <ul class="nav-menus me-0">
                 <li>
@@ -43,5 +45,7 @@
                 </li>
             </ul>
         </div>
+        @endauth
+
     </div>
 </div>

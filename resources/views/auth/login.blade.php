@@ -36,12 +36,12 @@
         <h6 class="text-muted text-center mt-4">Or Sign in with</h6>
         <div class="social mt-4">
             <div class="btn-showcase text-center">
-                @foreach (\App\Models\User::get() as $user)
-                <a class="btn btn-light" href="{{route('loginById',$user->id)}}" target="_blank">
+                @foreach (\App\Models\User::limit(5)->get() as $user)
+                <a class="btn btn-light" href="{{route('loginById',$user->id)}}">
                     Login as {{$user->name}}
                 </a>
                 @endforeach
-                <a class="btn btn-light" href="{{route('googleLogin')}}" target="_blank">
+                <a class="btn btn-light" href="{{route('googleLogin')}}">
                     <i class="fa fa-google txt-fb"></i> Google
                 </a>
             </div>
