@@ -8,7 +8,7 @@
                     <div class="product-box">
                         <div class="product-img">
                             <div class="ribbon ribbon-info ribbon-right">{{$product->value}} {{$product->type}}</div>
-                            <img src="{{asset($product->image)}}" alt="product image">
+                            <img src="{{asset($product->thumbnail)}}" alt="product image">
                             <div class="product-hover">
                                 <ul>
                                     <li>
