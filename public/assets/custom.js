@@ -207,7 +207,7 @@ $("#editProductModal").on("show.bs.modal", function (event) {
                 modal.find("#edit_product_price").val(product.price);
                 modal.find("#edit_product_price").val(product.price);
                 modal
-                    .find("input[name=edit_type][value=" + product.type + "]")
+                    .find("input[name=type][value=" + product.type + "]")
                     .attr("checked", "checked");
                 if (product.is_offer) {
                     modal.find("#edit_product_offer").prop("checked", "true");
@@ -292,7 +292,7 @@ $("#cloneProductModal").on("show.bs.modal", function (event) {
                 modal.find("#clone_product_price").val(product.price);
                 modal.find("#clone_product_price").val(product.price);
                 modal
-                    .find("input[name=clone_type][value=" + product.type + "]")
+                    .find("input[name=type][value=" + product.type + "]")
                     .attr("checked", "checked");
                 if (product.is_offer) {
                     modal.find("#clone_product_offer").prop("checked", "true");
