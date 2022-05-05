@@ -20,7 +20,7 @@
     });
 
     $("#modalSelect-2, #modalSelect-3").select2({
-        dropdownParent: $("#product-modal-2 .modal-content"),
+        dropdownParent: $("#bulkUploadProduct .modal-content"),
     });
     $(".product-modal-2-mobile, #modalSelect-02, #modalSelect-01").select2({
         dropdownParent: $("#product-modal-2-mobile .modal-content"),

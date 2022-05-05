@@ -32,11 +32,11 @@
                             <i data-feather="chevron-down" class="d-none d-md-flex"></i>
                             <i data-feather="plus" class="d-flex d-md-none"></i>
                         </button>
-                        <button class="d-none d-md-flex btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#product-modal-2">
+                        <button class="d-none d-md-flex btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#bulkUploadProduct">
                             <span class="me-2">Bulk Image Upload</span>
                             <i data-feather="upload-cloud"></i>
                         </button>
-                        <button class="d-flex d-md-none btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#product-modal-2">
+                        <button class="d-flex d-md-none btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#bulkUploadProduct">
                             <i data-feather="upload-cloud"></i>
                         </button>
                     </div>
@@ -210,4 +210,5 @@
 @include('partials.modals.add-shop')
 @include('partials.modals.edit-product')
 @include('partials.modals.clone-product')
+@include('partials.modals.bulk-upload')
 @endsection
