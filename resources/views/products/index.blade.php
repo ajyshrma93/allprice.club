@@ -13,8 +13,8 @@
         border-radius: 4px 0px 0px 4px;
     }
 
-    .select2 {
-        width: 100% !important;
+    .select2-dropdown {
+        width: 150px !important;
     }
 </style>
 
@@ -62,7 +62,7 @@
                                 <div class="col-xl-6 col-6 mb-3">
                                     <div class="row">
                                         <div class="col-xxl-7 col-xl-6 col-md-8 col-sm-7 newItem">
-                                            <select name="category_id" class="js-example-basic-single col-sm-12 @error('category_id') is-invalid @enderror" id="product_cat">
+                                            <select name="category_id" class="select2 col-sm-12 @error('category_id') is-invalid @enderror" id="product_cat">
                                                 <option value="" selected>Select Category</option>
                                                 @foreach ($categories as $cat)
                                                 <option value="{{$cat->id}}">{{$cat->name}}</option>
@@ -85,7 +85,7 @@
                                 <div class="col-xl-6 col-6 mb-3">
                                     <div class="row">
                                         <div class="col-xxl-7 col-xl-6 col-md-8 col-sm-7 newItem">
-                                            <select name="shop_id" class="form-control js-example-basic-single col-sm-12  @error('shop_id') is-invalid @enderror" id="product_shop">
+                                            <select name="shop_id" class="form-control select2 col-sm-12  @error('shop_id') is-invalid @enderror" id="product_shop">
                                                 <option value="" selected>Select Shop</option>
                                                 @foreach ($shops as $shop)
                                                 <option value="{{$shop->id}}">{{$shop->name}}</option>
@@ -114,7 +114,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-lg-6 mb-3  d-md-flex">
-                                    <select name="country" class="js-example-basic-single country-list col-sm-12 @error('country') is-invalid @enderror" aria-placeholder="Choose Country">
+                                    <select name="country" class=" country-list col-sm-12 @error('country') is-invalid @enderror" aria-placeholder="Choose Country">
                                         <option value="" selected>Choose Country</option>
                                         @foreach ($countries as $country)
                                         <option value="{{$country->name}}" data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>

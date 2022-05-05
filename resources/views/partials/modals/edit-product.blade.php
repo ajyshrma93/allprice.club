@@ -100,7 +100,6 @@
                     <label class="col-form-label pt-0">Product Image</label>
                     <div class="input-group">
                         <input type="file" class="form-control" id="edit_product_image" onchange="previewFile(event,'edit_product_image_preview')" aria-describedby="edit_product_image" aria-label="Upload" accept="image/*">
-                        <button class="btn btn-outline-primary" type="button" id="inputGroupFileAddon04">Upload</button>
                     </div>
                 </div>
                 <div class="mb-3">
