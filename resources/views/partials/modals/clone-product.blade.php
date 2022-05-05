@@ -63,11 +63,11 @@
                     <div class=" col-xxl-4 col-xl-6 col-md-6 col-6 mb-3 field-area">
                         <div class="d-flex justify-content-end align-items-center cus-justify-content-center">
                             <div class="d-block cursor-pointer custom-input-design w-100">
-                                <input class="checkbox_animated custom-input" value="pcs" type="radio" name="clone_type">
+                                <input class="checkbox_animated custom-input" value="pcs" type="radio" name="type">
                                 <label for="clone_type_pcs" class="custom-input-label w-100">PCS</label>
                             </div>
                             <div class="d-block cursor-pointer custom-input-design w-100">
-                                <input class="checkbox_animated custom-input" value="gram" type="radio" name="clone_type">
+                                <input class="checkbox_animated custom-input" value="gram" type="radio" name="type">
                                 <label for="clone_type_gram" class="custom-input-label reverse w-100">gram</label>
                             </div>
                         </div>

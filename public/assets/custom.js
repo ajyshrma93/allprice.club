@@ -356,6 +356,58 @@ $("body").on("click", "#clone_product_btn", function () {
     });
 });
 
+///// add product js
+
+$("body").on("click", "#add_product_btn", function (e) {
+    e.preventDefault();
+    $(".invalid-feedback").remove();
+    var fdata = new FormData();
+    var myform = $("#add_product_form"); // specify the form element
+    let action = myform.attr("action");
+    var idata = myform.serializeArray();
+    var image = $("#add_product_image")[0].files[0];
+    if (image != undefined) {
+        fdata.append("product_image", image);
+    }
+    $.each(idata, function (key, input) {
+        fdata.append(input.name, input.value);
+    });
+    $.ajax({
+        url: action,
+        data: fdata,
+        method: "POST",
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            if (response.success == true) {
+                $(".product_list_grid").html(response.html);
+                showToast(response.message);
+                myform[0].reset();
+                $("#cloneProductModal").modal("hide");
+            }
+        },
+        error: function (e) {
+            let productEditModal = $("#product_add_box");
+            if (e.status === 422) {
+                var response = $.parseJSON(e.responseText);
+                $.each(response.errors, function (key, val) {
+                    productEditModal
+                        .find('[name="' + key + '"]')
+                        .addClass("is-invalid");
+                    productEditModal
+                        .find('[name="' + key + '"]')
+                        .parent()
+                        .append(
+                            ' <span class="invalid-feedback" role="alert"><strong>' +
+                                val +
+                                "</strong></span>"
+                        );
+                });
+            }
+        },
+    });
+});
+
 function deleteProduct(button) {
     $.ajax({
         url: button.attr("data-url"),

@@ -42,62 +42,32 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'category_id' => 'required',
-            'shop_id' => 'required',
-            'name' => 'required',
-            'country' => 'required',
-            'value' => 'required|min:0.1',
-            'price' => 'required|min:0.1'
-        ], [
-            'category_id.required' => 'Please select a category',
-            'shop_id.required' => 'Please select a shop',
-            'name.required' => 'Product name is required field',
-            'country.required' => 'Please select product country',
-            'value.required' => 'This field is requierd'
-        ]);
 
+        $validator = $this->validateRequest($request);
+
+        if ($validator->fails()) {
+            return response()->json(array(
+                'success' => false,
+                'errors' => $validator->getMessageBag()->toArray()
+
+            ), 422);
+        }
         try {
             $product = new Product();
-            $product->name = $request->name;
-            $product->price = $request->price;
-            $product->is_offer = $request->is_offer ? 1 : 0;
-            $product->value = $request->value;
-            $product->shop_id = $request->shop_id;
-            $product->category_id = $request->category_id;
-            $product->type = $request->type;
-            $product->user_id = auth()->id();
-            $product->country = $request->country;
-            $product->image = 'assets/images/no-data-available.png';
-            $product->thumbnail = 'assets/images/no-data-available.png';
-            if ($request->has('product_image') && $request->file != 'undefined') {
-
-
-                $file = $request->file('product_image');
-                $fileName = Str::random(20) . '_' . $file->getExtension();
-                $filePath = $file->storeAs('uploads/products/', $fileName, 'public');
-                $product->image = 'storage/' . $filePath;
-
-                // save thumbnail
-                $path =  'public/uploads/products/thumbnail/';
-                @mkdir(storage_path('app/' . $path), 0777);
-                $name = Str::random(20) . '.' . $file->getClientOriginalExtension();
-                $filePath = $path . $name;
-                $img = Image::make($file->path());
-                $img->resize(150, 150, function ($const) {
-                    $const->aspectRatio();
-                })->save(storage_path('app/' . $filePath));
-                $product->thumbnail =  str_replace('public', 'storage', $filePath);
-            }
+            $product = $this->setProductAttribute($product, $request);
             $product->save();
-            Session::flash('success', 'Product has been added successfully');
-            return back();
-        } catch (\Exception $e) {
-            Session::flash('success', 'Something went wrong. While adding product');
 
-            return back();
+            $html = $this->getProductListHtml();
+
+            $response['html'] = $html;
+            $response['message'] = 'Product Added successfully';
+            $response['success'] = true;
+            return response()->json($response, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
         }
     }
+
 
 
     /**
@@ -122,24 +92,7 @@ class ProductController extends Controller
      */
     public function ajaxUpdate(Request $request)
     {
-        $rules = [
-            'category_id' => 'required',
-            'shop_id' => 'required',
-            'name' => 'required',
-            'country' => 'required',
-            'value' => 'required|min:0.1',
-            'price' => 'required|min:0.1',
-            'edit_type' => 'required'
-        ];
-        $messages = [
-            'category_id.required' => 'Please select a category',
-            'shop_id.required' => 'Please select a shop',
-            'name.required' => 'Product name is required field',
-            'country.required' => 'Please select product country',
-            'value.required' => 'This field is requierd'
-        ];
-        $validator = Validator::make($request->all(), $rules, $messages);
-
+        $validator = $this->validateRequest($request);
         if ($validator->fails()) {
             return response()->json(array(
                 'success' => false,
@@ -149,34 +102,9 @@ class ProductController extends Controller
         }
         $product = Product::findOrFail($request->product_id);
         try {
-            $product->name = $request->name;
-            $product->price = $request->price;
-            $product->is_offer = $request->is_offer ? 1 : 0;
-            $product->value = $request->value;
-            $product->shop_id = $request->shop_id;
-            $product->category_id = $request->category_id;
-            $product->type = $request->edit_type;
-            $product->country = $request->country;
-            if ($request->has('product_image') && $request->file != 'undefined') {
-                $file = $request->file('product_image');
-                $fileName = Str::random(20) . '_' . $file->getExtension();
-                $filePath = $file->storeAs('uploads/products/', $fileName, 'public');
-                $product->image = 'storage/' . $filePath;
-
-                // save thumbnail
-                $path =  'public/uploads/products/thumbnail/';
-                @mkdir(storage_path('app/' . $path), 0777);
-                $name = Str::random(20) . '.' . $file->getClientOriginalExtension();
-                $filePath = $path . $name;
-                $img = Image::make($file->path());
-                $img->resize(150, 150, function ($const) {
-                    $const->aspectRatio();
-                })->save(storage_path('app/' . $filePath));
-                $product->thumbnail =  str_replace('public', 'storage', $filePath);
-            }
+            $product = $this->setProductAttribute($product, $request, 'update');
             $product->save();
-            $products = Product::where('user_id', auth()->id())->get();
-            $html = view('products.partials.product-list', compact('products'))->render();
+            $html = $this->getProductListHtml();
 
             $response['html'] = $html;
             $response['message'] = 'Product Update successfully';
@@ -187,7 +115,6 @@ class ProductController extends Controller
         }
     }
 
-
     /**
      * Update the specified resource in storage.
      *
@@ -196,23 +123,7 @@ class ProductController extends Controller
      */
     public function clone(Request $request)
     {
-        $rules = [
-            'category_id' => 'required',
-            'shop_id' => 'required',
-            'name' => 'required',
-            'country' => 'required',
-            'value' => 'required|min:0.1',
-            'price' => 'required|min:0.1',
-            'clone_type' => 'required'
-        ];
-        $messages = [
-            'category_id.required' => 'Please select a category',
-            'shop_id.required' => 'Please select a shop',
-            'name.required' => 'Product name is required field',
-            'country.required' => 'Please select product country',
-            'value.required' => 'This field is requierd'
-        ];
-        $validator = Validator::make($request->all(), $rules, $messages);
+        $validator = $this->validateRequest($request);
 
         if ($validator->fails()) {
             return response()->json(array(
@@ -224,37 +135,13 @@ class ProductController extends Controller
         $oldProduct = Product::findOrFail($request->product_id);
         try {
             $product = new Product();
-            $product->name = $request->name;
-            $product->price = $request->price;
-            $product->is_offer = $request->is_offer ? 1 : 0;
-            $product->value = $request->value;
-            $product->shop_id = $request->shop_id;
-            $product->category_id = $request->category_id;
-            $product->type = $request->clone_type;
-            $product->country = $request->country;
-            if ($request->has('product_image')) {
-                $file = $request->file('product_image');
-                $fileName = Str::random(20) . '_' . $file->getExtension();
-                $filePath = $file->storeAs('uploads/products/', $fileName, 'public');
-                $product->image = 'storage/' . $filePath;
-
-                // save thumbnail
-                $path =  'public/uploads/products/thumbnail/';
-                @mkdir(storage_path('app/' . $path), 0777);
-                $name = Str::random(20) . '.' . $file->getClientOriginalExtension();
-                $filePath = $path . $name;
-                $img = Image::make($file->path());
-                $img->resize(150, 150, function ($const) {
-                    $const->aspectRatio();
-                })->save(storage_path('app/' . $filePath));
-                $product->thumbnail =  str_replace('public', 'storage', $filePath);
-            } else {
+            $product = $this->setProductAttribute($product, $request);
+            if (!$request->has('product_image')) {
                 $product->image = $oldProduct->image;
                 $product->thumbnail = $oldProduct->thumbnail;
             }
             $product->save();
-            $products = Product::where('user_id', auth()->id())->get();
-            $html = view('products.partials.product-list', compact('products'))->render();
+            $html = $this->getProductListHtml();
 
             $response['html'] = $html;
             $response['message'] = 'Product Update successfully';
@@ -281,5 +168,72 @@ class ProductController extends Controller
         }
 
         return response()->json(['success' => false, 'message' => 'Something went wrong. While deleteing product']);
+    }
+
+
+
+    public function getProductListHtml()
+    {
+        $products = Product::where('user_id', auth()->id())->get();
+        $html =  view('products.partials.product-list', compact('products'))->render();
+        return $html;
+    }
+
+
+    protected function validateRequest(Request $request)
+    {
+        $rules = [
+            'category_id' => 'required',
+            'shop_id' => 'required',
+            'name' => 'required',
+            'value' => 'required|min:0.1',
+            'price' => 'required|min:0.1',
+            'type' => 'required'
+        ];
+        $messages = [
+            'category_id.required' => 'Please select a category',
+            'shop_id.required' => 'Please select a shop',
+            'name.required' => 'Product name is required field',
+            'value.required' => 'This field is requierd'
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+        return  $validator;
+    }
+
+
+    protected function setProductAttribute($product, $request, $type = 'add')
+    {
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->is_offer = $request->is_offer ? 1 : 0;
+        $product->value = $request->value;
+        $product->shop_id = $request->shop_id;
+        $product->category_id = $request->category_id;
+        $product->type = $request->type;
+        $product->country = $request->country;
+
+        if ($type == 'add') {
+            $product->image = 'assets/images/no-data-available.png';
+            $product->thumbnail = 'assets/images/no-data-available.png';
+        }
+        if ($request->has('product_image') && $request->file != 'undefined') {
+            $file = $request->file('product_image');
+            $fileName = Str::random(20) . '_' . $file->getExtension();
+            $filePath = $file->storeAs('uploads/products/', $fileName, 'public');
+            $product->image = 'storage/' . $filePath;
+
+            // save thumbnail
+            $path =  'public/uploads/products/thumbnail/';
+            @mkdir(storage_path('app/' . $path), 0777);
+            $name = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            $filePath = $path . $name;
+            $img = Image::make($file->path());
+            $img->resize(150, 150, function ($const) {
+                $const->aspectRatio();
+            })->save(storage_path('app/' . $filePath));
+            $product->thumbnail =  str_replace('public', 'storage', $filePath);
+        }
+
+        return $product;
     }
 }

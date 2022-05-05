@@ -54,18 +54,18 @@
                         <h5>Add new products</h5>
                         <span>Please fill up the form below to add new products</span>
                     </div>
-                    <form class="theme-form" action="{{route('products.store')}}" method="POST" enctype="multipart/form-data">
+                    <form class="theme-form" onsubmit="event.preventDefault();" action="{{route('products.store')}}" id="add_product_form" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
 
-                            <div class="row">
+                            <div class="row" id="product_add_box">
                                 <div class="col-xl-6 col-6 mb-3">
                                     <div class="row">
                                         <div class="col-xxl-7 col-xl-6 col-md-8 col-sm-7 newItem">
                                             <select name="category_id" class="select2 col-sm-12 @error('category_id') is-invalid @enderror" id="product_cat">
                                                 <option value="" selected>Select Category</option>
                                                 @foreach ($categories as $cat)
-                                                <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                                <option value="{{$cat->id}}" {{$cat->id == old('category_id') ?'selected':''}}>{{$cat->name}}</option>
                                                 @endforeach
                                             </select>
                                             @error('category_id')
@@ -88,7 +88,7 @@
                                             <select name="shop_id" class="form-control select2 col-sm-12  @error('shop_id') is-invalid @enderror" id="product_shop">
                                                 <option value="" selected>Select Shop</option>
                                                 @foreach ($shops as $shop)
-                                                <option value="{{$shop->id}}">{{$shop->name}}</option>
+                                                <option value="{{$shop->id}}" {{$shop->id == old('shop_id') ?'selected':''}}>{{$shop->name}}</option>
                                                 @endforeach
                                             </select>
                                             @error('shop_id')
@@ -106,7 +106,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 mb-3 product-name-field">
-                                    <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" placeholder="Product Name">
+                                    <input class="form-control @error('name') is-invalid @enderror" value="{{old('name')}}" type="text" name="name" placeholder="Product Name">
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -117,7 +117,7 @@
                                     <select name="country" class=" country-list col-sm-12 @error('country') is-invalid @enderror" aria-placeholder="Choose Country">
                                         <option value="" selected>Choose Country</option>
                                         @foreach ($countries as $country)
-                                        <option value="{{$country->name}}" data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>
+                                        <option value="{{$country->name}}" {{$country->name == old('country') ?'selected':''}} data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>
 
                                         @endforeach
                                     </select>
@@ -131,7 +131,7 @@
                                 <div class=" col-xxl-4 col-xl-6 col-md-6 col-6 mb-3 field-area">
                                     <div class="input-group mobile-design-change bootstrap-touchspin @error('value') is-invalid @enderror">
                                         <span class="touchspin-value" onclick="increaseByTen('#product_value')">10</span>
-                                        <input class="form-control" type="number" min="0" step="0.01" id="product_value" name="value" placeholder="Weight" style="display: block;" data-bs-original-title="" title="">
+                                        <input class="form-control" type="number" min="0" step="0.01" id="product_value" name="value" placeholder="Weight" style="display: block;" value="{{old('value')}}">
                                         <span class="input-group-text bootstrap-touchspin-postfix" style="display: none;"></span>
                                         <button onclick="decrease('#product_value')" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-minus"></i></button>
                                         <button onclick="increase('#product_value')" class="btn btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-plus"></i></button>
@@ -149,7 +149,7 @@
                                             <label for="edo-ani-2" class="custom-input-label w-100">PCS</label>
                                         </div>
                                         <div class="d-block cursor-pointer custom-input-design w-100">
-                                            <input class="checkbox_animated custom-input" id="edo-ani1-2" value="gram" type="radio" name="type">
+                                            <input class="checkbox_animated custom-input" id="edo-ani1-2" value="gram" type="radio" name="type" {{'gram' == old('type') ?'checked':''}}>
                                             <label for="edo-ani1-2" class="custom-input-label reverse w-100">gram</label>
                                         </div>
                                     </div>
@@ -158,7 +158,7 @@
                                 <div class=" col-xxl-4 col-xl-6 col-md-6 col-6 mb-3 field-area">
                                     <div class="input-group mobile-design-change bootstrap-touchspin @error('price') is-invalid @enderror">
                                         <span class="touchspin-value" onclick="increaseByTen('#product_price')"> 10 </span>
-                                        <input class="form-control" type="number" name="price" min="0" step="0.01" id="product_price" placeholder="Price" data-bs-original-title="" title="">
+                                        <input class="form-control" type="number" name="price" min="0" value="{{old('price')}}" step="0.01" id="product_price" placeholder="Price" data-bs-original-title="" title="">
                                         <span class="input-group-text bootstrap-touchspin-postfix" style="display: none;"></span>
                                         <button onclick="decrease('#product_price')" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-minus"></i></button>
                                         <button onclick="increase('#product_price')" class="btn btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-plus"></i></button>
@@ -179,7 +179,7 @@
                                 </div>
                                 <div class="col-xxl-4 col-xl-12 col-md-12 mb-3">
                                     <div class="input-group d-flex custom-select-file-wrap">
-                                        <input type="file" class="form-control" name="product_image" id="select-file" accept="image/*" />
+                                        <input type="file" class="form-control" name="product_image" id="add_product_image" accept="image/*" />
                                         <label for="select-file" class="custom-select-file"><i data-feather="upload-cloud"></i> <span>Upload a file</span></label>
                                     </div>
                                 </div>
@@ -187,7 +187,7 @@
                         </div>
                         <div class="card-footer text-align-right text-sm-end">
                             <button class="btn" type="button">Cancel</button>
-                            <button class="btn btn-primary" type="submit">Add Product</button>
+                            <button class="btn btn-primary" id="add_product_btn">Add Product</button>
                         </div>
                     </form>
 
