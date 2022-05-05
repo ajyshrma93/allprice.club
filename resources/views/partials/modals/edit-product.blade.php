@@ -12,7 +12,7 @@
                         <div class="mb-3">
                             <input type="hidden" name="product_id" id="edit_product_id">
                             <label class="col-form-label pt-0">Select Category</label>
-                            <select name="category_id" class="js-example-basic-single col-sm-12" id="edit_product_category">
+                            <select name="category_id" class="col-sm-12" id="edit_product_category">
                                 <option value="" selected>Select Category</option>
                                 @foreach ($categories as $cat)
                                 <option value="{{$cat->id}}">{{$cat->name}}</option>
@@ -23,7 +23,7 @@
                     <div class="col-6">
                         <div class="mb-3">
                             <label class="col-form-label pt-0">Select Shop</label>
-                            <select name="shop_id" class="js-example-basic-single col-sm-12" id="edit_product_shop">
+                            <select name="shop_id" class=" col-sm-12" id="edit_product_shop">
                                 <option value="" selected>Select Shop</option>
                                 @foreach ($shops as $shop)
                                 <option value="{{$shop->id}}">{{$shop->name}}</option>
