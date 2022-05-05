@@ -84,7 +84,7 @@ class ProductController extends Controller
                 $name = Str::random(20) . '.' . $file->getClientOriginalExtension();
                 $filePath = $path . $name;
                 $img = Image::make($file->path());
-                $img->resize(200, 200, function ($const) {
+                $img->resize(150, 150, function ($const) {
                     $const->aspectRatio();
                 })->save(storage_path('app/' . $filePath));
                 $product->thumbnail =  str_replace('public', 'storage', $filePath);
@@ -169,7 +169,7 @@ class ProductController extends Controller
                 $name = Str::random(20) . '.' . $file->getClientOriginalExtension();
                 $filePath = $path . $name;
                 $img = Image::make($file->path());
-                $img->resize(110, 110, function ($const) {
+                $img->resize(150, 150, function ($const) {
                     $const->aspectRatio();
                 })->save(storage_path('app/' . $filePath));
                 $product->thumbnail =  str_replace('public', 'storage', $filePath);
@@ -244,7 +244,7 @@ class ProductController extends Controller
                 $name = Str::random(20) . '.' . $file->getClientOriginalExtension();
                 $filePath = $path . $name;
                 $img = Image::make($file->path());
-                $img->resize(110, 110, function ($const) {
+                $img->resize(150, 150, function ($const) {
                     $const->aspectRatio();
                 })->save(storage_path('app/' . $filePath));
                 $product->thumbnail =  str_replace('public', 'storage', $filePath);

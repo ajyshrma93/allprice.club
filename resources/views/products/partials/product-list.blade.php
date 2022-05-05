@@ -6,9 +6,8 @@
             <div class="col-xl-3 col-sm-6" id="product_box_{{$product->id}}">
                 <div class="card">
                     <div class="product-box">
-                        <div class="product-img">
+                        <div class="product-img" style="background-image: url({{asset($product->image)}});background-size: 100% 100%;">
                             <div class="ribbon ribbon-info ribbon-right">{{$product->value}} {{$product->type}}</div>
-                            <img src="{{asset($product->thumbnail)}}" alt="product image">
                             <div class="product-hover">
                                 <ul>
                                     <li>

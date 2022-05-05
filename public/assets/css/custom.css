@@ -59,6 +59,11 @@ div.dataTables_wrapper div.dataTables_filter input {
 	font-size: 16px;
 	font-weight: 700;
 }
+.product-box .product-img {
+    height: 250px !important;
+    width: auto !important;
+    /* max-width: none; */
+}
 
 @media(max-width: 991px) {
 	.product-form-area,
@@ -149,7 +154,7 @@ div.dataTables_wrapper div.dataTables_filter input {
 		align-items: center;
 	}
 
-	.product-box .product-img > img {
+	.product-box .product-img {
 		height: 150px !important;
 		width: auto !important;
 		/* max-width: none; */
