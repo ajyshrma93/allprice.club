@@ -170,7 +170,65 @@ class ProductController extends Controller
         return response()->json(['success' => false, 'message' => 'Something went wrong. While deleteing product']);
     }
 
+    public function bulkUpload(Request $request)
+    {
+        $rules = [
+            'category_id' => 'required',
+            'shop_id' => 'required',
+            'product_images' => 'required',
+            'product_images.*' => 'mimes:jpeg,png,jpg|max:2048'
+        ];
+        $messages = [
+            'category_id.required' => 'Please select a category',
+            'shop_id.required' => 'Please select a shop'
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json(array(
+                'success' => false,
+                'errors' => $validator->getMessageBag()->toArray()
 
+            ), 422);
+        }
+        try {
+            $files = $request->file('product_images');
+            foreach ($files as $key => $file) {
+                $product = new Product();
+                $product->price = 1.00;
+                $product->name = 'Product ' . ++$key;
+                $product->is_offer = 2;
+                $product->type = 'pcs';
+                $product->value = '1';
+                $product->shop_id = $request->shop_id;
+                $product->category_id = $request->category_id;
+                $product->user_id = auth()->id();
+
+                $fileName = Str::random(20) . '_' . $file->getExtension();
+                $filePath = $file->storeAs('uploads/products/', $fileName, 'public');
+                $product->image = 'storage/' . $filePath;
+
+                // save thumbnail
+                $path =  'public/uploads/products/thumbnail/';
+                @mkdir(storage_path('app/' . $path), 0777);
+                $name = Str::random(20) . '.' . $file->getClientOriginalExtension();
+                $filePath = $path . $name;
+                $img = Image::make($file->path());
+                $img->resize(150, 150, function ($const) {
+                    $const->aspectRatio();
+                })->save(storage_path('app/' . $filePath));
+                $product->thumbnail =  str_replace('public', 'storage', $filePath);
+                $product->save();
+            }
+            $html = $this->getProductListHtml();
+
+            $response['html'] = $html;
+            $response['message'] = 'Product uploaded successfully';
+            $response['success'] = true;
+            return response()->json($response, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
 
     public function getProductListHtml()
     {
@@ -205,7 +263,7 @@ class ProductController extends Controller
     {
         $product->name = $request->name;
         $product->price = $request->price;
-        $product->is_offer = $request->is_offer ? 1 : 0;
+        $product->is_offer = $request->is_offer ? 1 : 2;
         $product->value = $request->value;
         $product->shop_id = $request->shop_id;
         $product->category_id = $request->category_id;

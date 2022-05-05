@@ -15,6 +15,7 @@ $("#editcategory").on("show.bs.modal", function (event) {
 });
 
 $("body").on("click", "#update_category", function () {
+    clearError();
     var fdata = new FormData();
     var myform = $("#edit_category_form"); // specify the form element
     let action = myform.attr("action");
@@ -42,7 +43,7 @@ $("body").on("click", "#update_category", function () {
 });
 
 $("body").on("click", "#ajax_add_category_button", function () {
-    $("input").removeClass("is-invalid");
+    clearError();
     var fdata = new FormData();
     var myform = $("#ajax_add_category"); // specify the form element
     let action = myform.attr("action");
@@ -92,8 +93,7 @@ $("body").on("click", "#ajax_add_category_button", function () {
 /** Shop js */
 
 $("body").on("click", "#ajax_add_shop_button", function () {
-    $(".invalid-feedback").remove();
-    $("input").removeClass("is-invalid");
+    clearError();
     var fdata = new FormData();
     var myform = $("#ajax_add_shop"); // specify the form element
     let action = myform.attr("action");
@@ -142,7 +142,7 @@ $("body").on("click", "#ajax_add_shop_button", function () {
 });
 
 $("#editShop").on("show.bs.modal", function (event) {
-    $(".invalid-feedback").remove();
+    clearError();
     var button = $(event.relatedTarget); // Button that triggered the modal
     var url = button.data("url"); // Extract info from data-* attributes
     $.ajax({
@@ -157,7 +157,7 @@ $("#editShop").on("show.bs.modal", function (event) {
 });
 
 $("body").on("click", "#update_shop", function () {
-    $(".invalid-feedback").remove();
+    clearError();
     var fdata = new FormData();
 
     var myform = $("#edit_shop_form"); // specify the form element
@@ -187,7 +187,7 @@ $("body").on("click", "#update_shop", function () {
 
 ///product Page js
 $("#editProductModal").on("show.bs.modal", function (event) {
-    $(".invalid-feedback").remove();
+    clearError();
     var button = $(event.relatedTarget); // Button that triggered the modal
     var url = button.data("url"); // Extract info from data-* attributes
     var modal = $(this);
@@ -224,7 +224,7 @@ $("#editProductModal").on("show.bs.modal", function (event) {
 });
 
 $("body").on("click", "#update_product_btn", function () {
-    $(".invalid-feedback").remove();
+    clearError();
     var fdata = new FormData();
     var myform = $("#edit_product_form"); // specify the form element
     let action = myform.attr("action");
@@ -272,7 +272,7 @@ $("body").on("click", "#update_product_btn", function () {
 });
 
 $("#cloneProductModal").on("show.bs.modal", function (event) {
-    $(".invalid-feedback").remove();
+    clearError();
     var button = $(event.relatedTarget); // Button that triggered the modal
     var url = button.data("url"); // Extract info from data-* attributes
     var modal = $(this);
@@ -309,7 +309,7 @@ $("#cloneProductModal").on("show.bs.modal", function (event) {
 });
 
 $("body").on("click", "#clone_product_btn", function () {
-    $(".invalid-feedback").remove();
+    clearError();
     var fdata = new FormData();
     var myform = $("#clone_product_form"); // specify the form element
     let action = myform.attr("action");
@@ -360,7 +360,7 @@ $("body").on("click", "#clone_product_btn", function () {
 
 $("body").on("click", "#add_product_btn", function (e) {
     e.preventDefault();
-    $(".invalid-feedback").remove();
+    clearError();
     var fdata = new FormData();
     var myform = $("#add_product_form"); // specify the form element
     let action = myform.attr("action");
@@ -407,7 +407,76 @@ $("body").on("click", "#add_product_btn", function (e) {
         },
     });
 });
+/// bulk upload js
 
+$("body").on("click", "#bulk_upload_form_btn", function (e) {
+    e.preventDefault();
+    clearError();
+    var fdata = new FormData();
+    var myform = $("#bulk_upload_form"); // specify the form element
+    let action = myform.attr("action");
+    var idata = myform.serializeArray();
+    console.log(idata);
+    var image = $("#bulk_upload_images")[0].files;
+
+    for (var i = 0; i < image.length; i++) {
+        fdata.append("product_images[]", image[i]);
+    }
+
+    $.each(idata, function (key, input) {
+        fdata.append(input.name, input.value);
+    });
+
+    $.ajax({
+        url: action,
+        data: fdata,
+        method: "POST",
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            if (response.success == true) {
+                $(".product_list_grid").html(response.html);
+                showToast(response.message);
+                myform[0].reset();
+                $("#cloneProductModal").modal("hide");
+            }
+        },
+        error: function (e) {
+            let productEditModal = $("#bulkUploadProduct");
+            if (e.status === 422) {
+                var response = $.parseJSON(e.responseText);
+                $.each(response.errors, function (key, val) {
+                    productEditModal
+                        .find('[name="' + key + '"]')
+                        .addClass("is-invalid");
+                    productEditModal
+                        .find('[name="' + key + '"]')
+                        .parent()
+                        .append(
+                            ' <span class="invalid-feedback" role="alert"><strong>' +
+                                val +
+                                "</strong></span>"
+                        );
+
+                    if (key.indexOf("product_images.") != -1) {
+                        clearError();
+                        productEditModal
+                            .find('[name="product_images"]')
+                            .addClass("is-invalid")
+                            .parent()
+                            .append(
+                                ' <span class="invalid-feedback" role="alert"><strong>The product image must be a file of type: jpeg, png, jpg.</strong></span>'
+                            );
+                    }
+                });
+            }
+        },
+    });
+});
+function clearError() {
+    $(".invalid-feedback").remove();
+    $(".form-control").removeClass("is-invalid");
+}
 function deleteProduct(button) {
     $.ajax({
         url: button.attr("data-url"),
@@ -433,6 +502,7 @@ function deleteProduct(button) {
 }
 //// common function
 function showToast(message, type = "success") {
+    $("select").val(null).trigger("change");
     $.notify("<strong>" + message + "</strong>", {
         type: type,
         allow_dismiss: true,

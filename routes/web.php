@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('shops/ajax-update', [ShopController::class, 'ajaxUpdate'])->name('shops.ajax-update');
     Route::resource('shops', ShopController::class)->except(['show', 'update']);
     /// Product routes
+    Route::post('products/bulk-upload', [ProductController::class, 'bulkUpload'])->name('products.bulk-upload');
     Route::post('products/ajax-update', [ProductController::class, 'ajaxUpdate'])->name('products.ajax-update');
     Route::post('products/clone', [ProductController::class, 'clone'])->name('products.clone');
     Route::resource('products', ProductController::class)->except(['show', 'update']);

@@ -178,10 +178,7 @@
                                     </div>
                                 </div>
                                 <div class="col-xxl-4 col-xl-12 col-md-12 mb-3">
-                                    <div class="input-group d-flex custom-select-file-wrap">
-                                        <input type="file" class="form-control" name="product_image" id="add_product_image" accept="image/*" />
-                                        <label for="select-file" class="custom-select-file"><i data-feather="upload-cloud"></i> <span>Upload a file</span></label>
-                                    </div>
+                                    <input type="file" class="form-control" name="product_image" id="add_product_image" accept="image/*" />
                                 </div>
                             </div>
                         </div>
