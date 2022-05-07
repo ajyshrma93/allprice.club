@@ -438,7 +438,7 @@ $("body").on("click", "#bulk_upload_form_btn", function (e) {
                 $(".product_list_grid").html(response.html);
                 showToast(response.message);
                 myform[0].reset();
-                $("#cloneProductModal").modal("hide");
+                $("#bulkUploadProduct").modal("hide");
             }
         },
         error: function (e) {
