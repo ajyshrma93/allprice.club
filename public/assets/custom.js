@@ -37,9 +37,11 @@ $("body").on("click", "#update_category", function () {
                 myform[0].reset();
                 showToast("Category has been updated successfully", "success");
                 $("#editcategory").modal("hide");
+                hideloader();
             }
         },
     });
+    hideloader();
 });
 
 $("body").on("click", "#ajax_add_category_button", function () {
@@ -77,6 +79,7 @@ $("body").on("click", "#ajax_add_category_button", function () {
                 myform[0].reset();
                 showToast("Category has been added successfully", "success");
                 $("#add_catgeory_modal").modal("hide");
+                hideloader();
             }
         },
         error: function (e) {
@@ -84,9 +87,16 @@ $("body").on("click", "#ajax_add_category_button", function () {
                 var response = $.parseJSON(e.responseText);
                 $.each(response.errors, function (key, val) {
                     $("#category_" + key + "_input").addClass("is-invalid");
-                    $("#category_" + key + "_error").text(val[0]);
+                    $("#category_" + key + "_input")
+                        .parent()
+                        .append(
+                            ' <span class="invalid-feedback" role="alert"><strong>' +
+                                val +
+                                "</strong></span>"
+                        );
                 });
             }
+            hideloader();
         },
     });
 });
@@ -127,6 +137,7 @@ $("body").on("click", "#ajax_add_shop_button", function () {
                 myform[0].reset();
                 showToast("Shop has been added successfully", "success");
                 $("#add_shop_modal").modal("hide");
+                hideloader();
             }
         },
         error: function (e) {
@@ -134,9 +145,16 @@ $("body").on("click", "#ajax_add_shop_button", function () {
                 var response = $.parseJSON(e.responseText);
                 $.each(response.errors, function (key, val) {
                     $("#shop_" + key + "_input").addClass("is-invalid");
-                    $("#shop_" + key + "_error").text(val[0]);
+                    $("#shop_" + key + "_input")
+                        .parent()
+                        .append(
+                            ' <span class="invalid-feedback" role="alert"><strong>' +
+                                val +
+                                "</strong></span>"
+                        );
                 });
             }
+            hideloader();
         },
     });
 });
@@ -154,6 +172,7 @@ $("#editShop").on("show.bs.modal", function (event) {
         },
     });
     var modal = $(this);
+    hideloader();
 });
 
 $("body").on("click", "#update_shop", function () {
@@ -176,6 +195,8 @@ $("body").on("click", "#update_shop", function () {
         contentType: false,
         success: function (response) {
             if (response.success == true) {
+                hideloader();
+
                 $("#shop-list").html(response.html);
                 myform[0].reset();
                 showToast("Shop has been updated successfully", "success");
@@ -183,6 +204,7 @@ $("body").on("click", "#update_shop", function () {
             }
         },
     });
+    hideloader();
 });
 
 ///product Page js
@@ -221,6 +243,7 @@ $("#editProductModal").on("show.bs.modal", function (event) {
             }
         },
     });
+    hideloader();
 });
 
 $("body").on("click", "#update_product_btn", function () {
@@ -247,6 +270,7 @@ $("body").on("click", "#update_product_btn", function () {
                 $(".product_list_grid").html(response.html);
                 showToast(response.message);
                 $("#editProductModal").modal("hide");
+                hideloader();
             }
         },
         error: function (e) {
@@ -267,6 +291,7 @@ $("body").on("click", "#update_product_btn", function () {
                         );
                 });
             }
+            hideloader();
         },
     });
 });
@@ -306,6 +331,8 @@ $("#cloneProductModal").on("show.bs.modal", function (event) {
             }
         },
     });
+
+    hideloader();
 });
 
 $("body").on("click", "#clone_product_btn", function () {
@@ -332,6 +359,7 @@ $("body").on("click", "#clone_product_btn", function () {
                 $(".product_list_grid").html(response.html);
                 showToast(response.message);
                 $("#cloneProductModal").modal("hide");
+                hideloader();
             }
         },
         error: function (e) {
@@ -352,6 +380,7 @@ $("body").on("click", "#clone_product_btn", function () {
                         );
                 });
             }
+            hideloader();
         },
     });
 });
@@ -384,6 +413,7 @@ $("body").on("click", "#add_product_btn", function (e) {
                 showToast(response.message);
                 myform[0].reset();
                 $("#cloneProductModal").modal("hide");
+                hideloader();
             }
         },
         error: function (e) {
@@ -404,6 +434,7 @@ $("body").on("click", "#add_product_btn", function (e) {
                         );
                 });
             }
+            hideloader();
         },
     });
 });
@@ -439,6 +470,7 @@ $("body").on("click", "#bulk_upload_form_btn", function (e) {
                 showToast(response.message);
                 myform[0].reset();
                 $("#bulkUploadProduct").modal("hide");
+                hideloader();
             }
         },
         error: function (e) {
@@ -470,10 +502,12 @@ $("body").on("click", "#bulk_upload_form_btn", function (e) {
                     }
                 });
             }
+            hideloader();
         },
     });
 });
 function clearError() {
+    showLoader();
     $(".invalid-feedback").remove();
     $(".form-control").removeClass("is-invalid");
 }
@@ -554,3 +588,11 @@ function increaseByTen(input) {
 $(".custom-input-label").click(function () {
     $(this).parent().find("input").prop("checked", true);
 });
+
+function showLoader() {
+    $("#process_request").show();
+}
+
+function hideloader() {
+    $("#process_request").hide();
+}

@@ -17,15 +17,6 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label class="col-form-label pt-0">Category Shop</label>
-                    <select name="category_id" class="col-sm-12 select2-hidden-accessible" id="modalSelect-3" tabindex="-1" aria-hidden="true">
-                        <option value="">Select Category</option>
-                        @foreach ($categories as $category)
-                        <option value="{{$category->id}}">{{$category->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="mb-3">
                     <label class="col-form-label pt-0">Upload Images</label>
                     <div class="input-group">
                         <input type="file" name="product_images" accept="image/*" class="form-control" id="bulk_upload_images" aria-describedby="inputGroupFileAddon04" aria-label="Upload" multiple="" data-bs-original-title="" title="">

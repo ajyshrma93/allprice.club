@@ -144,7 +144,7 @@ class ProductController extends Controller
             $html = $this->getProductListHtml();
 
             $response['html'] = $html;
-            $response['message'] = 'Product Update successfully';
+            $response['message'] = 'Product cloned  successfully';
             $response['success'] = true;
             return response()->json($response, 200);
         } catch (\Exception $e) {
@@ -173,16 +173,14 @@ class ProductController extends Controller
     public function bulkUpload(Request $request)
     {
         $rules = [
-            'category_id' => 'required',
             'shop_id' => 'required',
             'product_images' => 'required',
             'product_images.*' => 'mimes:jpeg,png,jpg|max:2048'
         ];
         $messages = [
-            'category_id.required' => 'Please select a category',
             'shop_id.required' => 'Please select a shop'
         ];
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
             return response()->json(array(
                 'success' => false,
@@ -200,7 +198,7 @@ class ProductController extends Controller
                 $product->type = 'pcs';
                 $product->value = '1';
                 $product->shop_id = $request->shop_id;
-                $product->category_id = $request->category_id;
+                $product->category_id = 0;
                 $product->user_id = auth()->id();
 
                 $fileName = Str::random(20) . '_' . $file->getExtension();
