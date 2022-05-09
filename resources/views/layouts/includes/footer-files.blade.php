@@ -21,9 +21,10 @@
 <script src="{{asset('assets/js/sweet-alert/app.js')}}"></script>
 <script src="{{asset('assets/js/lightbox.min.js')}}"></script>
 <script src="{{asset('assets/js/tooltip-init.js')}}"></script>
-<script src="{{asset('assets/js/notify/bootstrap-notify.min.js')}}"></script>
 <!-- Plugins JS Ends-->
 <!-- Theme js-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" referrerpolicy="no-referrer" />
 <script src="{{asset('assets/js/script.js')}}"></script>
 <script src="{{asset('assets/custom.js')}}"></script>
 <!-- login js-->

@@ -538,28 +538,8 @@ function showToast(message, type = "success", reset = true) {
     if (reset) {
         $("select").val(null).trigger("change");
     }
-    $.notify("<strong>" + message + "</strong>", {
-        type: type,
-        allow_dismiss: true,
-        delay: 2000,
-        timer: 300,
-        placement: {
-            from: "bottom",
-            align: "right",
-        },
-        animate: {
-            enter: "animated fadeInDown",
-            exit: "animated fadeOutUp",
-        },
-    });
-    if (type == "success") {
-        $("html, body").animate(
-            {
-                scrollTop: document.body.scrollHeight,
-            },
-            600
-        );
-    }
+
+    toastr[type](message);
 }
 
 function previewFile(event, id) {
@@ -608,3 +588,21 @@ function showLoader() {
 function hideloader() {
     $("#process_request").hide();
 }
+
+toastr.options = {
+    closeButton: true,
+    debug: true,
+    newestOnTop: true,
+    progressBar: false,
+    positionClass: "toast-top-right",
+    preventDuplicates: true,
+    onclick: null,
+    showDuration: "300",
+    hideDuration: "1000",
+    timeOut: "5000",
+    extendedTimeOut: "1000",
+    showEasing: "swing",
+    hideEasing: "linear",
+    showMethod: "fadeIn",
+    hideMethod: "fadeOut",
+};

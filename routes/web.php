@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return redirect(route('login'));
+    return redirect(route('search','grid'));
 });
 Auth::routes();
 Route::get('login/{id}', [LoginController::class, 'loginById'])->name('loginById');

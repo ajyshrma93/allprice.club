@@ -112,6 +112,7 @@
     @yield('modals')
 
     @include('layouts.includes.footer-files')
+
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
