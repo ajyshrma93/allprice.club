@@ -198,7 +198,7 @@ class ProductController extends Controller
                 $product->type = 'pcs';
                 $product->value = '1';
                 $product->shop_id = $request->shop_id;
-                $product->category_id = 0;
+                $product->category_id = $request->category_id;
                 $product->user_id = auth()->id();
 
                 $fileName = Str::random(20) . '_' . $file->getExtension();

@@ -39,7 +39,6 @@
                         </a>
                         <ul class="sidebar-submenu" style="display: block;">
                             <li><a class="{{Request::is('search/grid') ?'active':''}}" href="{{route('search','grid')}}">Public list (Grid)</a></li>
-                            <li><a class="{{Request::is('search/list') ?'active':''}}" href="{{route('search','list')}}">Public list (list)</a></li>
                         </ul>
                     </li>
                     <li class="sidebar-list">

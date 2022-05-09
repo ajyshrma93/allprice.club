@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
@@ -14,7 +17,9 @@ class SearchController extends Controller
 
     public function index(Request $request, $type)
     {
-
-        return view('search.index');
+        $shops = Shop::get();
+        $categories = Category::get();
+        $products = Product::paginate(10);
+        return view('search.index', compact('products', 'categories', 'shops'));
     }
 }

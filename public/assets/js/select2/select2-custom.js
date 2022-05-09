@@ -6,7 +6,7 @@
     $(".select2").select2({
         dropdownParent: $(".card-body"),
     });
-    $(".js-example-disabled-results").select2();
+    $(".select2-basic").select2();
     $(".js-example-basic-multiple").select2();
 
     $("#edit_product_shop, #edit_product_category").select2({
@@ -42,7 +42,7 @@
         templateSelection: iformat,
         templateResult: iformat,
         allowHtml: true,
-          dropdownParent: $(".card-body"),
+        dropdownParent: $(".card-body"),
     });
     $("#edit_product_country").select2({
         width: "100%",
@@ -57,33 +57,5 @@
         templateResult: iformat,
         allowHtml: true,
         dropdownParent: $("#cloneProductModal .modal-content"),
-    });
-
-    // With Placeholder
-    $("#bm-group").select2({
-        dropdownParent: $("#addNewItem .modal-content"),
-    });
-
-    //Limited Numbers
-    $(".js-example-basic-multiple-limit").select2({
-        maximumSelectionLength: 2,
-    });
-
-    //RTL Suppoort
-    $(".js-example-rtl").select2({
-        dir: "rtl",
-    });
-    // Responsive width Search Select
-    $(".js-example-basic-hide-search").select2({
-        minimumResultsForSearch: Infinity,
-    });
-    $(".js-example-disabled").select2({
-        disabled: true,
-    });
-    $(".js-programmatic-enable").on("click", function () {
-        $(".js-example-disabled").prop("disabled", false);
-    });
-    $(".js-programmatic-disable").on("click", function () {
-        $(".js-example-disabled").prop("disabled", true);
     });
 })(jQuery);

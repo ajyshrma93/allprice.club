@@ -447,7 +447,6 @@ $("body").on("click", "#bulk_upload_form_btn", function (e) {
     var myform = $("#bulk_upload_form"); // specify the form element
     let action = myform.attr("action");
     var idata = myform.serializeArray();
-    console.log(idata);
     var image = $("#bulk_upload_images")[0].files;
 
     for (var i = 0; i < image.length; i++) {
@@ -467,8 +466,8 @@ $("body").on("click", "#bulk_upload_form_btn", function (e) {
         success: function (response) {
             if (response.success == true) {
                 $(".product_list_grid").html(response.html);
-                showToast(response.message);
-                myform[0].reset();
+                showToast(response.message, "success", false);
+                $("#bulk_upload_images").val("");
                 $("#bulkUploadProduct").modal("hide");
                 hideloader();
             }
@@ -535,19 +534,32 @@ function deleteProduct(button) {
     });
 }
 //// common function
-function showToast(message, type = "success") {
-    $("select").val(null).trigger("change");
+function showToast(message, type = "success", reset = true) {
+    if (reset) {
+        $("select").val(null).trigger("change");
+    }
     $.notify("<strong>" + message + "</strong>", {
         type: type,
         allow_dismiss: true,
         delay: 2000,
-        showProgressbar: true,
         timer: 300,
+        placement: {
+            from: "bottom",
+            align: "right",
+        },
         animate: {
             enter: "animated fadeInDown",
             exit: "animated fadeOutUp",
         },
     });
+    if (type == "success") {
+        $("html, body").animate(
+            {
+                scrollTop: document.body.scrollHeight,
+            },
+            600
+        );
+    }
 }
 
 function previewFile(event, id) {
