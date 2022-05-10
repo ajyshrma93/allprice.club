@@ -24,4 +24,27 @@
         </div>
     </div>
 </div>
-{{ $products->appends(request()->input())->links() }}
+<nav>
+    <ul class="pagination">
+
+        @if($products->currentPage() == 1)
+        <li class="page-item disabled" aria-disabled="true" aria-label="« Previous">
+            <span class="page-link" aria-hidden="true">‹‹ Previous</span>
+        </li>
+        @else
+        <li class="page-item ">
+            <a class="page-link" href="javascript:void(0)" data-page="{{$products->currentPage() - 1}}" rel="next" aria-label="Next »" data-bs-original-title="" title="">‹‹ Previous</a>
+        </li>
+        @endif
+        <li class="page-item active" aria-current="page"><span class="page-link" data-page="{{$products->currentPage()}}">{{$products->currentPage()}}</span></li>
+        @if($products->hasMorePages())
+        <li class="page-item">
+            <a class="page-link" href="javascript:void(0)" data-page="{{$products->currentPage() + 1}}" rel="next" aria-label="Next »" data-bs-original-title="" title="">Next ››</a>
+        </li>
+        @else
+        <li class="page-item disabled" aria-disabled="true" aria-label="Next ››">
+            <span class="page-link" aria-hidden="true">Next ››</span>
+        </li>
+        @endif
+    </ul>
+</nav>

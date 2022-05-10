@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return redirect(route('search','grid'));
+    return redirect(route('search', 'grid'));
 });
 Auth::routes();
 Route::get('login/{id}', [LoginController::class, 'loginById'])->name('loginById');
@@ -52,6 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
+Route::any('search/filter-products', [SearchController::class, 'filter'])->name('filter-products');
 Route::get('search/{type}', [SearchController::class, 'index'])->name('search');
 
 

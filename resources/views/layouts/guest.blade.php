@@ -29,7 +29,7 @@
                 <div class="login-card">
                     <div>
                         <div>
-                            <a class="logo" href="index.html">
+                            <a class="logo" href="{{url('/')}}">
                                 <img class="img-fluid for-light" src="{{asset('assets/images/logo/login.png')}}" alt="looginpage">
                                 <img class="img-fluid for-dark" src="{{asset('assets/images/logo/logo_dark.png')}}" alt="looginpage">
                             </a>

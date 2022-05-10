@@ -33,6 +33,12 @@
                         </a>
                     </li>
                     <li class="sidebar-list">
+                        <a class="{{$menu =='search'?'active':''}} sidebar-link sidebar-title link-nav" href="{{route('search','grid')}}">
+                            <i data-feather="globe"></i>
+                            <span>Public list (Grid)</span>
+                        </a>
+                    </li>
+                    <!-- <li class="sidebar-list">
                         <a href="#" class="sidebar-link sidebar-title {{$menu =='search'?'active':''}}">
                             <i data-feather="globe"></i>
                             <span>Public list</span>
@@ -40,7 +46,7 @@
                         <ul class="sidebar-submenu" style="display: block;">
                             <li><a class="{{Request::is('search/grid') ?'active':''}}" href="{{route('search','grid')}}">Public list (Grid)</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title link-nav {{$menu=='shop'?'active':''}}" href="{{route('shops.index')}}">
                             <i data-feather="shopping-cart"></i>
@@ -61,10 +67,7 @@
                     </li>
                     @else
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="{{route('register')}}">
-                            <i data-feather="user-plus"></i>
-                            <span>Signup</span>
-                        </a>
+
                     </li>
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title link-nav" href="{{route('login')}}">
@@ -72,7 +75,12 @@
                             <span>Login</span>
                         </a>
                     </li>
-
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav" href="{{route('register')}}">
+                            <i data-feather="user-plus"></i>
+                            <span>Signup</span>
+                        </a>
+                    </li>
                     @endauth
                 </ul>
             </div>

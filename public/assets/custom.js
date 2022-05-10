@@ -533,6 +533,57 @@ function deleteProduct(button) {
         },
     });
 }
+
+$("body").on("click", "#applyFilter", function () {
+    var fdata = new FormData();
+    var myform = $("#gridSearchForm"); // specify the form element
+    let action = myform.attr("action");
+    var idata = myform.serializeArray();
+    $.each(idata, function (key, input) {
+        fdata.append(input.name, input.value);
+    });
+    $.ajax({
+        url: action,
+        data: fdata,
+        method: "POST",
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            if (response.success == true) {
+                $(".product_list_grid").html(response.html);
+                $("#product-modal-2-mobile").modal("hide");
+            }
+        },
+    });
+});
+
+$("body").on("click", ".page-link", function (e) {
+    e.preventDefault();
+    var fdata = new FormData();
+    var myform = $("#gridSearchForm"); // specify the form element
+    let action = myform.attr("action");
+    var idata = myform.serializeArray();
+    $.each(idata, function (key, input) {
+        fdata.append(input.name, input.value);
+    });
+    let page = $(this).data("page");
+
+    fdata.append("page", page);
+    $.ajax({
+        url: action,
+        data: fdata,
+        method: "POST",
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            if (response.success == true) {
+                $(".product_list_grid").html(response.html);
+                $("#product-modal-2-mobile").modal("hide");
+            }
+        },
+    });
+});
+
 //// common function
 function showToast(message, type = "success", reset = true) {
     if (reset) {
