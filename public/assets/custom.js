@@ -567,7 +567,7 @@ $("body").on("click", ".page-link", function (e) {
         fdata.append(input.name, input.value);
     });
     let page = $(this).data("page");
-    alert(page);
+
     fdata.append("page", page);
     $.ajax({
         url: action,
