@@ -10,7 +10,7 @@
                 <div class="col-2 col-md-7">
                     <div class="create-new-items justify-content-end">
 
-                        <a class="d-md-none" type="button" data-bs-toggle="modal" data-bs-target="#product-modal-2-mobile" data-bs-original-title="" title="">
+                        <a class="" type="button" data-bs-toggle="modal" data-bs-target="#product-modal-2-mobile" data-bs-original-title="" title="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter">
                                 <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
                             </svg>
@@ -26,39 +26,11 @@
             <!-- product cards view start -->
             <div class="col-12 card-body">
                 <div class="product-wrapper-grid">
-                    <div class="row theme-form d-none d-md-flex">
-                        <div class="col-xl-3 col-md-6 mb-lg-3 mb-2">
-                            <input type="search" class="form-control py-2" placeholder="Search by products name" data-bs-original-title="" title="">
-                        </div>
-                        <div class="col-xl-3 col-md-6 mb-lg-3 mb-2">
-                            <select class="form-control  col-sm-12 select2-basic">
-                                <option value="1" selected="">All Shop</option>
-                                @foreach ($shops as $shop)
-                                <option value="{{$shop->id}}">{{$shop->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-xl-3 col-md-6 mb-lg-3 mb-2">
-                            <select class="form-control  col-sm-12 select2-basic">
-                                <option value="" selected="">All Category</option>
-                                @foreach ($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-xl-3 col-md-6 mb-lg-3 mb-2">
-                            <select class="form-control col-sm-12 select2-basic">
-                                <option value="" selected="">Select Offer</option>
-                                <option value="1">Yes</option>
-                                <option value="2">No</option>
-                            </select>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="product_list_grid">
                             @include('search.partials.list')
                         </div>
-                        {{ $products->appends(request()->input())->links() }}
+
                     </div>
                 </div>
             </div>
