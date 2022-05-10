@@ -25,7 +25,7 @@
     </div>
 </div>
 <nav>
-    <ul class="pagination">
+    <ul class="pagination mb-4">
 
         @if($products->currentPage() == 1)
         <li class="page-item disabled" aria-disabled="true" aria-label="« Previous">
