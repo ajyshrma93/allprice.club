@@ -131,7 +131,7 @@
                                 <div class=" col-xxl-4 col-xl-6 col-md-6 col-6 mb-3 field-area">
                                     <div class="input-group mobile-design-change bootstrap-touchspin @error('value') is-invalid @enderror">
                                         <span class="touchspin-value" onclick="increaseByTen('#product_value')">10</span>
-                                        <input class="form-control" type="number" min="0" step="0.01" id="product_value" name="value" placeholder="Weight" style="display: block;" value="{{old('value')}}">
+                                        <input class="form-control" type="number" min="1" id="product_value" name="value" placeholder="Weight" style="display: block;" value="{{old('value')}}">
                                         <span class="input-group-text bootstrap-touchspin-postfix" style="display: none;"></span>
                                         <button onclick="decrease('#product_value')" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-minus"></i></button>
                                         <button onclick="increase('#product_value')" class="btn btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-plus"></i></button>

@@ -410,9 +410,8 @@ $("body").on("click", "#add_product_btn", function (e) {
         success: function (response) {
             if (response.success == true) {
                 $(".product_list_grid").html(response.html);
-                showToast(response.message);
-                myform[0].reset();
-                $("#cloneProductModal").modal("hide");
+                showToast(response.message, "success", false);
+                myform.find("input").val("");
                 hideloader();
             }
         },
@@ -607,7 +606,7 @@ function increase(input) {
         weight = 0;
     }
     let newWeight = parseFloat(weight) + 1;
-    $(input).val(newWeight.toFixed(2));
+    $(input).val(newWeight);
 }
 function decrease(input) {
     let weight = $(input).val();
@@ -616,7 +615,7 @@ function decrease(input) {
     }
     if (weight > 1) {
         let newWeight = parseFloat(weight) - 1;
-        $(input).val(newWeight.toFixed(2));
+        $(input).val(newWeight);
     }
 }
 function increaseByTen(input) {
@@ -625,7 +624,7 @@ function increaseByTen(input) {
         weight = 0;
     }
     let newWeight = parseFloat(weight) + 10;
-    $(input).val(newWeight.toFixed(2));
+    $(input).val(newWeight);
 }
 
 $(".custom-input-label").click(function () {

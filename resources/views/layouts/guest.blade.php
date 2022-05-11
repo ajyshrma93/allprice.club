@@ -39,8 +39,17 @@
                 </div>
             </div>
         </div>
-        @include('layouts.includes.footer-files')
+        <script src="{{asset('assets/js/jquery-3.5.1.min.js')}}"></script>
     </div>
+    <script type="text/javascript">
+        function noBack() {
+            window.history.forward();
+        }
+        setTimeout("noBack()", 0);
+        window.onunload = function() {
+            null;
+        }
+    </script>
 </body>
 
 </html>
