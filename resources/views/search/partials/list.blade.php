@@ -7,11 +7,13 @@
                 <div class="card">
                     <div class="product-box">
                         <div class="product-img" style="background-image: url({{asset($product->image)}});background-size: 100% 100%;">
-                            <div class="ribbon ribbon-info ribbon-right">{{$product->value}} {{$product->type}}</div>
+                            <div class="ribbon ribbon-info ribbon-right">{{$product->getPrice()}}</div>
                         </div>
                         <div class="product-details">
                             <h4>{{$product->name}}</h4>
-                            <div class="product-price">${{$product->price}}</div>
+                            <div class="product-price">${{$product->price}}
+                                <span class="text-end" style="float: right;">{{$product->value}} {{$product->type}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
