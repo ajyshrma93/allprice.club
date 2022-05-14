@@ -409,9 +409,12 @@ $("body").on("click", "#add_product_btn", function (e) {
         contentType: false,
         success: function (response) {
             if (response.success == true) {
-                $(".product_list_grid").html(response.html);
+                $(".product-wrapper-grid").prepend(response.html);
                 showToast(response.message, "success", false);
-                myform.find("input").val("");
+                myform.find("input[name='name']").val("");
+                myform.find("input[name='value']").val("");
+                myform.find("input[name='price']").val("");
+                myform.find("input[name='product_image']").val("");
                 hideloader();
             }
         },

@@ -30,7 +30,7 @@ class ProductController extends Controller
         $countries = Country::orderBy('sort', 'desc')->get();
         $shops = Shop::get();
         $categories = Category::get();
-        $products = Product::where('user_id', auth()->id())->get();
+        $products = Product::where('user_id', auth()->id())->orderBy('id', 'desc')->get();
         return view('products.index', compact('products', 'countries', 'categories', 'shops'));
     }
 
@@ -57,7 +57,7 @@ class ProductController extends Controller
             $product = $this->setProductAttribute($product, $request);
             $product->save();
 
-            $html = $this->getProductListHtml();
+            $html = view('products.partials.single-product', compact('product'))->render();
 
             $response['html'] = $html;
             $response['message'] = 'Product Added successfully';
@@ -230,7 +230,7 @@ class ProductController extends Controller
 
     public function getProductListHtml()
     {
-        $products = Product::where('user_id', auth()->id())->get();
+        $products = Product::where('user_id', auth()->id())->orderBy('id', 'desc')->get();
         $html =  view('products.partials.product-list', compact('products'))->render();
         return $html;
     }
