@@ -4,7 +4,7 @@
         @forelse ($products as $product)
         @include('products.partials.single-product')
         @empty
-        <img src="{{asset('assets/images/no-data-found.png')}}" alt="product image">
+        <img src="{{asset('assets/images/no-data-found.png')}}" alt="product image" id="empty_product_image">
         @endforelse
 
 

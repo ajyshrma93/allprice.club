@@ -13,8 +13,8 @@
         border-radius: 4px 0px 0px 4px;
     }
 
-    .selection .select2-selection {
-        border: 1px solid #ced4da !important;
+    .select2-dropdown {
+        width: 150px !important;
     }
 </style>
 
@@ -113,7 +113,21 @@
                                     </span>
                                     @enderror
                                 </div>
+                                <div class="col-lg-6 mb-3  d-md-flex">
+                                    <select name="country" class=" country-list col-sm-12 @error('country') is-invalid @enderror" aria-placeholder="Choose Country">
+                                        <option value="" selected>Choose Country</option>
+                                        @foreach ($countries as $country)
+                                        <option value="{{$country->name}}" {{$country->name == old('country') ?'selected':''}} data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>
 
+                                        @endforeach
+                                    </select>
+
+                                    @error('country')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
                                 <div class=" col-xxl-4 col-xl-6 col-md-6 col-6 mb-3 field-area">
                                     <div class="input-group mobile-design-change bootstrap-touchspin @error('value') is-invalid @enderror">
                                         <span class="touchspin-value" onclick="increaseByTen('#product_value')">10</span>
@@ -141,15 +155,13 @@
                                     </div>
                                 </div>
 
-                                <div class=" col-xxl-6 col-xl-6 col-md-12 col-12 mb-3 field-area">
+                                <div class=" col-xxl-4 col-xl-6 col-md-6 col-6 mb-3 field-area">
                                     <div class="input-group mobile-design-change bootstrap-touchspin @error('price') is-invalid @enderror">
                                         <span class="touchspin-value" onclick="increaseByTen('#product_price',true)"> 10 </span>
                                         <input class="form-control" type="number" name="price" min="0" value="{{old('price')}}" step="0.01" id="product_price" placeholder="Price" data-bs-original-title="" title="">
                                         <span class="input-group-text bootstrap-touchspin-postfix" style="display: none;"></span>
                                         <button onclick="decrease('#product_price',true)" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-minus"></i></button>
                                         <button onclick="increase('#product_price',true)" class="btn btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-plus"></i></button>
-                                        <button onclick="increase('#product_price',true,0.1)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button" data-bs-original-title="" title="">0.1</i></button>
-                                        <button onclick="increase('#product_price',true,0.01)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button" data-bs-original-title="" title="">0.01</button>
                                     </div>
                                     @error('price')
                                     <span class="invalid-feedback" role="alert">
@@ -157,59 +169,30 @@
                                     </span>
                                     @enderror
                                 </div>
-
-                                <div class="col-xxl-4 col-xl-12 col-md-12 mb-3">
-                                    <input type="file" class="form-control" name="product_image" id="add_product_image" accept="image/*" />
-                                </div>
-
-                            </div>
-                            <div class="row mb-2">
-                                <div class="col-7 text-end">
-                                    <span type="button" class="text-danger btn-reset">Reset</span>
-                                </div>
-                                <div class="col-5 text-left">
-                                    <span type="button" class="text-danger btn-advance"><i class="fa fa-plus"></i> Advance</span>
-                                </div>
-                            </div>
-                            <div id="advance_options" class="row d-none">
-                                <div class="col-lg-6 mb-3  d-md-flex">
-                                    <select name="country" class="country-list col-sm-12 @error('country') is-invalid @enderror" aria-placeholder="Choose Country">
-                                        <option value="" selected>Choose Country</option>
-                                        @foreach ($countries as $country)
-                                        <option value="{{$country->name}}" {{$country->name == old('country') ?'selected':''}} data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>
-
-                                        @endforeach
-                                    </select>
-
-                                    @error('country')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="col-lg-6 col-xxl-3 col-6 mb-3 d-flex  field-area">
-                                    <div class="offer-price-checkbox text-nowrap">
+                                <div class="col-lg-6 col-6 mb-3 d-flex  field-area">
+                                    <div class=" offer-price-checkbox text-nowrap">
                                         <div>
                                             <input type="checkbox" id="offer-price-id" name="is_offer">
                                             <label for="offer-price-id" style="font-size: 12px; color: #898989">Offer Price</label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-xxl-3 col-6 mb-3 d-flex  field-area">
-                                    <div class="duty-free-checkbox text-nowrap">
-                                        <div>
-                                            <input type="checkbox" id="duty-free-id" name="is_duty_free">
-                                            <label for="duty-free-id" style="font-size: 12px; color: #898989">Duty Free</label>
-                                        </div>
-                                    </div>
+                                <div class="col-xxl-4 col-xl-12 col-md-12 mb-3">
+                                    <input type="file" class="form-control" name="product_image" id="add_product_image" accept="image/*" />
                                 </div>
-
                             </div>
-
+                            <div class="row">
+                                <div class="col-6 text-end">
+                                    <button type="reset" class="btn btn-danger btn-reset">Reset</button>
+                                </div>
+                                <div class="col-6 text-left">
+                                    <button type="reset" class="btn btn-success btn-advance">Advance</button>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="card-footer text-align-right text-sm-end">
-                            <button class="btn d-md-none" type="button" onclick="$('.product-form-area').toggleClass('d-block')">Cancel</button>
+                            <button class="btn" type="button" onclick="$('#product-form-area').toggle()">Cancel</button>
                             <button class="btn btn-primary" id="add_product_btn">Add Product</button>
                         </div>
                     </form>

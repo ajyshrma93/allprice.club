@@ -36,7 +36,15 @@
                         <input class="form-control" type="text" placeholder="Name" name="name" id="edit_product_name" value="Product dummy Name">
                     </div>
                 </div>
+                <div class="mb-3">
+                    <select name="country" class=" col-sm-12" id="edit_product_country">
+                        <option value="choose" selected>Choose Country</option>
+                        @foreach ($countries as $country)
+                        <option value="{{$country->name}}" data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>
 
+                        @endforeach
+                    </select>
+                </div>
                 <div class="mb-3 row">
                     <div class=" col-xxl-4 col-xl-6 col-md-6 col-6 mb-3 field-area">
                         <div class="input-group mobile-design-change bootstrap-touchspin @error('value') is-invalid @enderror">
@@ -65,15 +73,13 @@
                         </div>
                     </div>
 
-                    <div class=" col-xxl-4 col-xl-6 col-md-12 col-12  field-area">
+                    <div class=" col-xxl-4 col-xl-6 col-md-6 col-6 mb-3 field-area">
                         <div class="input-group mobile-design-change bootstrap-touchspin @error('price') is-invalid @enderror">
                             <span class="touchspin-value" onclick="increaseByTen('#edit_product_price',true)"> 10 </span>
                             <input class="form-control" type="number" name="price" min="0" step="0.01" id="edit_product_price" placeholder="Price" data-bs-original-title="" title="">
                             <span class="input-group-text bootstrap-touchspin-postfix" style="display: none;"></span>
                             <button onclick="decrease('#edit_product_price',true)" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-minus"></i></button>
                             <button onclick="increase('#edit_product_price',true)" class="btn btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-plus"></i></button>
-                            <button onclick="increase('#edit_product_price',true,0.1)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button" data-bs-original-title="" title="">0.1</i></button>
-                            <button onclick="increase('#edit_product_price',true,0.01)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button" data-bs-original-title="" title="">0.01</button>
                         </div>
                         @error('price')
                         <span class="invalid-feedback" role="alert">
@@ -81,20 +87,7 @@
                         </span>
                         @enderror
                     </div>
-
-                </div>
-
-                <div class="row " id="edit_advance_option">
-                    <div class="mb-3">
-                        <select name="country" class=" col-sm-12" id="edit_product_country">
-                            <option value="choose" selected>Choose Country</option>
-                            @foreach ($countries as $country)
-                            <option value="{{$country->name}}" data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>
-
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-lg-6 col-6 field-area">
+                    <div class="col-lg-6 col-6 mb-3 d-flex  field-area">
                         <div class=" offer-price-checkbox text-nowrap">
                             <div>
                                 <input type="checkbox" id="edit_product_offer" name="is_offer">
@@ -102,15 +95,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-6 field-area">
-                        <div class=" offer-price-checkbox text-nowrap">
-                            <div>
-                                <input type="checkbox" id="edit_product_duty_free" name="is_duty_free">
-                                <label for="edit_product_offer" style="font-size: 12px; color: #898989">Duty Free</label>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
                 <div class="mb-3">
                     <label class="col-form-label pt-0">Product Image</label>
@@ -120,7 +104,7 @@
                 </div>
                 <div class="mb-3">
                     <div class="product-img text-center">
-                        <img src="{{asset('assets/images/no-data-available.png')}}" alt="product image" width="100px" id="edit_product_image_preview" height="100px">
+                        <img src="{{asset('assets/images/no-data-available.png')}}" alt="product image" width="100%" id="edit_product_image_preview" height="150px">
                     </div>
                 </div>
                 <div class="modal-footer text-center text-sm-end" style="padding: 0px;">

@@ -194,7 +194,6 @@ class ProductController extends Controller
                 $product = new Product();
                 $product->price = 1.00;
                 $product->name = 'Product ' . ++$key;
-                $product->is_offer = 2;
                 $product->type = 'pcs';
                 $product->value = '1';
                 $product->shop_id = $request->shop_id;
@@ -242,8 +241,8 @@ class ProductController extends Controller
             'category_id' => 'required',
             'shop_id' => 'required',
             'name' => 'required',
-            'value' => 'required|min:0.1',
-            'price' => 'required|min:0.1',
+            'value' => 'required|gt:0',
+            'price' => 'required|gt:0',
             'type' => 'required'
         ];
         $messages = [
@@ -262,6 +261,7 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->price = $request->price;
         $product->is_offer = $request->is_offer ? 1 : 2;
+        $product->is_duty_free = $request->is_duty_free ? 1 : 2;
         $product->value = $request->value;
         $product->shop_id = $request->shop_id;
         $product->category_id = $request->category_id;
@@ -271,6 +271,7 @@ class ProductController extends Controller
         if ($type == 'add') {
             $product->image = 'assets/images/no-data-available.png';
             $product->thumbnail = 'assets/images/no-data-available.png';
+            $product->user_id = auth()->id();
         }
         if ($request->has('product_image') && $request->file != 'undefined') {
             $file = $request->file('product_image');

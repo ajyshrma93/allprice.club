@@ -160,6 +160,10 @@ div.dataTables_wrapper div.dataTables_filter input {
 		/* max-width: none; */
 	}
 
+    .btn-custom-width{
+        width: 50px!important;
+    }
+
 	.newItem, .product-name-field, .field-area  {
 		padding-right: 5px;
 		padding-left: 5px;
@@ -185,40 +189,7 @@ div.dataTables_wrapper div.dataTables_filter input {
 	.field-area .form-control::-webkit-input-placeholder {
 		font-size: 13px !important;
 	}
-	.offer-price-checkbox div{
-		position: relative;
-		padding: 5px 15px 0px 0px;
-	}
-	.offer-price-checkbox input[type=checkbox] {
-		width: 1.3em;
-		height: 1.3em;
-		background-color: white;
-		border-radius: 10%;
-		vertical-align: middle;
-		border: 1px solid #7366ff;
-		appearance: none;
-		-webkit-appearance: none;
-		outline: none;
-		cursor: pointer;
-		border-radius: 5px;
-	}
 
-	.offer-price-checkbox input[type=checkbox]:before {
-		font-family: "FontAwesome";
-		content: "\f00c";
-		font-size: 15px;
-		color: transparent !important;
-		display: block;
-		width: 15px;
-		height: 15px;
-		position: absolute;
-		left:  1.5px;
-		top: 5px;
-	}
-
-	.offer-price-checkbox input[type=checkbox]:checked:before {
-		color: #7366ff !important;
-	}
 	.select2-dropdown {
 		background: #FFFFFF;
 		box-shadow: 0px 4px 14px 2px rgba(0, 0, 0, 0.1);
@@ -230,9 +201,9 @@ div.dataTables_wrapper div.dataTables_filter input {
 	.select2-selection__rendered span i{
 		font-size: 13px !important;
 	}
-	.select2-dropdown {
+	/* .select2-dropdown {
 		width: 150 !important;
-	}
+	} */
 	.select-countries-mobile--open{
 		left: 45% !important;
 	}
@@ -260,4 +231,42 @@ div.dataTables_wrapper div.dataTables_filter input {
 		margin-right: 0 !important;
 	}
 
+}
+.offer-price-checkbox div{
+    position: relative;
+    padding: 5px 15px 0px 0px;
+}
+.duty-free-checkbox div{
+    position: relative;
+    padding: 5px 15px 0px 0px;
+}
+ input[type=checkbox] {
+    width: 1.3em;
+    height: 1.3em;
+    background-color: white;
+    border-radius: 10%;
+    vertical-align: middle;
+    border: 1px solid #7366ff;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+input[type=checkbox]:before {
+    font-family: "FontAwesome";
+    content: "\f00c";
+    font-size: 15px;
+    color: transparent !important;
+    display: block;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    left:  1.5px;
+    top: 5px;
+}
+
+input[type=checkbox]:checked:before {
+    color: #7366ff !important;
 }

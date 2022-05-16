@@ -1346,7 +1346,7 @@
 
 @media only screen and (max-width: 810px) {
   .page-wrapper .page-header .header-wrapper .nav-right > ul > li .profile-media .media-body {
-    display: none; } }
+    display: block; } }
 
 @media only screen and (max-width: 767.98px) {
   .wizard-4 ul.anchor {

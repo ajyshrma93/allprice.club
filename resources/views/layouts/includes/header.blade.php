@@ -33,10 +33,11 @@
                 </li>
                 <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
                 <li class="profile-nav onhover-dropdown p-0 me-0">
-                    <div class="media profile-media"><img class="b-r-10" src="../assets/images/dashboard/profile.jpg" alt="">
-                        <div class="media-body"><span>{{auth()->user()->name}}</span>
-                            <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
+                    <div class="media profile-media">
+                        <div class="media-body">
+                            <span>{{auth()->user()->name}} &nbsp;</span>
                         </div>
+                        <img class="b-r-10" src="../assets/images/dashboard/profile.jpg" alt="">
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
 

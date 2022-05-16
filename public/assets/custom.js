@@ -234,6 +234,11 @@ $("#editProductModal").on("show.bs.modal", function (event) {
                 if (product.is_offer) {
                     modal.find("#edit_product_offer").prop("checked", "true");
                 }
+                if (product.is_duty_free) {
+                    modal
+                        .find("#edit_product_duty_free")
+                        .prop("checked", "true");
+                }
                 modal
                     .find("#edit_product_image_preview")
                     .attr("src", product.image);
@@ -321,6 +326,11 @@ $("#cloneProductModal").on("show.bs.modal", function (event) {
                     .attr("checked", "checked");
                 if (product.is_offer) {
                     modal.find("#clone_product_offer").prop("checked", "true");
+                }
+                if (product.is_duty_free) {
+                    modal
+                        .find("#clone_product_duty_free")
+                        .prop("checked", "true");
                 }
                 modal
                     .find("#clone_product_image_preview")
@@ -412,9 +422,13 @@ $("body").on("click", "#add_product_btn", function (e) {
                 $(".product-wrapper-grid").prepend(response.html);
                 showToast(response.message, "success", false);
                 myform.find("input[name='name']").val("");
-                myform.find("input[name='value']").val("");
+                myform.find("input[name='value']").val("1");
                 myform.find("input[name='price']").val("");
                 myform.find("input[name='product_image']").val("");
+                myform.find("input[name='type'][value='pcs']").trigger("click");
+                if ($("#empty_product_image").length > 0) {
+                    $("#empty_product_image").remove();
+                }
                 hideloader();
             }
         },
@@ -603,34 +617,46 @@ function previewFile(event, id) {
     };
 }
 
-function increase(input) {
-    let weight = $(input).val();
-    if (weight == "") {
-        weight = 0;
+function increase(input, price = false, increaseBy = 1) {
+    let value = $(input).val();
+    if (value == "") {
+        value = 0;
     }
-    let newWeight = parseFloat(weight) + 1;
-    $(input).val(newWeight);
+    let newValue = parseFloat(value) + increaseBy;
+    if (price) {
+        newValue = newValue.toFixed(2);
+    }
+    $(input).val(newValue);
 }
-function decrease(input) {
-    let weight = $(input).val();
-    if (weight == "") {
-        weight = 0;
+function decrease(input, price = false) {
+    let value = $(input).val();
+    if (value == "") {
+        value = 0;
     }
-    if (weight > 1) {
-        let newWeight = parseFloat(weight) - 1;
-        $(input).val(newWeight);
+    if (value > 1) {
+        let newValue = parseFloat(value) - 1;
+        if (price) {
+            newValue = newValue.toFixed(2);
+        }
+        $(input).val(newValue);
+    } else {
+        $(input).val(0);
     }
 }
-function increaseByTen(input) {
-    let weight = $(input).val();
-    if (weight == "") {
-        weight = 0;
+function increaseByTen(input, price = false) {
+    let value = $(input).val();
+    if (value == "") {
+        value = 0;
     }
-    let newWeight = parseFloat(weight) + 10;
-    $(input).val(newWeight);
+    let newValue = parseFloat(value) + 10;
+    if (price) {
+        newValue = newValue.toFixed(2);
+    }
+
+    $(input).val(newValue);
 }
 
-$(".custom-input-label").click(function () {
+$("body").on("click", ".custom-input-label", function () {
     $(this).parent().find("input").prop("checked", true);
 });
 
@@ -659,3 +685,24 @@ toastr.options = {
     showMethod: "fadeIn",
     hideMethod: "fadeOut",
 };
+
+$("body").on("click", ".btn-reset", function () {
+    let form = $("#add_product_form");
+    $("select").val(null).trigger("change");
+    form.find("input[name='name']").val("");
+    form.find("input[name='value']").val("1");
+    form.find("input[name='price']").val("");
+    form.find("input[name='product_image']").val("");
+    form.find("input[name='type'][value='pcs']").trigger("click");
+});
+
+$("body").on("click", ".btn-advance", function () {
+    $("#advance_options").toggleClass("d-none");
+    if ($("#advance_options").hasClass("d-none")) {
+        $(this).find("i").removeClass("fa-minus");
+        $(this).find("i").addClass("fa-plus");
+    } else {
+        $(this).find("i").removeClass("fa-plus");
+        $(this).find("i").addClass("fa-minus");
+    }
+});
