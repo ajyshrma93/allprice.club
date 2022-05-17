@@ -88,6 +88,7 @@
                     <div class="mb-3">
                         <select name="country" class=" col-sm-12" id="edit_product_country">
                             <option value="choose" selected>Choose Country</option>
+                            {!!auth()->user()->getUserCountryHtml()!!}
                             @foreach ($countries as $country)
                             <option value="{{$country->name}}" data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>
 

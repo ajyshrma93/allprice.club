@@ -21,7 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'google_id'
+        'google_id',
+        'country'
     ];
 
     /**
@@ -42,4 +43,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function userCountry()
+    {
+        return $this->hasOne(Country::class, 'name', 'country');
+    }
+
+    public function getUserCountryHtml()
+    {
+        $html = '';
+        if ($this->country != '' && $this->userCountry) {
+            $country = $this->userCountry;
+            $html =  '<option value="' . $country->name . '" data-icon="fi-' . strtolower($country->sortname) . '" >' . $country->name . '</option>';
+        }
+
+        return  $html;
+    }
 }

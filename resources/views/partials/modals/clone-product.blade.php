@@ -103,6 +103,7 @@
                     <div class="col-12">
                         <select name="country" class="form-control col-sm-12" id="clone_product_country">
                             <option value="choose" selected>Choose Country</option>
+                            {!!auth()->user()->getUserCountryHtml()!!}
                             @foreach ($countries as $country)
                             <option value="{{$country->name}}" {{$country->sortname =='MY' ?'selected':''}} data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>
 

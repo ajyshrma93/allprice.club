@@ -38,6 +38,17 @@
             <label class="col-form-label">Confirm Password</label>
             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Enter your confirm password">
         </div>
+        <div class="form-group">
+            <label class="col-form-label">Location</label>
+            <div class="mb-3">
+                <select name="country" class=" col-sm-12 country-list">
+                    <option value="choose" selected>Choose Country</option>
+                    @foreach ($countries as $country)
+                    <option value="{{$country->name}}" data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
         <div class="form-group mb-0">
             <div class="checkbox p-0">
                 <input id="checkbox1" type="checkbox">
@@ -56,7 +67,7 @@
                 </a>
             </div>
         </div>
-        <p class="mt-4 mb-0 text-center" >Already have an account?<a class="ms-2" href="{{route('login')}}">Sign in</a></p>
+        <p class="mt-4 mb-0 text-center">Already have an account?<a class="ms-2" href="{{route('login')}}">Sign in</a></p>
     </form>
 </div>
 @endsection

@@ -175,6 +175,7 @@
                                 <div class="col-lg-6 mb-3  d-md-flex">
                                     <select name="country" class="country-list col-sm-12 @error('country') is-invalid @enderror" aria-placeholder="Choose Country">
                                         <option value="" selected>Choose Country</option>
+                                        {!!auth()->user()->getUserCountryHtml()!!}
                                         @foreach ($countries as $country)
                                         <option value="{{$country->name}}" {{$country->name == old('country') ?'selected':''}} data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>
 
@@ -187,7 +188,7 @@
                                     </span>
                                     @enderror
                                 </div>
-                                <div class="col-lg-6 col-xxl-3 col-6 mb-3 d-flex  field-area">
+                                <div class="col-lg-6 col-xxl-3 col-6 d-flex  field-area">
                                     <div class="offer-price-checkbox text-nowrap">
                                         <div>
                                             <input type="checkbox" id="offer-price-id" name="is_offer">
@@ -195,7 +196,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-xxl-3 col-6 mb-3 d-flex  field-area">
+                                <div class="col-lg-6 col-xxl-3 col-6 d-flex  field-area">
                                     <div class="duty-free-checkbox text-nowrap">
                                         <div>
                                             <input type="checkbox" id="duty-free-id" name="is_duty_free">
@@ -203,9 +204,7 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
 
                         <div class="card-footer text-align-right text-sm-end">

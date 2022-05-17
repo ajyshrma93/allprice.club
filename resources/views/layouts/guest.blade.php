@@ -13,12 +13,12 @@
     <link rel="icon" href="{{asset('assets/images/favicon.png')}}" type="image/x-icon">
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/fontawesome.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/themify.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/feather-icon.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/bootstrap.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
     <link id="color" rel="stylesheet" href="{{asset('assets/css/color-1.css')}}" media="screen">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/select2.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/flag-icons-main/css/flag-icons.min.css')}}">
 </head>
 
 <body>
@@ -40,8 +40,27 @@
             </div>
         </div>
         <script src="{{asset('assets/js/jquery-3.5.1.min.js')}}"></script>
+        <script src="{{asset('assets/js/select2/select2.full.min.js')}}"></script>
     </div>
     <script type="text/javascript">
+        function iformat(icon) {
+            var originalOption = icon.element;
+            return $(
+                '<span><i class="fi ' +
+                $(originalOption).data("icon") +
+                '"></i> ' +
+                icon.text +
+                "</span>"
+            );
+        }
+        $(".country-list").select2({
+            width: "100%",
+            templateSelection: iformat,
+            templateResult: iformat,
+            allowHtml: true,
+            dropdownParent: $(".login-main"),
+        });
+
         function noBack() {
             window.history.forward();
         }
