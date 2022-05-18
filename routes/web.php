@@ -51,14 +51,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('products/clone', [ProductController::class, 'clone'])->name('products.clone');
     Route::resource('products', ProductController::class)->except(['show', 'update']);
 });
-
-
 Route::any('search/filter-products', [SearchController::class, 'filter'])->name('filter-products');
 Route::get('search/{type}', [SearchController::class, 'index'])->name('search');
-
-Route::get('test', [HomeController::class, 'getLocation']);
+Route::get('geo-location', [HomeController::class, 'getLocation']);
 //Route::view('test', 'geolocation');
-
 Route::get('clear-cache', function () {
     $exitCode = \Artisan::call('cache:clear');
 });

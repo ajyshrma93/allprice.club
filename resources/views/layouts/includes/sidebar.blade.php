@@ -59,10 +59,16 @@
                             <span>Category List</span>
                         </a>
                     </li>
-                    <li class="sidebar-list">
+                    <!-- <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title link-nav" href="sell-reports.html">
                             <i data-feather="pie-chart"></i>
                             <span>Reports</span>
+                        </a>
+                    </li> -->
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav" href="{{url('geo-location')}}">
+                            <i data-feather="pie-chart"></i>
+                            <span>Check Location</span>
                         </a>
                     </li>
                     @else
