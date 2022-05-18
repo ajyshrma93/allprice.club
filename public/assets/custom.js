@@ -628,13 +628,13 @@ function increase(input, price = false, increaseBy = 1) {
     }
     $(input).val(newValue);
 }
-function decrease(input, price = false) {
+function decrease(input, price = false, decreaseBy = 1) {
     let value = $(input).val();
     if (value == "") {
         value = 0;
     }
-    if (value > 1) {
-        let newValue = parseFloat(value) - 1;
+    if (value > 0) {
+        let newValue = parseFloat(value) - parseFloat(decreaseBy);
         if (price) {
             newValue = newValue.toFixed(2);
         }

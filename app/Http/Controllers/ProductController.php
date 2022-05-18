@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $countries = Country::where('name', '!=', auth()->user()->country)->orderBy('sort', 'desc')->get();
+        $countries = Country::orderBy('sort', 'desc')->get();
         $shops = Shop::get();
         $categories = Category::get();
         $products = Product::where('user_id', auth()->id())->orderBy('id', 'desc')->get();

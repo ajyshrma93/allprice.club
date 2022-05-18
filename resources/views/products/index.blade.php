@@ -148,8 +148,8 @@
                                         <span class="input-group-text bootstrap-touchspin-postfix" style="display: none;"></span>
                                         <button onclick="decrease('#product_price',true)" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-minus"></i></button>
                                         <button onclick="increase('#product_price',true)" class="btn btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-plus"></i></button>
-                                        <button onclick="increase('#product_price',true,0.1)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button" data-bs-original-title="" title="">0.1</i></button>
-                                        <button onclick="increase('#product_price',true,0.01)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button" data-bs-original-title="" title="">0.01</button>
+                                        <button onclick="decrease('#product_price',true,0.1)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button" data-bs-original-title="" title="">0.1</i></button>
+                                        <button onclick="decrease('#product_price',true,0.01)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button" data-bs-original-title="" title="">0.01</button>
                                     </div>
                                     @error('price')
                                     <span class="invalid-feedback" role="alert">
@@ -174,8 +174,7 @@
                             <div id="advance_options" class="row d-none">
                                 <div class="col-lg-6 mb-3  d-md-flex">
                                     <select name="country" class="country-list col-sm-12 @error('country') is-invalid @enderror" aria-placeholder="Choose Country">
-                                        <option value="" selected>Choose Country</option>
-                                        {!!auth()->user()->getUserCountryHtml()!!}
+                                        <option value="" selected>Item Made From</option>
                                         @foreach ($countries as $country)
                                         <option value="{{$country->name}}" {{$country->name == old('country') ?'selected':''}} data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>
 
