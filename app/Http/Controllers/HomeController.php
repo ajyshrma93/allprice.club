@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Stevebauman\Location\Facades\Location;
 
 class HomeController extends Controller
 {
@@ -26,5 +27,15 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+
+    public function getLocation()
+    {
+        $ip = request()->ip();
+        $ip = '117.215.245.92';
+        $userLocation = Location::get($ip);
+
+        return view('geolocation', compact('userLocation'));
     }
 }

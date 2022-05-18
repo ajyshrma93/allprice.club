@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShopController;
@@ -55,6 +56,8 @@ Route::group(['middleware' => 'auth'], function () {
 Route::any('search/filter-products', [SearchController::class, 'filter'])->name('filter-products');
 Route::get('search/{type}', [SearchController::class, 'index'])->name('search');
 
+Route::get('test', [HomeController::class, 'getLocation']);
+//Route::view('test', 'geolocation');
 
 Route::get('clear-cache', function () {
     $exitCode = \Artisan::call('cache:clear');

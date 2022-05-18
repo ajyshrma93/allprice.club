@@ -110,8 +110,8 @@
         </div>
     </div>
     @yield('modals')
-
     @include('layouts.includes.footer-files')
+    @stack('scripts')
 
     <script type="text/javascript">
         $.ajaxSetup({
