@@ -17,7 +17,7 @@ $menu='';
         <div class="card">
             <div class="card-body">
                 <div id="map">
-
+                    <p>Ip Address : {{request()->ip()}}</p>
                 </div>
                 @foreach (auth()->user()->defaultLoction() as $key=> $location)
                 <p>{{$key . ' Distance From Location Current : ' .auth()->user()->calculateDistane($userLocation->latitude,$userLocation->longitude,$location['lat'],$location['long'])}}</p>

@@ -33,7 +33,7 @@ class HomeController extends Controller
     public function getLocation()
     {
         $ip = request()->ip();
-        $ip = '117.215.245.92';
+    //    $ip = '117.215.245.92';
         $userLocation = Location::get($ip);
 
         return view('geolocation', compact('userLocation'));
