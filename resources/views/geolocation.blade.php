@@ -19,10 +19,9 @@ $menu='';
                 <div id="map">
                     <p>Ip Address : {{request()->ip()}}</p>
                 </div>
-                @foreach (auth()->user()->defaultLoction() as $key=> $location)
-                <p>{{$key . ' Distance From Location Current : ' .auth()->user()->calculateDistane($userLocation->latitude,$userLocation->longitude,$location['lat'],$location['long'])}}</p>
+                @foreach ((array) $userLocation as $key => $value )
+                {{$key}} : {{$value}}
                 @endforeach
-                <p id="demo"></p>
 
             </div>
         </div>
