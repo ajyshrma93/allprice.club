@@ -20,7 +20,12 @@ $menu='';
                     <p>Ip Address : {{request()->ip()}}</p>
                 </div>
                 @foreach ((array) $userLocation as $key => $value )
-                {{$key}} : {{$value}}
+                @php
+                if($key == 'driver'){
+                    continue;
+                }
+                @endphp
+                {{$key}} : {{$value}} </br>
                 @endforeach
 
             </div>
