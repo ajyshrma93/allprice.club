@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -50,11 +51,25 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('products/ajax-update', [ProductController::class, 'ajaxUpdate'])->name('products.ajax-update');
     Route::post('products/clone', [ProductController::class, 'clone'])->name('products.clone');
     Route::resource('products', ProductController::class)->except(['show', 'update']);
+
+    Route::group(['middleware' => 'is_admin'], function () {
+        Route::post('cities/list', [CityController::class, 'getList'])->name('cities.list');
+        Route::post('cities/update', [CityController::class, 'update'])->name('cities.update');
+        Route::resource('cities', CityController::class)->except('update', 'edit', 'destroy');
+    });
 });
 Route::any('search/filter-products', [SearchController::class, 'filter'])->name('filter-products');
 Route::get('search/{type}', [SearchController::class, 'index'])->name('search');
 Route::get('geo-location', [HomeController::class, 'getLocation']);
 //Route::view('test', 'geolocation');
 Route::get('clear-cache', function () {
+
+    $user = new \App\Models\User();
+    $user->name = 'Admin';
+    $user->email = 'admin@allprice.club';
+    $user->password = bcrypt('Admin@123');
+    $user->role_id = \App\Models\User::ROLE_ADMIN;
+    $user->save();
+
     $exitCode = \Artisan::call('cache:clear');
 });

@@ -59,12 +59,15 @@
                             <span>Category List</span>
                         </a>
                     </li>
-                    <!-- <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="sell-reports.html">
-                            <i data-feather="pie-chart"></i>
-                            <span>Reports</span>
+                    @if (auth()->user()->role_id == \App\Models\User::ROLE_ADMIN)
+                    <li class="sidebar-list">
+                        <a class="{{$menu =='cities'?'active':''}} sidebar-link sidebar-title link-nav" href="{{route('cities.index')}}">
+                            <i data-feather="globe"></i>
+                            <span>Cities</span>
                         </a>
-                    </li> -->
+                    </li>
+                    @endif
+
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title link-nav" href="{{url('geo-location')}}">
                             <i data-feather="pie-chart"></i>

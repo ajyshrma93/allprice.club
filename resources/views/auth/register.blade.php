@@ -41,10 +41,10 @@
         <div class="form-group">
             <label class="col-form-label">Location</label>
             <div class="mb-3">
-                <select name="country" class=" col-sm-12 country-list">
-                    <option value="choose" selected>Choose Country</option>
-                    @foreach ($countries as $country)
-                    <option value="{{$country->name}}" data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>
+                <select name="location" class=" col-sm-12 form-control select2">
+                    <option value="choose" selected>Choose Location</option>
+                    @foreach ($cities as $city)
+                    <option value="{{$city->name}}">{{$city->name}}</option>
                     @endforeach
                 </select>
             </div>

@@ -64,7 +64,6 @@ $menu='';
                         if (output) {
                             if (output.features) {
                                 if (output.features.length > 0) {
-                                    console.log(output.features);
                                     $('#location').text(output.features[0].place_name);
                                     map = new mapboxgl.Map({
                                         container: 'map',
@@ -86,7 +85,17 @@ $menu='';
                                             }
                                         }]
                                     };
-
+                                    map.addControl(
+                                        new mapboxgl.GeolocateControl({
+                                            positionOptions: {
+                                                enableHighAccuracy: true
+                                            },
+                                            // When active the map will receive updates to the device's location as it changes.
+                                            trackUserLocation: true,
+                                            // Draw an arrow next to the location dot to indicate which direction the device is heading.
+                                            showUserHeading: true
+                                        })
+                                    );
                                     for (const feature of geojson.features) {
                                         const el = document.createElement('div');
                                         el.className = 'marker';
