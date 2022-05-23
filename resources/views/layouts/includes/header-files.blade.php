@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('assets/flag-icons-main/css/flag-icons.min.css')}}">
 <!-- Feather icon-->
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/feather-icon.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/datatables.css')}}">
 <!-- Plugins css start-->
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/scrollbar.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/select2.css')}}">

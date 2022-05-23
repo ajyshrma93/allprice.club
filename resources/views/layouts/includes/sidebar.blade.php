@@ -59,10 +59,19 @@
                             <span>Category List</span>
                         </a>
                     </li>
+                    @if (auth()->user()->role_id == \App\Models\User::ROLE_ADMIN)
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="sell-reports.html">
+                        <a class="{{$menu =='cities'?'active':''}} sidebar-link sidebar-title link-nav" href="{{route('cities.index')}}">
+                            <i data-feather="globe"></i>
+                            <span>Cities</span>
+                        </a>
+                    </li>
+                    @endif
+
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav" href="{{url('geo-location')}}">
                             <i data-feather="pie-chart"></i>
-                            <span>Reports</span>
+                            <span>Check Location</span>
                         </a>
                     </li>
                     @else

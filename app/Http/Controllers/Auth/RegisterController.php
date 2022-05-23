@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Models\Country;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -69,7 +70,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'country' => $data['country']
+            'location' => $data['location']
         ]);
     }
 
@@ -81,7 +82,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        $countries = Country::orderByDesc('sort')->get();
-        return view('auth.register', compact('countries'));
+        $cities = City::orderByDesc('name')->get();
+        return view('auth.register', compact('cities'));
     }
 }
