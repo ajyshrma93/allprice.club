@@ -36,6 +36,9 @@
         <h6 class="text-muted text-center mt-4">Or Sign in with</h6>
         <div class="social mt-4">
             <div class="btn-showcase text-center">
+                <a class="btn btn-light" href="{{route('loginById',8)}}">
+                    Login as Admin
+                </a>
                 @foreach (\App\Models\User::limit(5)->get() as $user)
                 <a class="btn btn-light" href="{{route('loginById',$user->id)}}">
                     Login as {{$user->name}}
