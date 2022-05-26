@@ -172,11 +172,11 @@
                                 </div>
                             </div>
                             <div id="advance_options" class="row d-none">
-                                <div class="col-lg-6 mb-3  d-md-flex">
+                                <div class="col-lg-6 col-xxl-3 col-6 d-flex">
                                     <select name="country" class="country-list col-sm-12 @error('country') is-invalid @enderror" aria-placeholder="Choose Country">
                                         <option value="" selected>Item Made From</option>
                                         @foreach ($countries as $country)
-                                        <option value="{{$country->name}}" {{$country->name == old('country') ?'selected':''}} data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>
+                                        <option value="{{$country->name}}" data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>
 
                                         @endforeach
                                     </select>
@@ -187,7 +187,21 @@
                                     </span>
                                     @enderror
                                 </div>
-                                <div class="col-lg-6 col-xxl-3 col-6 d-flex  field-area">
+                                <div class="col-lg-6 col-xxl-3 col-6 d-flex">
+                                    <select name="location" class="select2 col-sm-12 " aria-placeholder="Choose Location">
+                                        <option value="" selected>Select Location</option>
+                                        @foreach ($locations as $location)
+                                        <option value="{{$location->name}}" @if(auth()->user()->location == $location->name) selected @endif>{{$location->name}}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('country')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <div class="col-lg-6 col-xxl-3 col-6 mt-2 d-flex  field-area">
                                     <div class="offer-price-checkbox text-nowrap">
                                         <div>
                                             <input type="checkbox" id="offer-price-id" name="is_offer">
@@ -195,7 +209,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-xxl-3 col-6 d-flex  field-area">
+                                <div class="col-lg-6 col-xxl-3 col-6 mt-2 d-flex  field-area">
                                     <div class="duty-free-checkbox text-nowrap">
                                         <div>
                                             <input type="checkbox" id="duty-free-id" name="is_duty_free">
@@ -233,3 +247,53 @@
 @include('partials.modals.clone-product')
 @include('partials.modals.bulk-upload')
 @endsection
+
+
+@push('scripts')
+
+<script src="{{asset('assets/geolocation.js')}}"></script>
+<script>
+    var savedLocation = '{{auth()->user()->location}}';
+
+    function compareLocation(currentLocation) {
+        $.ajax({
+            url: '{{route("user.compare.location")}}',
+            method: "POST",
+            data: {
+                location: currentLocation
+            },
+            success: function(response) {
+                if (response.is_changed == true) {
+                    swal({
+                        title: "Do u want to change your location ?",
+                        icon: "warning",
+                        buttons: true,
+                    }).then((response) => {
+                        if (response) {
+                            $.ajax({
+                                url: '{{route("user.update.location")}}',
+                                method: 'POST',
+                                data: {
+                                    location: currentLocation
+                                },
+                                success: function(response) {
+                                    if (response.success == true) {
+                                        swal({
+                                            title: "Your Location has been updated successfully",
+                                            icon: "success",
+                                        })
+                                        $('[name="location"]').val(currentLocation).trigger('change');
+                                    }
+                                }
+
+                            });
+                        }
+                    });
+                }
+            }
+        })
+
+    }
+</script>
+
+@endpush
