@@ -28,14 +28,19 @@ class ProductController extends Controller
      */
     public function index()
     {
+
         $countries = Country::orderBy('sort', 'desc')->get();
-        $shops = Shop::get();
         $cities = City::get();
+        $locatedShops = Shop::query();
+        if (auth()->user()->city_id) {
+            $locatedShops = $locatedShops->where('city_id', auth()->user()->city_id);
+        }
+        $locatedShops = $locatedShops->get();
+        $shops = Shop::get();
         $categories = Category::get();
         $products = Product::where('user_id', auth()->id())->orderBy('id', 'desc')->get();
-        return view('products.index', compact('products', 'countries', 'categories', 'shops', 'cities'));
+        return view('products.index', compact('products', 'countries', 'categories', 'shops', 'cities', 'locatedShops'));
     }
-
     /**
      * Store a newly created resource in storage.
      *

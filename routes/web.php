@@ -51,6 +51,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('products/ajax-update', [ProductController::class, 'ajaxUpdate'])->name('products.ajax-update');
     Route::post('products/clone', [ProductController::class, 'clone'])->name('products.clone');
     Route::resource('products', ProductController::class)->except(['show', 'update']);
+    Route::post('user-compare-location', [HomeController::class, 'compareLocation'])->name('user.compare.location');
+    Route::post('user-update-location', [HomeController::class, 'updateLocation'])->name('user.update.location');
 
     Route::group(['middleware' => 'is_admin'], function () {
         Route::post('cities/list', [CityController::class, 'getList'])->name('cities.list');
@@ -63,13 +65,5 @@ Route::get('search/{type}', [SearchController::class, 'index'])->name('search');
 Route::get('geo-location', [HomeController::class, 'getLocation']);
 //Route::view('test', 'geolocation');
 Route::get('clear-cache', function () {
-
-    $user = new \App\Models\User();
-    $user->name = 'Admin';
-    $user->email = 'admin@allprice.club';
-    $user->password = bcrypt('Admin@123');
-    $user->role_id = \App\Models\User::ROLE_ADMIN;
-    $user->save();
-
     $exitCode = \Artisan::call('cache:clear');
 });

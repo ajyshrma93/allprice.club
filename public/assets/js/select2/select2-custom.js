@@ -31,7 +31,6 @@
     $("#edit_city_id").select2({
         dropdownParent: $("#editShop .modal-content"),
     });
-    editShop;
     // custom
     function iformat(icon) {
         var originalOption = icon.element;

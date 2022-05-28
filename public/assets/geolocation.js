@@ -23,11 +23,11 @@ function getCurrentLocation(initialLoad) {
                 success: function (responce) {
                     var output = JSON.parse(responce);
                     if (output) {
-                        console.log(output);
                         if (output.features) {
                             $.each(output.features, function (key, place) {
                                 if (place.place_type[0] == "region") {
                                     $(".location").text(place.text);
+                                    compareLocation(place.text);
                                 }
                             });
                         }
@@ -38,3 +38,55 @@ function getCurrentLocation(initialLoad) {
     }
 }
 getCurrentLocation();
+
+function compareLocation(location) {
+    $.ajax({
+        url: compare_location_url,
+        data: {
+            place: location,
+        },
+        method: "POST",
+        success: function (response) {
+            if (response.is_changed == true) {
+                swal({
+                    icon: "warning",
+                    text: "Do you want to update your location ?",
+                    buttons: true,
+                }).then(function (change) {
+                    if (change) {
+                        $.ajax({
+                            url: update_location_url,
+                            data: {
+                                place: location,
+                            },
+                            method: "POST",
+                            success: function (response) {
+                                if (response.success == true) {
+                                    swal({
+                                        icon: "success",
+                                        text: "Your location has been updated successfully",
+                                    });
+                                    let html =
+                                        '<option value="">Select Shop</option>';
+                                    $.each(
+                                        response.shops,
+                                        function (index, name) {
+                                            html +=
+                                                '<option value="' +
+                                                index +
+                                                '">' +
+                                                name +
+                                                "</option>";
+                                        }
+                                    );
+
+                                    $("#product_shop").html(html);
+                                }
+                            },
+                        });
+                    }
+                });
+            }
+        },
+    });
+}

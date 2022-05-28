@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 use Stevebauman\Location\Facades\Location;
 
@@ -30,12 +32,33 @@ class HomeController extends Controller
     }
 
 
-    public function getLocation()
+    public function compareLocation(Request $request)
     {
-        $ip = request()->ip();
-    //    $ip = '117.215.245.92';
-        $userLocation = Location::get($ip);
+        $is_changed = false;
+        $city = City::where('name', $request->place)->first();
+        if ($city) {
+            if ($city->id != auth()->user()->city_id) {
+                $is_changed = true;
+            }
+        }
 
-        return view('geolocation', compact('userLocation'));
+
+        return response()->json(['is_changed' => $is_changed]);
+    }
+
+    public function updateLocation(Request $request)
+    {
+        $response['success'] = false;
+        $city = City::where('name', $request->place)->first();
+        if ($city) {
+            $user = auth()->user();
+            $user->city_id = $city->id;
+            $user->save();
+
+            $response['success'] = true;
+            $response['shops'] = Shop::where('city_id', $city->id)->pluck('name', 'id');
+        }
+
+        return response()->json($response);
     }
 }

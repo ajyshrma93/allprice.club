@@ -87,7 +87,7 @@
                                         <div class="col-xxl-7 col-xl-6 col-md-8 col-sm-7 newItem">
                                             <select name="shop_id" class="form-control select2 col-sm-12  @error('shop_id') is-invalid @enderror" id="product_shop">
                                                 <option value="" selected>Select Shop</option>
-                                                @foreach ($shops as $shop)
+                                                @foreach ($locatedShops as $shop)
                                                 <option value="{{$shop->id}}" {{$shop->id == old('shop_id') ?'selected':''}}>{{$shop->name}}</option>
                                                 @endforeach
                                             </select>
