@@ -270,3 +270,6 @@ input[type=checkbox]:before {
 input[type=checkbox]:checked:before {
     color: #7366ff !important;
 }
+.selection .select2-selection {
+    border: 1px solid #ced4da !important;
+}

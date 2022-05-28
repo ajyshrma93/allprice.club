@@ -16,7 +16,7 @@
                                 <line x1="12" y1="5" x2="12" y2="19"></line>
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
                             </svg>
-                            <span class="ms-2">Add New</span>
+                            <!-- <span class="ms-2">Add New</span> -->
                         </button>
                     </div>
                 </div>
@@ -26,9 +26,26 @@
     <!-- Container-fluid starts-->
     <div class="container-fluid">
         <div class="row">
-
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-xl-6 col-8 mb-3 col-xxl-7 col-xl-6 col-md-8 ">
+                                <select class="form-select select2" id="filter_shop">
+                                    <option value="">Select Location To Filter</option>
+                                    @foreach ($cities as $city)
+                                    <option value="{{$city->id}}">{{$city->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- product cards view start -->
-            @include('shop.partials.shop-list')
+            <div id="shops_list">
+                @include('shop.partials.shop-list')
+            </div>
             <!-- product cards view end -->
         </div>
     </div>
@@ -40,3 +57,23 @@
 @include('partials.modals.add-shop')
 @include('partials.modals.edit-shop')
 @endsection
+
+
+@push('scripts')
+<script>
+    $('#filter_shop').change(function() {
+        let location_id = $(this).val();
+
+        $.ajax({
+            url: '{{route("shops.filter")}}',
+            data: {
+                location_id: location_id
+            },
+            method: "POST",
+            success: function(response) {
+                $('#shops_list').html(response.html);
+            }
+        })
+    })
+</script>
+@endpush

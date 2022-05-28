@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     ///// shop routes
     Route::post('shops/ajax-update', [ShopController::class, 'ajaxUpdate'])->name('shops.ajax-update');
+    Route::post('shops/filter', [ShopController::class, 'filter'])->name('shops.filter');
     Route::resource('shops', ShopController::class)->except(['show', 'update']);
     /// Product routes
     Route::post('products/bulk-upload', [ProductController::class, 'bulkUpload'])->name('products.bulk-upload');

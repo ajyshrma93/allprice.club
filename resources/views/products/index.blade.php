@@ -13,9 +13,7 @@
         border-radius: 4px 0px 0px 4px;
     }
 
-    .selection .select2-selection {
-        border: 1px solid #ced4da !important;
-    }
+
 </style>
 
 <div class="page-body">

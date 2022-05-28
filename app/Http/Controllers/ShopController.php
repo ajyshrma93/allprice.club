@@ -164,4 +164,19 @@ class ShopController extends Controller
 
         return back();
     }
+
+
+    public function filter(Request $request)
+    {
+        $query = Shop::query();
+        if ($request->location_id) {
+            $query = $query->where('city_id', $request->location_id);
+        }
+
+        $shops = $query->get();
+
+        $html = view('shop.partials.shop-list', compact('shops'))->render();
+
+        return response()->json(['html' => $html]);
+    }
 }
