@@ -38,15 +38,6 @@
                             <span>Public list (Grid)</span>
                         </a>
                     </li>
-                    <!-- <li class="sidebar-list">
-                        <a href="#" class="sidebar-link sidebar-title {{$menu =='search'?'active':''}}">
-                            <i data-feather="globe"></i>
-                            <span>Public list</span>
-                        </a>
-                        <ul class="sidebar-submenu" style="display: block;">
-                            <li><a class="{{Request::is('search/grid') ?'active':''}}" href="{{route('search','grid')}}">Public list (Grid)</a></li>
-                        </ul>
-                    </li> -->
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title link-nav {{$menu=='shop'?'active':''}}" href="{{route('shops.index')}}">
                             <i data-feather="shopping-cart"></i>

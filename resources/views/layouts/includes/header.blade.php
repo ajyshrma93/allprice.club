@@ -34,13 +34,11 @@
                 <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
                 <li class="profile-nav onhover-dropdown p-0 me-0">
                     <div class="media profile-media">
-                        <div class="media-body">
-                            <span>{{auth()->user()->name}} &nbsp;</span>
-                        </div>
+
                         <img class="b-r-10" src="../assets/images/dashboard/profile.jpg" alt="">
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
-
+                        <li><i data-feather="user"> </i><span>{{auth()->user()->name}}</span></li>
                         <li><a href="javascript:void(0)" onclick="$('#logout-form').submit()"><i data-feather="log-in"> </i><span>Log Out</span></a></li>
                     </ul>
                 </li>

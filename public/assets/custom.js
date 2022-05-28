@@ -224,16 +224,10 @@ $("#editProductModal").on("show.bs.modal", function (event) {
                 $("#edit_product_id").val(product.id);
                 $("#edit_product_shop").val(product.shop_id).trigger("change");
                 modal.find("#edit_product_name").val(product.name);
-                modal
-                    .find("#edit_product_country")
-                    .val(product.country)
-                    .trigger("change");
+                modal.find("#edit_product_country").val(product.country);
                 modal.find("#edit_product_value").val(product.value);
                 modal.find("#edit_product_price").val(product.price);
-                modal
-                    .find("#edit_location")
-                    .val(product.location)
-                    .trigger("change");
+                modal.find("#edit_product_price").val(product.price);
                 modal
                     .find("input[name=type][value=" + product.type + "]")
                     .attr("checked", "checked");
@@ -323,17 +317,10 @@ $("#cloneProductModal").on("show.bs.modal", function (event) {
                 $("#clone_product_id").val(product.id);
                 $("#clone_product_shop").val(product.shop_id).trigger("change");
                 modal.find("#clone_product_name").val(product.name);
-                modal
-                    .find("#clone_product_country")
-                    .val(product.country)
-                    .trigger("change");
+                modal.find("#clone_product_country").val(product.country);
                 modal.find("#clone_product_value").val(product.value);
                 modal.find("#clone_product_price").val(product.price);
                 modal.find("#clone_product_price").val(product.price);
-                modal
-                    .find("#clone_location")
-                    .val(product.location)
-                    .trigger("change");
                 modal
                     .find("input[name=type][value=" + product.type + "]")
                     .attr("checked", "checked");
@@ -616,7 +603,7 @@ $("body").on("click", ".page-link", function (e) {
 //// common function
 function showToast(message, type = "success", reset = true) {
     if (reset) {
-        $("select").val("").trigger("change");
+        $("select").val(null).trigger("change");
     }
 
     toastr[type](message);

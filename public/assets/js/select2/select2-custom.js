@@ -51,14 +51,6 @@
         allowHtml: true,
         dropdownParent: $("#editProductModal .modal-content"),
     });
-    $("#edit_location").select2({
-        width: "100%",
-        dropdownParent: $("#editProductModal .modal-content"),
-    });
-    $("#clone_location").select2({
-        width: "100%",
-        dropdownParent: $("#cloneProductModal .modal-content"),
-    });
     $("#clone_product_country").select2({
         width: "100%",
         templateSelection: iformat,

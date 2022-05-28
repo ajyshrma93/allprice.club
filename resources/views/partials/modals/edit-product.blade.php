@@ -85,20 +85,11 @@
                 </div>
 
                 <div class="row " id="edit_advance_option">
-                    <div class="col-lg-6 col-6 mb-3">
+                    <div class="mb-3">
                         <select name="country" class=" col-sm-12" id="edit_product_country">
                             <option value="choose" selected>Item Made From</option>
                             @foreach ($countries as $country)
                             <option value="{{$country->name}}" data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>
-
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-lg-6 col-6 mb-3">
-                        <select name="location" class="col-sm-12 select2" id="edit_location">
-                            <option value="choose" selected>Selecy Location</option>
-                            @foreach ($locations as $location)
-                            <option value="{{$location->name}}">{{$location->name}}</option>
 
                             @endforeach
                         </select>

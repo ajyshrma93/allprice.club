@@ -52,8 +52,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('products/clone', [ProductController::class, 'clone'])->name('products.clone');
     Route::resource('products', ProductController::class)->except(['show', 'update']);
 
-    Route::post('compare-location', [HomeController::class, 'compareLocation'])->name('user.compare.location');
-    Route::post('update-location', [HomeController::class, 'updateLocation'])->name('user.update.location');
     Route::group(['middleware' => 'is_admin'], function () {
         Route::post('cities/list', [CityController::class, 'getList'])->name('cities.list');
         Route::post('cities/update', [CityController::class, 'update'])->name('cities.update');

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\City;
 use App\Models\Country;
 use App\Models\Product;
 use App\Models\Shop;
@@ -29,11 +28,10 @@ class ProductController extends Controller
     public function index()
     {
         $countries = Country::orderBy('sort', 'desc')->get();
-        $locations = City::get();
         $shops = Shop::get();
         $categories = Category::get();
         $products = Product::where('user_id', auth()->id())->orderBy('id', 'desc')->get();
-        return view('products.index', compact('products', 'countries', 'categories', 'shops', 'locations'));
+        return view('products.index', compact('products', 'countries', 'categories', 'shops'));
     }
 
     /**
@@ -269,7 +267,6 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->type = $request->type;
         $product->country = $request->country;
-        $product->location = $request->location;
 
         if ($type == 'add') {
             $product->image = 'assets/images/no-data-available.png';
