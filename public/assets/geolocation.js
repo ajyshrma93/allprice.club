@@ -23,12 +23,13 @@ function getCurrentLocation(initialLoad) {
                 success: function (responce) {
                     var output = JSON.parse(responce);
                     if (output) {
+                        console.log(output);
                         if (output.features) {
-                            if (output.features.length > 0) {
-                                $(".location").text(
-                                    output.features[0].place_name
-                                );
-                            }
+                            $.each(output.features, function (key, place) {
+                                if (place.place_type[0] == "region") {
+                                    $(".location").text(place.text);
+                                }
+                            });
                         }
                     }
                 },

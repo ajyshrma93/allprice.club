@@ -19,7 +19,7 @@
             </div>
             <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i></div>
         </div>
-        <div class="left-header col horizontal-wrapper ps-0">
+        <div class="left-header col-auto horizontal-wrapper ps-0">
             <ul>
                 @auth
                 <li class="cursor-pointer">
@@ -29,8 +29,7 @@
             </ul>
         </div>
         @auth
-
-        <div class="nav-right col-8 pull-right right-header p-0 ms-auto">
+        <div class="nav-right col-6 pull-right right-header p-0 ms-auto">
             <ul class="nav-menus me-0">
                 <!-- <div class="mode"><i class="fa fa-moon-o"></i></div> -->
                 <li class="cursor-pointer"><span class="header-search"><i data-feather="search"></i></span></li>
