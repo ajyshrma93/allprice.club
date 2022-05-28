@@ -21,7 +21,11 @@
         </div>
         <div class="left-header col horizontal-wrapper ps-0">
             <ul>
-                <li class="cursor-pointer"><span class="header-search"><i data-feather="search"></i></span></li>
+                @auth
+                <li class="cursor-pointer">
+                    <i class="fa fa-map-marker"></i> <span class="location">{{auth()->user()->location}}</span>
+                </li>
+                @endauth
             </ul>
         </div>
         @auth
@@ -30,14 +34,15 @@
             <ul class="nav-menus me-0">
                 <li>
                     <!-- <div class="mode"><i class="fa fa-moon-o"></i></div> -->
+                <li class="cursor-pointer"><span class="header-search"><i data-feather="search"></i></span></li>
                 </li>
-                <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
+                <!-- <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li> -->
                 <li class="profile-nav onhover-dropdown p-0 me-0">
                     <div class="media profile-media">
 
                         <img class="b-r-10" src="../assets/images/dashboard/profile.jpg" alt="">
                     </div>
-                    <ul class="profile-dropdown onhover-show-div">
+                    <ul class="profile-dropdown onhover-show-div" style=" left: unset !important;">
                         <li><i data-feather="user"> </i><span>{{auth()->user()->name}}</span></li>
                         <li><a href="javascript:void(0)" onclick="$('#logout-form').submit()"><i data-feather="log-in"> </i><span>Log Out</span></a></li>
                     </ul>

@@ -103,6 +103,7 @@
     </div>
     @yield('modals')
     @include('layouts.includes.footer-files')
+    <script src="{{asset('assets/geolocation.js')}}"></script>
     @stack('scripts')
 
     <script type="text/javascript">
