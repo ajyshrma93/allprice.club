@@ -32,6 +32,11 @@ class HomeController extends Controller
     }
 
 
+    public function getLocation(Request $request)
+    {
+        return view('geolocation');
+    }
+
     public function compareLocation(Request $request)
     {
         $is_changed = false;
