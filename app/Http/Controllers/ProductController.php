@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\City;
 use App\Models\Country;
 use App\Models\Product;
 use App\Models\Shop;
@@ -29,9 +30,10 @@ class ProductController extends Controller
     {
         $countries = Country::orderBy('sort', 'desc')->get();
         $shops = Shop::get();
+        $cities = City::get();
         $categories = Category::get();
         $products = Product::where('user_id', auth()->id())->orderBy('id', 'desc')->get();
-        return view('products.index', compact('products', 'countries', 'categories', 'shops'));
+        return view('products.index', compact('products', 'countries', 'categories', 'shops', 'cities'));
     }
 
     /**
