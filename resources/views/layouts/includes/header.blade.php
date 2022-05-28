@@ -32,10 +32,8 @@
 
         <div class="nav-right col-8 pull-right right-header p-0 ms-auto">
             <ul class="nav-menus me-0">
-                <li>
-                    <!-- <div class="mode"><i class="fa fa-moon-o"></i></div> -->
+                <!-- <div class="mode"><i class="fa fa-moon-o"></i></div> -->
                 <li class="cursor-pointer"><span class="header-search"><i data-feather="search"></i></span></li>
-                </li>
                 <!-- <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li> -->
                 <li class="profile-nav onhover-dropdown p-0 me-0">
                     <div class="media profile-media">
