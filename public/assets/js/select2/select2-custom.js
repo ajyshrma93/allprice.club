@@ -25,7 +25,13 @@
     $(".product-modal-2-mobile, #modalSelect-02, #modalSelect-01").select2({
         dropdownParent: $("#product-modal-2-mobile .modal-content"),
     });
-
+    $("#shop_city_id_input").select2({
+        dropdownParent: $("#add_shop_modal .modal-content"),
+    });
+    $("#edit_city_id").select2({
+        dropdownParent: $("#editShop .modal-content"),
+    });
+    editShop;
     // custom
     function iformat(icon) {
         var originalOption = icon.element;

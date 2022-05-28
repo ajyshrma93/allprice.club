@@ -5,8 +5,7 @@
             <div class="col-xl-3 col-sm-6">
                 <div class="card">
                     <div class="product-box">
-                        <div class="product-img">
-                            <img class="img-fluid" src="{{asset($shop->image)}}" alt="product image">
+                        <div class="product-img" style="background-image: url('{{asset($shop->image)}}');background-size: 100% 100%;">
                             <div class="product-hover">
                                 <ul>
                                     <li>

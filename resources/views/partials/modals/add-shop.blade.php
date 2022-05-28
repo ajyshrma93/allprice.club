@@ -12,6 +12,16 @@
                         <input class="form-control" type="text" name="name" placeholder="Shop Name" data-bs-original-title="" id="shop_name_input">
                         <span id="shop_name_error" class=" invalid-feedback"></span>
                     </div>
+                    <div class="col-md-12">
+                        <label class="col-form-label pt-0">Location</label>
+                        <select name="city_id" class="form-control select2" id="shop_city_id_input">
+                            <option value="">Select Location</option>
+                            @foreach ($cities as $city)
+                            <option value="{{$city->id}}">{{$city->name}}</option>
+                            @endforeach
+                        </select>
+                        <span id="shop_city_id_error" class=" invalid-feedback"></span>
+                    </div>
                     <div class="col-md-12 mt-md-0 mt-3">
                         <label class="col-form-label pt-0">Shop Image</label>
                         <div class="input-group">

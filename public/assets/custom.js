@@ -167,6 +167,10 @@ $("#editShop").on("show.bs.modal", function (event) {
         url: url,
         success: function (response) {
             modal.find("#edit_shop_id").val(response.data.id);
+            modal
+                .find("#edit_city_id")
+                .val(response.data.city_id)
+                .trigger("change");
             modal.find("#edit_shop_name").val(response.data.name);
             modal.find("#edit_shop_image").attr("src", response.data.image);
         },
@@ -196,11 +200,27 @@ $("body").on("click", "#update_shop", function () {
         success: function (response) {
             if (response.success == true) {
                 hideloader();
-
                 $("#shop-list").html(response.html);
                 myform[0].reset();
                 showToast("Shop has been updated successfully", "success");
                 $("#editShop").modal("hide");
+            }
+        },
+        error: function (e) {
+            let modal = $("#editShop");
+            if (e.status === 422) {
+                var response = $.parseJSON(e.responseText);
+                $.each(response.errors, function (key, val) {
+                    modal.find('[name="' + key + '"]').addClass("is-invalid");
+                    modal
+                        .find('[name="' + key + '"]')
+                        .parent()
+                        .append(
+                            ' <span class="invalid-feedback" role="alert"><strong>' +
+                                val +
+                                "</strong></span>"
+                        );
+                });
             }
         },
     });

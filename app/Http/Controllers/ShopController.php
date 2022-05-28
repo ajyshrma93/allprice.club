@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -24,7 +25,8 @@ class ShopController extends Controller
     public function index()
     {
         $shops = Shop::get();
-        return view('shop.index', compact('shops'));
+        $cities = City::get();
+        return view('shop.index', compact('shops', 'cities'));
     }
 
     /**
@@ -36,11 +38,15 @@ class ShopController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'name' => 'required|unique:shops,name,'
+            'name' => 'required|unique:shops,name,',
+            'city_id' => 'required|exists:cities,id'
         ];
         $messages = [
             'name.required' => 'Shop name is required',
-            'name.unique' => 'Shop with this name already exists'
+            'name.unique' => 'Shop with this name already exists',
+            'city_id.required' => 'Shop location is required',
+            'city_id.exists' => 'Shop location is invalid',
+
         ];
         $validator = Validator::make($request->all(), $rules, $messages);
 
@@ -54,6 +60,7 @@ class ShopController extends Controller
 
         $shop = new Shop();
         $shop->name = $request->name;
+        $shop->city_id = $request->city_id;
         $shop->user_id = auth()->user()->id;
         $shop->image = 'assets/images/no-data-available.png';
         if ($request->file('shop_image')) {
@@ -99,11 +106,15 @@ class ShopController extends Controller
     public function ajaxUpdate(Request $request)
     {
         $rules = [
-            'name' => 'required|unique:shops,name,' . $request->id
+            'name' => 'required|unique:shops,name,' . $request->id,
+            'city_id' => 'required|exists:cities,id'
         ];
         $messages = [
             'name.required' => 'Shop name is required',
-            'name.unique' => 'Shop with this name already exists'
+            'name.unique' => 'Shop with this name already exists',
+            'city_id.required' => 'Shop location is required',
+            'city_id.exists' => 'Shop location is invalid',
+
         ];
         $validator = Validator::make($request->all(), $rules, $messages);
 
@@ -112,10 +123,11 @@ class ShopController extends Controller
                 'success' => false,
                 'errors' => $validator->getMessageBag()->toArray()
 
-            ), 400);
+            ), 422);
         }
         $shop = Shop::findOrFail($request->id);
         $shop->name = $request->name;
+        $shop->city_id = $request->city_id;
         $shop->user_id = auth()->user()->id;
         if ($request->file('shop_image')) {
             Storage::delete($shop->image);

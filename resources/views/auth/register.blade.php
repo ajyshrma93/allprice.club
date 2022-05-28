@@ -41,10 +41,10 @@
         <div class="form-group">
             <label class="col-form-label">Location</label>
             <div class="mb-3">
-                <select name="location" class=" col-sm-12 form-control select2">
+                <select name="city_id" class=" col-sm-12 form-control select2">
                     <option value="choose" selected>Choose Location</option>
                     @foreach ($cities as $city)
-                    <option value="{{$city->name}}">{{$city->name}}</option>
+                    <option value="{{$city->id}}">{{$city->name}}</option>
                     @endforeach
                 </select>
             </div>

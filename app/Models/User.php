@@ -24,7 +24,7 @@ class User extends Authenticatable
         'email',
         'password',
         'google_id',
-        'location'
+        'city_id'
     ];
 
     /**
@@ -46,20 +46,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-    public function userCountry()
+    protected $appends = [
+        'location',
+    ];
+    public function city()
     {
-        return $this->hasOne(Country::class, 'name', 'country');
+        return $this->belongsTo(City::class);
     }
 
-    public function getUserCountryHtml()
+    public function getLocationAttribute()
     {
-        $html = '';
-        if ($this->country != '' && $this->userCountry) {
-            $country = $this->userCountry;
-            $html =  '<option value="' . $country->name . '" data-icon="fi-' . strtolower($country->sortname) . '" >' . $country->name . '</option>';
-        }
-
-        return  $html;
+        $location = $this->city ? $this->city->name : '';
+        return $location;
     }
 }

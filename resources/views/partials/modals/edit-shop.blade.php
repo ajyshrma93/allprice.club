@@ -12,6 +12,16 @@
                     <input name="id" type="hidden" id="edit_shop_id">
                     <input class="form-control" type="text" placeholder="e.g. Alibaba" name="name" id="edit_shop_name">
                 </div>
+                <div class="col-md-12">
+                    <label class="col-form-label pt-0">Location</label>
+                    <select name="city_id" class="form-control select2" id="edit_city_id">
+                        <option value="">Select Location</option>
+                        @foreach ($cities as $city)
+                        <option value="{{$city->id}}">{{$city->name}}</option>
+                        @endforeach
+                    </select>
+                    <span id="shop_city_id_error" class=" invalid-feedback"></span>
+                </div>
                 <div class="mb-3">
                     <label class="col-form-label pt-0">Shop Image</label>
                     <div class="input-group">
