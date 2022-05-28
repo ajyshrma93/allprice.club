@@ -32,7 +32,7 @@
                         <div class="row">
                             <div class="col-xl-6 col-8 mb-3 col-xxl-7 col-xl-6 col-md-8 ">
                                 <select class="form-select select2" id="filter_shop">
-                                    <option value="">Select Location To Filter</option>
+                                    <option value="">All Location</option>
                                     @foreach ($cities as $city)
                                     <option value="{{$city->id}}">{{$city->name}}</option>
                                     @endforeach
