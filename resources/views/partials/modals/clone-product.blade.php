@@ -11,7 +11,7 @@
                     <div class="col-6">
                         <div class="mb-3">
                             <input type="hidden" name="product_id" id="clone_product_id">
-                            <label class="col-form-label pt-0">Select Category</label>
+                            <!-- <label class="col-form-label pt-0">Select Category</label> -->
                             <select name="category_id" class=" col-sm-12" id="clone_product_category">
                                 <option value="" selected>Select Category</option>
                                 @foreach ($categories as $cat)
@@ -22,7 +22,7 @@
                     </div>
                     <div class="col-6">
                         <div class="mb-3">
-                            <label class="col-form-label pt-0">Select Shop</label>
+                            <!-- <label class="col-form-label pt-0">Select Shop</label> -->
                             <select name="shop_id" class=" col-sm-12" id="clone_product_shop">
                                 <option value="" selected>Select Shop</option>
                                 @foreach ($shops as $shop)
@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="col-form-label pt-0">Product Name</label>
+                        <!-- <label class="col-form-label pt-0">Product Name</label> -->
                         <input class="form-control" type="text" placeholder="Name" name="name" id="clone_product_name" value="Product dummy Name">
                     </div>
                 </div>
