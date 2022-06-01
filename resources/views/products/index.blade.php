@@ -146,8 +146,8 @@
                                         <span class="input-group-text bootstrap-touchspin-postfix" style="display: none;"></span>
                                         <button onclick="decrease('#product_price',true)" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-minus"></i></button>
                                         <button onclick="increase('#product_price',true)" class="btn btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-plus"></i></button>
-                                        <button onclick="decrease('#product_price',true,0.1)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button" data-bs-original-title="" title="">0.1</i></button>
-                                        <button onclick="decrease('#product_price',true,0.01)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button" data-bs-original-title="" title="">0.01</button>
+                                        <button onclick="increase('#product_price',true,0.1)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button" data-bs-original-title="" title="">0.1</i></button>
+                                        <button onclick="increase('#product_price',true,0.01)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button" data-bs-original-title="" title="">0.01</button>
                                     </div>
                                     @error('price')
                                     <span class="invalid-feedback" role="alert">

@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content p-3">
             <div class="modal-header mb-3">
-                <h4 class="modal-title">Edit Product</h4>
+                <h4 class="modal-title">Edit Item</h4>
                 <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{route('products.ajax-update')}}" class="theme-form" id="edit_product_form" onsubmit="event.preventDefault();" method="POST">
@@ -72,8 +72,8 @@
                             <span class="input-group-text bootstrap-touchspin-postfix" style="display: none;"></span>
                             <button onclick="decrease('#edit_product_price',true)" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-minus"></i></button>
                             <button onclick="increase('#edit_product_price',true)" class="btn btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-plus"></i></button>
-                            <button onclick="decrease('#edit_product_price',true,0.1)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button" data-bs-original-title="" title="">0.1</i></button>
-                            <button onclick="decrease('#edit_product_price',true,0.01)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button" data-bs-original-title="" title="">0.01</button>
+                            <button onclick="increase('#edit_product_price',true,0.1)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button" data-bs-original-title="" title="">0.1</i></button>
+                            <button onclick="increase('#edit_product_price',true,0.01)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button" data-bs-original-title="" title="">0.01</button>
                         </div>
                         @error('price')
                         <span class="invalid-feedback" role="alert">

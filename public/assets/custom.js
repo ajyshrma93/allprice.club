@@ -251,13 +251,19 @@ $("#editProductModal").on("show.bs.modal", function (event) {
                 modal
                     .find("input[name=type][value=" + product.type + "]")
                     .attr("checked", "checked");
-                if (product.is_offer) {
+                if (product.is_offer == 1) {
                     modal.find("#edit_product_offer").prop("checked", "true");
+                } else {
+                    modal.find("#edit_product_offer").prop("checked", "false");
                 }
-                if (product.is_duty_free) {
+                if (product.is_duty_free == 1) {
                     modal
                         .find("#edit_product_duty_free")
-                        .prop("checked", "true");
+                        .prop("checked", false);
+                } else {
+                    modal
+                        .find("#edit_product_duty_free")
+                        .prop("checked", false);
                 }
                 modal
                     .find("#edit_product_image_preview")
@@ -344,13 +350,19 @@ $("#cloneProductModal").on("show.bs.modal", function (event) {
                 modal
                     .find("input[name=type][value=" + product.type + "]")
                     .attr("checked", "checked");
-                if (product.is_offer) {
+                if (product.is_offer == 1) {
                     modal.find("#clone_product_offer").prop("checked", "true");
+                } else {
+                    modal.find("#clone_product_offer").prop("checked", false);
                 }
-                if (product.is_duty_free) {
+                if (product.is_duty_free == 1) {
                     modal
                         .find("#clone_product_duty_free")
                         .prop("checked", "true");
+                } else {
+                    modal
+                        .find("#clone_product_duty_free")
+                        .prop("checked", false);
                 }
                 modal
                     .find("#clone_product_image_preview")
