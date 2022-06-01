@@ -6,6 +6,7 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShopController;
 use App\Models\Product;
@@ -60,6 +61,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('cities/update', [CityController::class, 'update'])->name('cities.update');
         Route::resource('cities', CityController::class)->except('update', 'edit', 'destroy');
     });
+
+    Route::post('report/filter', [ReportController::class, 'filter'])->name('reports.filter');
+    Route::post('report/details', [ReportController::class, 'details'])->name('reports.details');
+    Route::get('report', [ReportController::class, 'index'])->name('reports.index');
 });
 Route::any('search/filter-products', [SearchController::class, 'filter'])->name('filter-products');
 Route::get('search/{type}', [SearchController::class, 'index'])->name('search');

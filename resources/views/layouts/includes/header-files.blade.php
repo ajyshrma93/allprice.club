@@ -16,6 +16,7 @@
 <!-- Plugins css Ends-->
 <!-- Bootstrap css-->
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/bootstrap.css')}}">
+<!-- <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/date-picker.css')}}"> -->
 <!-- App css-->
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
 <link id="color" rel="stylesheet" href="{{asset('assets/css/color-1.css')}}" media="screen">

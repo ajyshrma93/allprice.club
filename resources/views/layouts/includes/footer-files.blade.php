@@ -21,6 +21,8 @@
 <script src="{{asset('assets/js/sweet-alert/app.js')}}"></script>
 <script src="{{asset('assets/js/lightbox.min.js')}}"></script>
 <script src="{{asset('assets/js/tooltip-init.js')}}"></script>
+<script src="{{asset('assets/js/datepicker/date-picker/datepicker.js')}}"></script>
+<script src="{{asset('assets/js/datepicker/date-picker/datepicker.en.js')}}"></script>
 <!-- Plugins JS Ends-->
 <!-- Theme js-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" referrerpolicy="no-referrer"></script>
