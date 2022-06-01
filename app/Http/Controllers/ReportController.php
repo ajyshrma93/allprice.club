@@ -16,16 +16,22 @@ class ReportController extends Controller
     public function index(Request $request)
     {
 
-        $products = Product::select(array('products.*', DB::Raw('DATE(created_at) day')))->where('user_id', auth()->id())->groupBy('shop_id', 'day')->orderBy('day')->get();
+        $products = Product::select(['products.*', DB::Raw('sum(`price`) total_price'), DB::Raw('count(*) total_items')])->where('user_id', auth()->id())->groupBy('shop_id');
+        $products = $products->whereYear('created_at', date('Y'));
+        $products = $products->get();
         return view('reports.index', compact('products'));
     }
 
     public function filter(Request $request)
     {
-        $date = date('Y-m-d', strtotime($request->date));
-        $products = Product::select(array('products.*', DB::Raw('DATE(created_at) day')))->where('user_id', auth()->id())->groupBy('shop_id', 'day')->where('created_at', 'like', '%' . $date . '%')->orderBy('day')->get();
-
-
+        $products = Product::select(['products.*', DB::Raw('sum(`price`) total_price'), DB::Raw('count(*) total_items')])->where('user_id', auth()->id())->groupBy('shop_id');
+        if ($request->month) {
+            $products = $products->whereMonth('created_at', $request->month);
+        }
+        if ($request->year) {
+            $products = $products->whereYear('created_at', $request->year);
+        }
+        $products = $products->get();
         $html = view('reports.partials.list', compact('products'))->render();
 
         return response()->json(['success' => true, 'html' => $html]);

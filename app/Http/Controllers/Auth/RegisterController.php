@@ -70,7 +70,6 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'city_id' => $data['city_id']
         ]);
     }
 
@@ -82,7 +81,6 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        $cities = City::orderByDesc('name')->get();
-        return view('auth.register', compact('cities'));
+        return view('auth.register');
     }
 }

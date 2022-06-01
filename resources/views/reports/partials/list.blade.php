@@ -1,14 +1,23 @@
 @foreach ($products as $product)
 @php
-$date= $product->created_at->format('Y-m-d');
+$shop = $product->shop;
 @endphp
-<div class="row p-1">
-    <div class="col-12">
-        <button class="btn btn-primary" data-shop="{{$product->shop_id}}" data-date="{{$date}}" data-bs-toggle="modal" data-bs-target="#purchase_details">
-            <?= \App\Models\Product::where('user_id', auth()->id())->whereDate('created_at', $product->created_at)->count() ?> Item
-        </button>
-        | RM (<?= \App\Models\Product::where('user_id', auth()->id())->whereDate('created_at', $product->created_at)->sum('price') ?>)
-        | Shop : {{$product->shop ? $product->shop->name :''}}
+<div class="col-xl-3 col-sm-6">
+    <div class="card">
+        <div class="product-box">
+            <div class="product-img" style="background-image: url('{{asset($shop->image)}}');background-size: 100% 100%;">
+                <div class="ribbon ribbon-info ribbon-right">{{$product->total_items}} Items</div>
+                <div class="product-hover">
+
+                </div>
+            </div>
+            <div class="product-details">
+                <h4>{{$shop->name}}</h4>
+                <div class="product-price">
+                    $ {{$product->total_price}}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endforeach

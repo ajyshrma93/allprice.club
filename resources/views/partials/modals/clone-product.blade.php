@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content p-3">
             <div class="modal-header mb-3">
-                <h4 class="modal-title">Duplicate Product</h4>
+                <h4 class="modal-title">Add Item</h4>
                 <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{route('products.clone')}}" class="theme-form" id="clone_product_form" onsubmit="event.preventDefault();" method="POST">
@@ -124,7 +124,7 @@
                 </div>
                 <div class="modal-footer text-center text-sm-end" style="padding: 0px;">
                     <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" id="clone_product_btn">Save</button>
+                    <button class="btn btn-primary" id="clone_product_btn">Add</button>
                 </div>
             </form>
         </div>

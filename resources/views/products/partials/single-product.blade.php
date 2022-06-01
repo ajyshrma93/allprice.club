@@ -34,7 +34,7 @@
             </div>
             <div class="product-details">
                 <h4>{{$product->name}}</h4>
-                <div class="product-price">${{$product->price}}</div>
+                <div class="product-price">${{$product->getPrice()}}</div>
             </div>
         </div>
     </div>

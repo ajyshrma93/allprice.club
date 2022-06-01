@@ -38,17 +38,6 @@
             <label class="col-form-label">Confirm Password</label>
             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Enter your confirm password">
         </div>
-        <div class="form-group">
-            <label class="col-form-label">Location</label>
-            <div class="mb-3">
-                <select name="city_id" class=" col-sm-12 form-control select2">
-                    <option value="choose" selected>Choose Location</option>
-                    @foreach ($cities as $city)
-                    <option value="{{$city->id}}">{{$city->name}}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
         <div class="form-group mb-0">
             <div class="checkbox p-0">
                 <input id="checkbox1" type="checkbox">
