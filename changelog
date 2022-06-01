@@ -8,8 +8,9 @@ https://test.allprice.club/login
 4. 0.01 and 0.1 revert changes now will increment
 5. purple color is per kg or per pcs done
 6. Remove Label from edit product and duplicate product
+7. fixed image upload layout in edit product
+7. fixed image upload layout in clone product
 
-
-Tracked Time : 4 hour
+Tracked Time : 5 hour
 
 Working On : Auto Calculate Price and Per Kg and Per Piece change

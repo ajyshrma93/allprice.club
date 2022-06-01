@@ -112,18 +112,19 @@
                     </div>
 
                 </div>
-                <div class="mb-3">
-                    <label class="col-form-label pt-0">Product Image</label>
+                <div class="mb-3 d-none">
                     <div class="input-group">
                         <input type="file" class="form-control" id="edit_product_image" onchange="previewFile(event,'edit_product_image_preview')" aria-describedby="edit_product_image" aria-label="Upload" accept="image/*">
                     </div>
                 </div>
-                <div class="mb-3">
-                    <div class="product-img text-center">
-                        <img src="{{asset('assets/images/no-data-available.png')}}" alt="product image" width="100px" id="edit_product_image_preview" height="100px">
+
+                <div class="m-3 user-profile" style="position:relative;">
+                    <div class="product-img text-center ">
+                        <img src="{{asset('assets/images/no-data-available.png')}}" style="border-radius: 50%" alt="product image" width="150px" id="edit_product_image_preview" height="150px">
                     </div>
+                    <div class="icon-wrapper" onclick="$('#edit_product_image').trigger('click')"><i class="fa fa-pencil"></i></div>
                 </div>
-                <div class="modal-footer text-center text-sm-end" style="padding: 0px;">
+                <div class="modal-footer text-center text-sm-end" style="padding: 10px 0px 0px 0px;">
                     <button id="edit_product_delete" class="btn btn-outline-danger" type="button" onclick="deleteProduct($(this))">Delete Product</button>
                     <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button class="btn btn-primary" id="update_product_btn">Save</button>

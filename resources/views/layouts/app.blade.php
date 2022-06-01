@@ -56,6 +56,31 @@
             border-style: solid;
         }
 
+        .icon-wrapper {
+            position: absolute;
+            left: 60%;
+            top: 0;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            background-color: #fff;
+            cursor: pointer;
+            overflow: hidden;
+            margin: 0 auto;
+            font-size: 17px;
+            -webkit-box-shadow: 0 0 6px 3px rgb(68 102 242 / 10%);
+            box-shadow: 0 0 6px 3px rgb(68 102 242 / 10%);
+        }
+
         @keyframes spin {
             100% {
                 transform: rotate(360deg);
