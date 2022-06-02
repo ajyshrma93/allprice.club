@@ -254,7 +254,7 @@ $("#editProductModal").on("show.bs.modal", function (event) {
                 if (product.is_offer == 1) {
                     modal.find("#edit_product_offer").prop("checked", "true");
                 } else {
-                    modal.find("#edit_product_offer").prop("checked", "false");
+                    modal.find("#edit_product_offer").prop("checked", false);
                 }
                 if (product.is_duty_free == 1) {
                     modal
