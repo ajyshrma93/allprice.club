@@ -30,9 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     'google' => [
-        'client_id' => 'app id',
-        'client_secret' => 'add secret',
-        'redirect' => 'http://localhost:8000/auth/google/callback',
+        'client_id' => '1032029557848-ovgq461alqt3h2dl9c0dd465lksue2nh.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'http://test.allprice.club/auth/google/callback',
     ],
 
 ];

@@ -4,12 +4,13 @@ https://test.allprice.club/login
 
 1. Shop delete issue fixed
 2. Report page added card for display
+3. Added filter for month and year in report page
 3. Duplicate Item correct label (add Item and Add)
 4. 0.01 and 0.1 revert changes now will increment
 5. purple color is per kg or per pcs done
 6. Remove Label from edit product and duplicate product
 7. fixed image upload layout in edit product
-7. fixed image upload layout in clone product
+8. fixed image upload layout in clone product
 
 Tracked Time : 5 hour
 
