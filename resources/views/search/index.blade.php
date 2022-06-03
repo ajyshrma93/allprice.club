@@ -107,6 +107,16 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <select name="sort" class=" col-sm-12" id="modalSelect-02">
+                                <option value="">Select </option>
+                                <option value="asc">Lowest to Highest </option>
+                                <option value="desc">Highest to Lowest </option>
+
+                            </select>
+                        </div>
+                    </div>
 
                 </div>
             </form>

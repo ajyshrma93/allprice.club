@@ -251,6 +251,7 @@ $("#editProductModal").on("show.bs.modal", function (event) {
                 modal
                     .find("input[name=type][value=" + product.type + "]")
                     .attr("checked", "checked");
+                $(".edit-product-type").text(product.type);
                 if (product.is_offer == 1) {
                     modal.find("#edit_product_offer").prop("checked", "true");
                 } else {
@@ -350,6 +351,7 @@ $("#cloneProductModal").on("show.bs.modal", function (event) {
                 modal
                     .find("input[name=type][value=" + product.type + "]")
                     .attr("checked", "checked");
+                $(".clone-product-type").text(product.type);
                 if (product.is_offer == 1) {
                     modal.find("#clone_product_offer").prop("checked", "true");
                 } else {
@@ -700,9 +702,18 @@ function increaseByTen(input, price = false) {
     $(input).val(newValue);
 }
 
-$("body").on("change", "input[name='type']", function () {
-    let val = $('input[name="type"]:checked').val();
-    $("span.input-group-text").text(val);
+$("body").on("change", ".add_product_type", function () {
+    let val = $(".add_product_type:checked").val();
+    $(".add-product-type").text(val);
+});
+$("body").on("change", ".edit_product_type", function () {
+    let val = $(".edit_product_type:checked").val();
+    $(".edit-product-type").text(val);
+});
+
+$("body").on("change", ".clone_product_type", function () {
+    let val = $(".clone_product_type:checked").val();
+    $(".clone-product-type").text(val);
 });
 
 function showLoader() {

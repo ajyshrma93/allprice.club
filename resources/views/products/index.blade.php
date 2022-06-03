@@ -133,7 +133,7 @@
                                     <div class="input-group mobile-design-change bootstrap-touchspin @error('value') is-invalid @enderror">
                                         <span class="touchspin-value" onclick="increaseByTen('#product_value')">10</span>
                                         <input class="form-control" type="number" min="1" value="1" id="product_value" name="value" placeholder="Weight" style="display: block;" value="{{old('value')}}">
-                                        <span class="input-group-text bootstrap-touchspin-postfix" style="border: unset;background:unset;">pcs</span>
+                                        <span class="input-group-text bootstrap-touchspin-postfix add-product-type" style="border: unset;">pcs</span>
                                         <button onclick="decrease('#product_value')" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button"><i class="fa fa-minus"></i></button>
                                         <button onclick="increase('#product_value')" class="btn btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button"><i class="fa fa-plus"></i></button>
                                         <label class="btn btn-custom-width btn-primary btn-square touchspin-btn  m-0" for="edo-ani-2">pcs</i>
@@ -149,11 +149,11 @@
                                 <div class="col-xxl-4 col-xl-6 col-md-6 col-6 mb-3 field-area d-none">
                                     <div class="d-flex justify-content-end align-items-center cus-justify-content-center">
                                         <div class="d-block cursor-pointer custom-input-design w-100">
-                                            <input class="checkbox_animated custom-input" id="edo-ani-2" value="pcs" type="radio" name="type" checked>
+                                            <input class="checkbox_animated custom-input add_product_type" id="edo-ani-2" value="pcs" type="radio" name="type" checked>
                                             <label for="edo-ani-2" class="custom-input-label w-100">PCS</label>
                                         </div>
                                         <div class="d-block cursor-pointer custom-input-design w-100">
-                                            <input class="checkbox_animated custom-input" id="edo-ani1-2" value="gram" type="radio" name="type">
+                                            <input class="checkbox_animated custom-input add_product_type" id="edo-ani1-2" value="gram" type="radio" name="type">
                                             <label for="edo-ani1-2" class="custom-input-label reverse w-100">gram</label>
                                         </div>
                                     </div>

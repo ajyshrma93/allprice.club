@@ -38,13 +38,16 @@
                 </div>
 
                 <div class="mb-3 row">
-                    <div class=" col-xxl-6 col-xl-6 col-md-6 col-6 mb-3 field-area">
+                    <div class="col-xl-6 col-md-6 col-12 mb-3 field-area">
                         <div class="input-group mobile-design-change bootstrap-touchspin @error('value') is-invalid @enderror">
                             <span class="touchspin-value" onclick="increaseByTen('#clone_product_value')">10</span>
                             <input class="form-control" type="number" min="0" step="0.01" id="clone_product_value" name="value" placeholder="Weight" style="display: block;" data-bs-original-title="" title="">
-                            <span class="input-group-text bootstrap-touchspin-postfix" style="display: none;"></span>
+                            <span class="input-group-text bootstrap-touchspin-postfix clone-product-type" style="border: unset;">pcs</span>
                             <button onclick="decrease('#clone_product_value')" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-minus"></i></button>
                             <button onclick="increase('#clone_product_value')" class="btn btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-plus"></i></button>
+                            <label class="btn btn-custom-width btn-primary btn-square touchspin-btn  m-0" for="clone_type_pcs">pcs</i>
+                            </label>
+                            <label class="btn btn-custom-width btn-primary btn-square touchspin-btn m-0" for="clone_type_gram" type="button">gram</label>
                         </div>
                         @error('value')
                         <span class="invalid-feedback" role="alert">
@@ -52,14 +55,14 @@
                         </span>
                         @enderror
                     </div>
-                    <div class=" col-xxl-6 col-xl-6 col-md-6 col-6 mb-3 field-area">
+                    <div class=" col-xxl-6 col-xl-6 col-md-6 col-6 mb-3 field-area d-none">
                         <div class="d-flex justify-content-end align-items-center cus-justify-content-center">
                             <div class="d-block cursor-pointer custom-input-design w-100">
-                                <input class="checkbox_animated custom-input" value="pcs" type="radio" name="type">
+                                <input class="checkbox_animated custom-input clone_product_type" value="pcs" id="clone_type_pcs" type="radio" name="type">
                                 <label for="clone_type_pcs" class="custom-input-label w-100">PCS</label>
                             </div>
                             <div class="d-block cursor-pointer custom-input-design w-100">
-                                <input class="checkbox_animated custom-input" value="gram" type="radio" name="type">
+                                <input class="checkbox_animated custom-input clone_product_type" value="gram" id="clone_type_gram" type="radio" name="type">
                                 <label for="clone_type_gram" class="custom-input-label reverse w-100">gram</label>
                             </div>
                         </div>
@@ -120,7 +123,7 @@
                     <div class="product-img text-center ">
                         <img src="{{asset('assets/images/no-data-available.png')}}" style="border-radius: 50%" alt="product image" width="150px" id="clone_product_image_preview" height="150px">
                     </div>
-                    <div class="icon-wrapper" onclick="$('#edit_product_image').trigger('click')"><i class="fa fa-pencil"></i></div>
+                    <div class="icon-wrapper" onclick="$('#clone_product_image').trigger('click')"><i class="fa fa-pencil"></i></div>
                 </div>
 
                 <div class="modal-footer text-center text-sm-end" style="padding: 10px 0px 0px 0px;">

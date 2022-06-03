@@ -27,7 +27,7 @@ class SearchController extends Controller
 
     public function filter(Request $request)
     {
-        $products = Product::orderByDesc('id');
+        $products = Product::query();
         if ($request->name) {
             $products = $products->where('name', 'like', '%' . $request->name . '%');
         }
@@ -51,6 +51,10 @@ class SearchController extends Controller
                 $query->where('city_id', $request->location_id);
             });
         }
+        if ($request->sort) {
+            $products = $products->orderBy('price', $request->sort);
+        }
+
         $products = $products->paginate(8);
         $html = view('search.partials.list', compact('products'))->render();
         $response['success'] = true;
