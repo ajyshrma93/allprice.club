@@ -37,7 +37,7 @@
                 <li class="profile-nav onhover-dropdown p-0 me-0">
                     <div class="media profile-media">
 
-                        <img class="b-r-10" src="../assets/images/dashboard/profile.jpg" alt="">
+                        <img class="b-r-10" src="{{asset('assets/images/dashboard/profile.jpg')}}" alt="">
                     </div>
                     <ul class="profile-dropdown onhover-show-div" style=" left: unset !important;">
                         <li><i data-feather="user"> </i><span>{{auth()->user()->name}}</span></li>
