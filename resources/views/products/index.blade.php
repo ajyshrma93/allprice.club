@@ -164,7 +164,7 @@
                                         <span class="touchspin-value" onclick="increaseByTen('#product_price',true)"> 10 </span>
                                         <input class="form-control" type="number" name="price" min="0" value="{{old('price')}}" step="0.01" id="product_price" placeholder="Price">
                                         <span class="input-group-text bootstrap-touchspin-postfix" style="display: none;"></span>
-                                        <button onclick="decrease('#product_price',true)" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button"><i class="fa fa-minus"></i></button>
+                                        <button onclick="increase('#product_price',true)" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button"><i class="fa fa-plus"></i></button>
                                         <button onclick="increase('#product_price',true,0.1)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button">0.1</i></button>
                                         <button onclick="increase('#product_price',true,0.01)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button">0.01</button>
                                     </div>
