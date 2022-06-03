@@ -175,14 +175,15 @@
                                     @enderror
                                 </div>
                                 <input type="file" style="display:none" class="form-control" name="product_image" id="add_product_image" onchange="previewAddFile(event,'add_product_image_preview')" accept="image/*" />
-
-                                <div class="col-xl-12 col-md-12 mb-3 dropzone" onclick="$('#add_product_image').click()">
-                                    <div class="dz-message needsclick">
-                                        <i data-feather="upload-cloud"></i>
-                                        <h6>Upload Product Image</h6>
-                                    </div>
-                                    <div class="preview_image" style="display: none;">
-                                        <img src="" class="image-fluid" id="add_product_image_preview" height="200px" width="200px">
+                                <div class="col-12 field-area">
+                                    <div class="col-xl-12 col-md-12 mb-3 dropzone" onclick="$('#add_product_image').click()">
+                                        <div class="dz-message needsclick">
+                                            <i data-feather="upload-cloud"></i>
+                                            <h6>Upload Product Image</h6>
+                                        </div>
+                                        <div class="preview_image" style="display: none;">
+                                            <img src="" class="image-fluid" id="add_product_image_preview" height="200px" width="200px">
+                                        </div>
                                     </div>
                                 </div>
 

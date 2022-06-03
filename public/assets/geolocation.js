@@ -44,7 +44,7 @@ function getCurrentLocation(initialLoad) {
 }
 getCurrentLocation();
 
-function compareLocation(location,country) {
+function compareLocation(location, country) {
     $.ajax({
         url: compare_location_url,
         data: {
@@ -56,7 +56,7 @@ function compareLocation(location,country) {
             if (response.is_changed == true) {
                 swal({
                     icon: "warning",
-                    text: "Do you want to update your location ?",
+                    title: "Do you want to update your location ?",
                     buttons: true,
                 }).then(function (change) {
                     if (change) {
@@ -70,7 +70,9 @@ function compareLocation(location,country) {
                                 if (response.success == true) {
                                     swal({
                                         icon: "success",
-                                        text: "Your location has been updated successfully",
+                                        text:
+                                            "Your location has been updated to " +
+                                            location,
                                     });
                                     let html =
                                         '<option value="">Select Shop</option>';
