@@ -25,20 +25,11 @@
                     <div class="card-body">
                         <div class="row justify-content-lg-start justify-content-center mb-3">
                             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
-                                <label>Month :</label>
+                                <label>Date :</label>
                                 <div class="input-group">
-                                    <select name="month" class="form-control" onchange="draw()">
+                                    <select name="date" class="form-control" onchange="draw()">
                                         <option value="">Select Month</option>
-                                        @for ($i=1;$i<=12;$i++) <option value="{{$i}}">{{date('F',strtotime('2020-'.$i.'-01'))}}</option>
-                                            @endfor
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
-                                <label>Year :</label>
-                                <div class="input-group">
-                                    <select name="year" class="form-control" onchange="draw()">
-                                        @for ($i=2021;$i<=date('Y');$i++) <option value="{{$i}}" @if($i==date('Y')) selected @endif>{{$i}}</option>
+                                        @for ($i=1;$i<=12;$i++) <option value="{{date('Y-').$i}}">{{date('F Y',strtotime(date('Y-').$i.'-01'))}}</option>
                                             @endfor
                                     </select>
                                 </div>
@@ -68,13 +59,11 @@
 @push('scripts')
 <script>
     function draw() {
-        let month = $('[name="month"]').val();
-        let year = $('[name="year"]').val();
+        let date = $('[name="date"]').val();
         $.ajax({
             url: '{{route("reports.filter")}}',
             data: {
-                month: month,
-                year: year
+                date: date,
             },
             method: 'POST',
             success: function(response) {

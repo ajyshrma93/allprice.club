@@ -38,7 +38,7 @@ class ProductController extends Controller
         $locatedShops = $locatedShops->get();
         $shops = Shop::get();
         $categories = Category::get();
-        $products = Product::where('user_id', auth()->id())->orderBy('id', 'desc')->get();
+        $products = Product::where('user_id', auth()->id())->groupBy('name')->orderBy('id', 'desc')->get();
         return view('products.index', compact('products', 'countries', 'categories', 'shops', 'cities', 'locatedShops'));
     }
     /**
@@ -197,10 +197,16 @@ class ProductController extends Controller
         }
         try {
             $files = $request->file('product_images');
+            $lastInsertedId = Product::latest()->first();
+            if (!$lastInsertedId) {
+                $lastInsertedId = 0;
+            } else {
+                $lastInsertedId = $lastInsertedId->id;
+            }
             foreach ($files as $key => $file) {
                 $product = new Product();
                 $product->price = 1.00;
-                $product->name = 'Product ' . ++$key;
+                $product->name = 'Product ' . ++$lastInsertedId;
                 $product->type = 'pcs';
                 $product->value = '1';
                 $product->shop_id = $request->shop_id;

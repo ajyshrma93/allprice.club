@@ -16,7 +16,7 @@ class ReportController extends Controller
     public function index(Request $request)
     {
 
-        $products = Product::select(['products.*', DB::Raw('sum(`price`) total_price'), DB::Raw('count(*) total_items')])->where('user_id', auth()->id())->groupBy('shop_id');
+        $products = Product::select(['products.*', DB::Raw('sum(`price`) total_price'), DB::Raw('count(*) total_items'), DB::Raw('DATE(created_at) day')])->where('user_id', auth()->id())->groupBy('shop_id', 'day');
         $products = $products->whereYear('created_at', date('Y'));
         $products = $products->get();
         return view('reports.index', compact('products'));
@@ -24,12 +24,10 @@ class ReportController extends Controller
 
     public function filter(Request $request)
     {
-        $products = Product::select(['products.*', DB::Raw('sum(`price`) total_price'), DB::Raw('count(*) total_items')])->where('user_id', auth()->id())->groupBy('shop_id');
-        if ($request->month) {
-            $products = $products->whereMonth('created_at', $request->month);
-        }
-        if ($request->year) {
-            $products = $products->whereYear('created_at', $request->year);
+        $products = Product::select(['products.*', DB::Raw('sum(`price`) total_price'), DB::Raw('count(*) total_items'), DB::Raw('DATE(created_at) day')])->where('user_id', auth()->id())->groupBy('shop_id', 'day');
+        if ($request->date) {
+            $date = date('Y-m', strtotime($request->date));
+            $products = $products->where('created_at', 'like', '%' . $date . '%');
         }
         $products = $products->get();
         $html = view('reports.partials.list', compact('products'))->render();

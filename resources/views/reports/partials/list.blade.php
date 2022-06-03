@@ -17,6 +17,7 @@ $image = $shop ? $shop->image :'assets/images/no-data-available.png';
                 <div class="product-price">
                     $ {{$product->total_price}}
                 </div>
+                <b>Purchase On : {{$product->created_at->format('d/m/Y')}}</b>
             </div>
         </div>
     </div>

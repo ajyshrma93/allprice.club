@@ -41,6 +41,12 @@ class HomeController extends Controller
     {
         $is_changed = false;
         $city = City::where('name', $request->place)->first();
+        if (!$city) {
+            $city = new City();
+            $city->name = $request->place;
+            $city->save();
+        }
+
         if ($city) {
             if ($city->id != auth()->user()->city_id) {
                 $is_changed = true;
