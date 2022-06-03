@@ -61,7 +61,7 @@
                     <li class="sidebar-list">
                         <a class="{{$menu =='reports'?'active':''}}  sidebar-link sidebar-title link-nav" href="{{route('reports.index')}}">
                             <i data-feather="tag"></i>
-                            <span>Report</span>
+                            <span>Purchase History</span>
                         </a>
                     </li>
                     <li class="sidebar-list">
