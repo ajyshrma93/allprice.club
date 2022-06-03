@@ -586,13 +586,20 @@ function deleteProduct(button) {
 }
 
 $("body").on("click", "#applyFilter", function () {
+    applyFilter();
+});
+
+function applyFilter() {
     var fdata = new FormData();
     var myform = $("#gridSearchForm"); // specify the form element
     let action = myform.attr("action");
     var idata = myform.serializeArray();
+    var sort = $('select[name="sort"]').val();
     $.each(idata, function (key, input) {
         fdata.append(input.name, input.value);
     });
+    fdata.append("sort", sort);
+
     $.ajax({
         url: action,
         data: fdata,
@@ -606,7 +613,7 @@ $("body").on("click", "#applyFilter", function () {
             }
         },
     });
-});
+}
 
 $("body").on("click", ".page-link", function (e) {
     e.preventDefault();

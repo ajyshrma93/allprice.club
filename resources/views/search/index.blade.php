@@ -4,13 +4,22 @@
     <div class="container-fluid">
         <div class="page-title">
             <div class="row">
-                <div class="col-10 col-md-5">
-                    <h3>Public List (Grid view)</h3>
+                <div class="col-8 col-md-5">
+                    <h3>Public List</h3>
                 </div>
-                <div class="col-2 col-md-7">
+                <div class="col-4 col-md-7">
                     <div class="create-new-items justify-content-end">
 
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <select name="sort" class="col-sm-12 form-select" onchange="applyFilter()">
+                                    <option value="">Sort </option>
+                                    <option value="asc">Lowest to Highest </option>
+                                    <option value="desc">Highest to Lowest </option>
 
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -43,7 +52,6 @@
         <div class="modal-content p-4">
             <div class="modal-header border-0 mb-3 p-0">
                 <h4 class="modal-title"><a href="#">Filter</a></h4>
-                <!-- <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button> -->
             </div>
             <form class="theme-form" id="gridSearchForm" action="{{route('filter-products')}}">
                 <div class="row">
@@ -103,6 +111,8 @@
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </form>
             <div class="modal-footer border-0 text-center text-sm-end pe-0 ps-0">
