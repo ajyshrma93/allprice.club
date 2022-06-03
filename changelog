@@ -2,16 +2,13 @@ Hello Mervyn,
 These points are done .Please check at
 https://test.allprice.club/login
 
-1. Shop delete issue fixed
-2. Report page added card for display
-3. Added filter for month and year in report page
-3. Duplicate Item correct label (add Item and Add)
-4. 0.01 and 0.1 revert changes now will increment
-5. purple color is per kg or per pcs done
-6. Remove Label from edit product and duplicate product
-7. fixed image upload layout in edit product
-8. fixed image upload layout in clone product
-9. Added Google signin and signup
+1. Update Label from add to purchase.
+2. Location Auto add functionality added.
+3. Report page changes done
+4. Is Offer and Is duty free always checked fixed
+
+
+Please clear cache before testing.
 
 Tracked Time : 6 hour
 
