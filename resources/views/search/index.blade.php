@@ -10,11 +10,7 @@
                 <div class="col-2 col-md-7">
                     <div class="create-new-items justify-content-end">
 
-                        <a class="" type="button" data-bs-toggle="modal" data-bs-target="#product-modal-2-mobile" data-bs-original-title="" title="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter">
-                                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-                            </svg>
-                        </a>
+
                     </div>
                 </div>
             </div>
@@ -81,7 +77,7 @@
                             <input name="created_at" class="form-control" type="date" />
                         </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 ">
                         <div class="mb-3">
                             <select name="location_id" class=" col-sm-12" id="modalSelect-02">
                                 <option value="">All Location</option>
@@ -91,7 +87,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-xxl-3 col-6 d-flex  field-area">
+                    <div class="col-lg-6 col-xxl-3 col-6 d-flex">
                         <div class="offer-price-checkbox text-nowrap">
                             <div>
                                 <input type="checkbox" id="offer-price-id" name="is_offer">
@@ -99,7 +95,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-xxl-3 col-6 d-flex  field-area">
+                    <div class="col-lg-6 col-xxl-3 col-6 d-flex">
                         <div class="duty-free-checkbox text-nowrap">
                             <div>
                                 <input type="checkbox" id="duty-free-id" name="is_duty_free">
@@ -107,17 +103,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12">
-                        <div class="mb-3">
-                            <select name="sort" class=" col-sm-12" id="modalSelect-02">
-                                <option value="">Select </option>
-                                <option value="asc">Lowest to Highest </option>
-                                <option value="desc">Highest to Lowest </option>
-
-                            </select>
-                        </div>
-                    </div>
-
                 </div>
             </form>
             <div class="modal-footer border-0 text-center text-sm-end pe-0 ps-0">

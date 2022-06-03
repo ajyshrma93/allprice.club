@@ -6,7 +6,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-5">
-                    <h3>Reports</h3>
+                    <h3>Purchase History</h3>
                 </div>
                 <div class="col-7">
                     <div class="create-new-items justify-content-end">

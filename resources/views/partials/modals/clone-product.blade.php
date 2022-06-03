@@ -87,6 +87,15 @@
 
                 </div>
                 <div class="row">
+                    <div class="col-12 field-area">
+                        <select name="country" class="form-control col-sm-12" id="clone_product_country">
+                            <option value="choose" selected>Item Made From</option>
+                            @foreach ($countries as $country)
+                            <option value="{{$country->name}}" {{$country->sortname =='MY' ?'selected':''}} data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>
+
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="col-lg-6 col-6  d-flex  field-area">
                         <div class=" offer-price-checkbox text-nowrap">
                             <div>
@@ -103,15 +112,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12">
-                        <select name="country" class="form-control col-sm-12" id="clone_product_country">
-                            <option value="choose" selected>Item Made From</option>
-                            @foreach ($countries as $country)
-                            <option value="{{$country->name}}" {{$country->sortname =='MY' ?'selected':''}} data-icon="fi-{{strtolower($country->sortname)}}">{{$country->name}}</option>
 
-                            @endforeach
-                        </select>
-                    </div>
                 </div>
 
                 <div class="mb-3 d-none">

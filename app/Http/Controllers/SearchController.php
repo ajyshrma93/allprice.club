@@ -16,7 +16,7 @@ class SearchController extends Controller
         view()->share('menu', 'search');
     }
 
-    public function index(Request $request, $type)
+    public function index(Request $request)
     {
         $shops = Shop::get();
         $categories = Category::get();

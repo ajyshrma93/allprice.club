@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="row " id="edit_advance_option">
-                    <div class="mb-3">
+                    <div class="mb-3 field-area">
                         <select name="country" class=" col-sm-12" id="edit_product_country">
                             <option value="choose" selected>Item Made From</option>
                             @foreach ($countries as $country)

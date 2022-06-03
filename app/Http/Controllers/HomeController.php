@@ -42,9 +42,11 @@ class HomeController extends Controller
         $is_changed = false;
         $city = City::where('name', $request->place)->first();
         if (!$city) {
-            $city = new City();
-            $city->name = $request->place;
-            $city->save();
+            if ($request->country == 'Malaysia') {
+                $city = new City();
+                $city->name = $request->place;
+                $city->save();
+            }
         }
 
         if ($city) {

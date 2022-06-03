@@ -197,7 +197,7 @@
                                 </div>
                             </div>
                             <div id="advance_options" class="row d-none">
-                                <div class="col-lg-6 mb-3  d-md-flex">
+                                <div class="col-lg-6 mb-3  d-md-flex field-area">
                                     <select name="country" class="country-list col-sm-12 @error('country') is-invalid @enderror" aria-placeholder="Choose Country">
                                         <option value="" selected>Item Made From</option>
                                         @foreach ($countries as $country)
@@ -212,7 +212,7 @@
                                     </span>
                                     @enderror
                                 </div>
-                                <div class="col-lg-6 col-xxl-3 col-6 d-flex  field-area">
+                                <div class="col-lg-6 col-xxl-3 col-6 d-flex field-area">
                                     <div class="offer-price-checkbox text-nowrap">
                                         <div>
                                             <input type="checkbox" id="offer-price-id" name="is_offer">
