@@ -26,6 +26,7 @@
         </div>
     </div>
 </div>
+@if($products->count() > 0)
 <nav>
     <ul class="pagination mb-4">
 
@@ -50,3 +51,4 @@
         @endif
     </ul>
 </nav>
+@endif

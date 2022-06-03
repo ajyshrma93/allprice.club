@@ -158,7 +158,7 @@ class ShopController extends Controller
     public function destroy(Shop $shop)
     {
         if ($shop->delete()) {
-      //      Product::where('shop_id', $shop->id)->delete();
+            Product::where('shop_id', $shop->id)->delete();
             Session::flash('success', 'Shop has been deleted successfully');
         } else {
             Session::flash('error', 'Something went wrong. While deleteing shop');

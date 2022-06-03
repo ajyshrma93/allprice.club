@@ -53,6 +53,11 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="mb-3">
+                            <input name="name" class="form-control" placeholder="Search by product name" autocomplete="off" />
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mb-3">
                             <select name="category_id" class=" col-sm-12" id="modalSelect-01">
                                 <option value="">All Category</option>
                                 @foreach ($categories as $category)
@@ -71,6 +76,38 @@
                             </select>
                         </div>
                     </div>
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <input name="created_at" class="form-control" type="date" />
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <select name="location_id" class=" col-sm-12" id="modalSelect-02">
+                                <option value="">All Location</option>
+                                @foreach ($locations as $location)
+                                <option value="{{$location->id}}">{{$location->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xxl-3 col-6 d-flex  field-area">
+                        <div class="offer-price-checkbox text-nowrap">
+                            <div>
+                                <input type="checkbox" id="offer-price-id" name="is_offer">
+                                <label for="offer-price-id" style="font-size: 12px; color: #898989">Offer Price</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xxl-3 col-6 d-flex  field-area">
+                        <div class="duty-free-checkbox text-nowrap">
+                            <div>
+                                <input type="checkbox" id="duty-free-id" name="is_duty_free">
+                                <label for="duty-free-id" style="font-size: 12px; color: #898989">Duty Free</label>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </form>
             <div class="modal-footer border-0 text-center text-sm-end pe-0 ps-0">

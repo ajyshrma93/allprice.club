@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\City;
 use App\Models\Product;
 use App\Models\Shop;
 use Illuminate\Http\Request;
@@ -19,18 +20,36 @@ class SearchController extends Controller
     {
         $shops = Shop::get();
         $categories = Category::get();
-        $products = Product::paginate(8);
-        return view('search.index', compact('products', 'categories', 'shops'));
+        $locations = City::get();
+        $products = Product::orderByDesc('id')->paginate(8);
+        return view('search.index', compact('products', 'categories', 'shops', 'locations'));
     }
 
     public function filter(Request $request)
     {
-        $products = Product::orderBy('id', 'desc');
+        $products = Product::orderByDesc('id');
+        if ($request->name) {
+            $products = $products->where('name', 'like', '%' . $request->name . '%');
+        }
         if ($request->category_id) {
             $products = $products->where('category_id', $request->category_id);
         }
         if ($request->shop_id) {
             $products = $products->where('shop_id', $request->shop_id);
+        }
+        if ($request->created_at) {
+            $products = $products->where('created_at', 'like', '%' . $request->created_at . '%');
+        }
+        if ($request->is_offer) {
+            $products = $products->where('is_offer', 1);
+        }
+        if ($request->is_duty_free) {
+            $products = $products->where('is_duty_free', 1);
+        }
+        if ($request->location_id) {
+            $products = $products->wherehas('shop', function ($query) use ($request) {
+                $query->where('city_id', $request->location_id);
+            });
         }
         $products = $products->paginate(8);
         $html = view('search.partials.list', compact('products'))->render();
