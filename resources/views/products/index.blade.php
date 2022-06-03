@@ -1,5 +1,24 @@
 @extends('layouts.app')
-
+@push('css')
+<style>
+    .dropzone {
+        margin-right: auto;
+        margin-left: auto;
+        padding: 50px;
+        border: 2px dashed #8acf0c;
+        border-radius: 15px;
+        -o-border-image: none;
+        border-image: none;
+        background: rgba(115, 102, 255, 0.1);
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        min-height: 150px;
+        position: relative;
+        cursor: pointer;
+        text-align: center;
+    }
+</style>
+@endpush
 @section('content')
 <style>
     .touchspin-value {
@@ -12,8 +31,6 @@
         padding-top: 8px;
         border-radius: 4px 0px 0px 4px;
     }
-
-
 </style>
 
 <div class="page-body">
@@ -112,13 +129,16 @@
                                     @enderror
                                 </div>
 
-                                <div class=" col-xxl-4 col-xl-6 col-md-6 col-6 mb-3 field-area">
+                                <div class="col-xl-6 col-md-6 col-12 mb-3 field-area">
                                     <div class="input-group mobile-design-change bootstrap-touchspin @error('value') is-invalid @enderror">
                                         <span class="touchspin-value" onclick="increaseByTen('#product_value')">10</span>
                                         <input class="form-control" type="number" min="1" value="1" id="product_value" name="value" placeholder="Weight" style="display: block;" value="{{old('value')}}">
-                                        <span class="input-group-text bootstrap-touchspin-postfix" style="display: none;"></span>
-                                        <button onclick="decrease('#product_value')" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-minus"></i></button>
-                                        <button onclick="increase('#product_value')" class="btn btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-plus"></i></button>
+                                        <span class="input-group-text bootstrap-touchspin-postfix" style="border: unset;background:unset;">pcs</span>
+                                        <button onclick="decrease('#product_value')" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button"><i class="fa fa-minus"></i></button>
+                                        <button onclick="increase('#product_value')" class="btn btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button"><i class="fa fa-plus"></i></button>
+                                        <label class="btn btn-custom-width btn-primary btn-square touchspin-btn  m-0" for="edo-ani-2">pcs</i>
+                                        </label>
+                                        <label class="btn btn-custom-width btn-primary btn-square touchspin-btn m-0" for="edo-ani1-2" type="button">gram</label>
                                     </div>
                                     @error('value')
                                     <span class="invalid-feedback" role="alert">
@@ -126,14 +146,14 @@
                                     </span>
                                     @enderror
                                 </div>
-                                <div class=" col-xxl-4 col-xl-6 col-md-6 col-6 mb-3 field-area">
+                                <div class="col-xxl-4 col-xl-6 col-md-6 col-6 mb-3 field-area d-none">
                                     <div class="d-flex justify-content-end align-items-center cus-justify-content-center">
                                         <div class="d-block cursor-pointer custom-input-design w-100">
                                             <input class="checkbox_animated custom-input" id="edo-ani-2" value="pcs" type="radio" name="type" checked>
                                             <label for="edo-ani-2" class="custom-input-label w-100">PCS</label>
                                         </div>
                                         <div class="d-block cursor-pointer custom-input-design w-100">
-                                            <input class="checkbox_animated custom-input" id="edo-ani1-2" value="gram" type="radio" name="type" {{'gram' == old('type') ?'checked':''}}>
+                                            <input class="checkbox_animated custom-input" id="edo-ani1-2" value="gram" type="radio" name="type">
                                             <label for="edo-ani1-2" class="custom-input-label reverse w-100">gram</label>
                                         </div>
                                     </div>
@@ -142,12 +162,11 @@
                                 <div class=" col-xxl-6 col-xl-6 col-md-12 col-12 mb-3 field-area">
                                     <div class="input-group mobile-design-change bootstrap-touchspin @error('price') is-invalid @enderror">
                                         <span class="touchspin-value" onclick="increaseByTen('#product_price',true)"> 10 </span>
-                                        <input class="form-control" type="number" name="price" min="0" value="{{old('price')}}" step="0.01" id="product_price" placeholder="Price" data-bs-original-title="" title="">
+                                        <input class="form-control" type="number" name="price" min="0" value="{{old('price')}}" step="0.01" id="product_price" placeholder="Price">
                                         <span class="input-group-text bootstrap-touchspin-postfix" style="display: none;"></span>
-                                        <button onclick="decrease('#product_price',true)" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-minus"></i></button>
-                                        <button onclick="increase('#product_price',true)" class="btn btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button" data-bs-original-title="" title=""><i class="fa fa-plus"></i></button>
-                                        <button onclick="increase('#product_price',true,0.1)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button" data-bs-original-title="" title="">0.1</i></button>
-                                        <button onclick="increase('#product_price',true,0.01)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button" data-bs-original-title="" title="">0.01</button>
+                                        <button onclick="decrease('#product_price',true)" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button"><i class="fa fa-minus"></i></button>
+                                        <button onclick="increase('#product_price',true,0.1)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button">0.1</i></button>
+                                        <button onclick="increase('#product_price',true,0.01)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button">0.01</button>
                                     </div>
                                     @error('price')
                                     <span class="invalid-feedback" role="alert">
@@ -155,17 +174,24 @@
                                     </span>
                                     @enderror
                                 </div>
+                                <input type="file" style="display:none" class="form-control" name="product_image" id="add_product_image" onchange="previewAddFile(event,'add_product_image_preview')" accept="image/*" />
 
-                                <div class="col-xxl-4 col-xl-12 col-md-12 mb-3">
-                                    <input type="file" class="form-control" name="product_image" id="add_product_image" accept="image/*" />
+                                <div class="col-xl-12 col-md-12 mb-3 dropzone" onclick="$('#add_product_image').click()">
+                                    <div class="dz-message needsclick">
+                                        <i data-feather="upload-cloud"></i>
+                                        <h6>Upload Product Image</h6>
+                                    </div>
+                                    <div class="preview_image" style="display: none;">
+                                        <img src="" class="image-fluid" id="add_product_image_preview" height="200px" width="200px">
+                                    </div>
                                 </div>
 
                             </div>
                             <div class="row mb-2">
-                                <div class="col-7 text-end">
+                                <div class="col-6 text-left">
                                     <span type="button" class="text-danger btn-reset">Reset</span>
                                 </div>
-                                <div class="col-5 text-left">
+                                <div class="col-6 text-end">
                                     <span type="button" class="text-danger btn-advance"><i class="fa fa-plus"></i> Advance</span>
                                 </div>
                             </div>
@@ -231,3 +257,13 @@
 @include('partials.modals.clone-product')
 @include('partials.modals.bulk-upload')
 @endsection
+
+
+@push('scripts')
+
+<script>
+    function previewAddImage() {
+
+    }
+</script>
+@endpush

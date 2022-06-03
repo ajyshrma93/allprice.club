@@ -461,6 +461,7 @@ $("body").on("click", "#add_product_btn", function (e) {
                 if ($("#empty_product_image").length > 0) {
                     $("#empty_product_image").remove();
                 }
+                resetDropzone();
                 hideloader();
             }
         },
@@ -649,6 +650,17 @@ function previewFile(event, id) {
     };
 }
 
+function previewAddFile(event, id) {
+    $(".dz-message").hide();
+    var output = document.getElementById(id);
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function () {
+        URL.revokeObjectURL(output.src); // free memory
+    };
+
+    $(".preview_image").show();
+}
+
 function increase(input, price = false, increaseBy = 1) {
     let value = $(input).val();
     if (value == "") {
@@ -688,8 +700,9 @@ function increaseByTen(input, price = false) {
     $(input).val(newValue);
 }
 
-$("body").on("click", ".custom-input-label", function () {
-    $(this).parent().find("input").prop("checked", true);
+$("body").on("change", "input[name='type']", function () {
+    let val = $('input[name="type"]:checked').val();
+    $("span.input-group-text").text(val);
 });
 
 function showLoader() {
@@ -726,7 +739,13 @@ $("body").on("click", ".btn-reset", function () {
     form.find("input[name='price']").val("");
     form.find("input[name='product_image']").val("");
     form.find("input[name='type'][value='pcs']").trigger("click");
+    resetDropzone();
 });
+
+function resetDropzone() {
+    $(".dz-message").show();
+    $(".preview_image").hide();
+}
 
 $("body").on("click", ".btn-advance", function () {
     $("#advance_options").toggleClass("d-none");

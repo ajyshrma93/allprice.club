@@ -7,9 +7,10 @@ https://test.allprice.club/login
 3. Report page changes done
 4. Is Offer and Is duty free always checked fixed
 5. My favorites product with same name dispalyed only once
+6. Added Filter on the public page to filter by location,name,is offer,duty free
 
 Please clear cache before testing.
 
-Tracked Time : 6 hour
+Tracked Time : 3 hour
 
-Working On : Auto Calculate Price and Per Kg and Per Piece change
+Working On : sort functionality and changing ui for the weight pc input as told in video
