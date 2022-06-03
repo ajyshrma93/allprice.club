@@ -63,7 +63,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::post('report/filter', [ReportController::class, 'filter'])->name('reports.filter');
-    Route::post('report/details', [ReportController::class, 'details'])->name('reports.details');
+    Route::get('report/{id}/details', [ReportController::class, 'details'])->name('reports.details');
     Route::get('report', [ReportController::class, 'index'])->name('reports.index');
 });
 Route::any('search/filter-products', [SearchController::class, 'filter'])->name('filter-products');

@@ -3,23 +3,24 @@
 $shop = $product->shop;
 $image = $shop ? $shop->image :'assets/images/no-data-available.png';
 @endphp
-<div class="col-xl-3 col-sm-6">
+<div class="col-xl-3 col-sm-6 col-6">
     <div class="card">
-        <div class="product-box">
-            <div class="product-img" style="background-image: url('{{asset($image)}}');background-size: 100% 100%;">
-                <div class="ribbon ribbon-info ribbon-right">{{$product->total_items}} Items</div>
-                <div class="product-hover">
+        <a href="{{route('reports.details',$product->id)}}">
+            <div class="product-box">
+                <div class="product-img" style="background-image: url('{{asset($image)}}');background-size: 100% 100%;">
+                    <div class="ribbon ribbon-info ribbon-right">{{$product->total_items}} Items</div>
+                    <div class="product-hover">
 
+                    </div>
+                </div>
+                <div class="product-details">
+                    <h4>{{ $shop ? $shop->name :'N/A'}}</h4>
+                    <div class="product-price"> RM {{$product->total_price}}<br />
+                        <span>{{$product->created_at->format('d/m/Y')}}</span>
+                    </div>
                 </div>
             </div>
-            <div class="product-details">
-                <h4>{{ $shop ? $shop->name :'N/A'}}</h4>
-                <div class="product-price">
-                    $ {{$product->total_price}}
-                </div>
-                <b>Purchase On : {{$product->created_at->format('d/m/Y')}}</b>
-            </div>
-        </div>
+        </a>
     </div>
 </div>
 @endforeach

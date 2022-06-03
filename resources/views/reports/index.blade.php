@@ -23,7 +23,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row justify-content-lg-start justify-content-center mb-3">
+                        <div class="row justify-content-lg-start  mb-3">
                             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
                                 <label>Date :</label>
                                 <div class="input-group">

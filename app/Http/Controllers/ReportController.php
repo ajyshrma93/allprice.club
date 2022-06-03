@@ -35,20 +35,10 @@ class ReportController extends Controller
         return response()->json(['success' => true, 'html' => $html]);
     }
 
-    public function details(Request $request)
+    public function details($id, Request $request)
     {
-        $products = Product::where('created_at', 'like', '%' . $request->date . '%')->where([
-            'user_id' => auth()->id(),
-            'shop_id' => $request->shop_id
-        ])->get();
-
-        $html = '';
-
-        foreach ($products as $product) {
-            $html .= '<tr><td><img src="' . $product->thumbnail . '" width="100" height="100"/></td><td>' . $product->name . '</td><td> RM ' . $product->getPrice() . '</td></tr>';
-        }
-
-
-        return response()->json(['html' => $html]);
+        $product = Product::findOrFail($id);
+        $products = Product::where('shop_id', $product->shop_id)->whereDate('created_at', $product->created_at->format("Y-m-d"))->get();
+        return view('reports.details', compact('products', 'product'));
     }
 }
