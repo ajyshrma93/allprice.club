@@ -35,7 +35,7 @@
                     <li class="sidebar-list">
                         <a class="{{$menu =='search'?'active':''}} sidebar-link sidebar-title link-nav" href="{{route('search')}}">
                             <i data-feather="globe"></i>
-                            <span>Public list</span>
+                            <span>Public Purchase list</span>
                         </a>
                     </li>
                     <li class="sidebar-list">

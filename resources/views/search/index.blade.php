@@ -13,10 +13,8 @@
                         <div class="col-12">
                             <div class="mb-3">
                                 <select name="sort" class="col-sm-12 form-select" onchange="applyFilter()">
-                                    <option value="">Sort </option>
                                     <option value="asc">Lowest to Highest </option>
                                     <option value="desc">Highest to Lowest </option>
-
                                 </select>
                             </div>
                         </div>

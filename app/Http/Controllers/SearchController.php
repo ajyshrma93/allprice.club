@@ -21,7 +21,7 @@ class SearchController extends Controller
         $shops = Shop::get();
         $categories = Category::get();
         $locations = City::get();
-        $products = Product::orderByDesc('id')->paginate(8);
+        $products = Product::orderBY('price')->paginate(8);
         return view('search.index', compact('products', 'categories', 'shops', 'locations'));
     }
 
