@@ -5,10 +5,10 @@
     <div class="container-fluid">
         <div class="page-title">
             <div class="row">
-                <div class="col-5">
+                <div class="col-8">
                     <h3>Purchase History</h3>
                 </div>
-                <div class="col-7">
+                <div class="col-4">
                     <div class="create-new-items justify-content-end">
 
                     </div>
@@ -28,9 +28,9 @@
                                 <label>Date :</label>
                                 <div class="input-group">
                                     <select name="date" class="form-control" onchange="draw()">
-                                        <option value="">Select Month</option>
-                                        @for ($i=1;$i<=12;$i++) <option value="{{date('Y-').$i}}">{{date('F Y',strtotime(date('Y-').$i.'-01'))}}</option>
-                                            @endfor
+                                        @for ($i=date('m');$i>=1;$i--)
+                                        <option value="{{date('Y-').$i}}">{{date('F Y',strtotime(date('Y-').$i.'-01'))}}</option>
+                                        @endfor
                                     </select>
                                 </div>
                             </div>

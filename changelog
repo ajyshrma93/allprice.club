@@ -2,15 +2,20 @@ Hello Mervyn,
 These points are done .Please check at
 https://test.allprice.club/login
 
-1. Update Label from add to purchase.
-2. Location Auto add functionality added.
-3. Report page changes done
-4. Is Offer and Is duty free always checked fixed
-5. My favorites product with same name dispalyed only once
-6. Added Filter on the public page to filter by location,name,is offer,duty free
+1. Fixed Location issue (Not save location outside Malaysia).
+2. User Name and Logout button Moved from top to sidebar
+3. Fixed Filter alignment issue
+4. Added filter button at top for Public view and sorting button outside modal
+5. Addded Month and Year filter
+6. Sort is working as you explained
+7. Label Changed to Purchase History
+8. Added Delete button for admin in city
+9. Added Admin setting option in admin login
+10. Price Label change to RM
+11. Added filter to of KG and PCS
 
 Please clear cache before testing.
 
-Tracked Time : 3 hour
+Tracked Time : 3.5 hour
 
-Working On : sort functionality and changing ui for the weight pc input as told in video
+Working On : Working on auto complete price and weight functionality

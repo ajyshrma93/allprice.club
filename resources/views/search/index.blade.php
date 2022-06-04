@@ -116,6 +116,15 @@ $currentYear = date('Y');
                             </select>
                         </div>
                     </div>
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <select name="type" class=" col-sm-12" id="modalSelect-02">
+                                <option value="">KG and PCS Both</option>
+                                <option value="pcs">PCS Only</option>
+                                <option value="gram">KG Only</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="col-lg-6 col-xxl-3 col-6 d-flex">
                         <div class="offer-price-checkbox text-nowrap">
                             <div>

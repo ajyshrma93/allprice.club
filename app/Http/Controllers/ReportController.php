@@ -17,7 +17,8 @@ class ReportController extends Controller
     {
 
         $products = Product::select(['products.*', DB::Raw('sum(`price`) total_price'), DB::Raw('count(*) total_items'), DB::Raw('DATE(created_at) day')])->where('user_id', auth()->id())->groupBy('shop_id', 'day');
-        $products = $products->whereYear('created_at', date('Y'));
+        $date = date('Y-m');
+        $products = $products->where('created_at', 'like', '%' . $date . '%');
         $products = $products->get();
         return view('reports.index', compact('products'));
     }
