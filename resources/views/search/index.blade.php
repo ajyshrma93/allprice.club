@@ -4,12 +4,11 @@
     <div class="container-fluid">
         <div class="page-title">
             <div class="row">
-                <div class="col-8 col-md-5">
+                <div class="col-6 col-md-5">
                     <h3>Public List</h3>
                 </div>
-                <div class="col-4 col-md-7">
+                <div class="col-6 col-md-7">
                     <div class="create-new-items justify-content-end">
-
                         <div class="col-12">
                             <div class="mb-3">
                                 <select name="sort" class="col-sm-12 form-select" onchange="applyFilter()">

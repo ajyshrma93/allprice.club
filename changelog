@@ -2,20 +2,13 @@ Hello Mervyn,
 These points are done .Please check at
 https://test.allprice.club/login
 
-1. Fixed Location issue (Not save location outside Malaysia).
-2. User Name and Logout button Moved from top to sidebar
-3. Fixed Filter alignment issue
-4. Added filter button at top for Public view and sorting button outside modal
-5. Addded Month and Year filter
-6. Sort is working as you explained
-7. Label Changed to Purchase History
-8. Added Delete button for admin in city
-9. Added Admin setting option in admin login
-10. Price Label change to RM
-11. Added filter to of KG and PCS
+1. Change Label Public List to Public Purchase List.
+2. Sort fixed it is currently sorting according to price not by per kg or pcs price.
+3. Corrected Dropdown on Purchase History
+4. Corrected Label For Purchase History
+5. Now all filter are showing on Public purchase list
+
 
 Please clear cache before testing.
 
-Tracked Time : 3.5 hour
 
-Working On : Working on auto complete price and weight functionality
