@@ -51,6 +51,12 @@ class SearchController extends Controller
                 $query->where('city_id', $request->location_id);
             });
         }
+        if ($request->year) {
+            $products = $products->whereYear('created_at', $request->year);
+        }
+        if ($request->month) {
+            $products = $products->whereMonth('created_at', $request->month);
+        }
         if ($request->sort) {
             $products = $products->orderBy('price', $request->sort);
         }

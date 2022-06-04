@@ -47,6 +47,9 @@
 @endsection
 
 @section('modals')
+@php
+$currentYear = date('Y');
+@endphp
 <div class="modal fade" id="product-modal-2-mobile" tabindex="-1" role="dialog" aria-labelledby="product-modal-2-mobile" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content p-4">
@@ -82,7 +85,25 @@
                     </div>
                     <div class="col-12">
                         <div class="mb-3">
-                            <input name="created_at" class="form-control" type="date" />
+                            <select name="year" class=" col-sm-12" id="modalSelect-02">
+                                <option value="">All Year</option>
+                                @for($i=2021;$i<=$currentYear;$i++) <option value="{{$i}}">{{$i}}</option>
+                                    @endfor
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <select name="month" class=" col-sm-12" id="modalSelect-02">
+                                <option value="">All Month</option>
+                                @for($i=1;$i<=12;$i++) <option value="{{date('m',strtotime($currentYear.'-'.$i))}}">{{ date('F',strtotime($currentYear.'-'.$i))}}</option>
+                                    @endfor
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <input name="created_at" class="form-control" type="date" placeholder="Select date " />
                         </div>
                     </div>
                     <div class="col-12 ">

@@ -28,7 +28,6 @@
                 @endauth
             </ul>
         </div>
-        @auth
         <div class="nav-right col-6 pull-right right-header p-0 ms-auto">
             <ul class="nav-menus me-0">
                 @if(Request::is('search'))
@@ -38,9 +37,9 @@
                     </a>
                 </li>
                 @endif
-                <!-- <div class="mode"><i class="fa fa-moon-o"></i></div> -->
-                <!-- <li class="cursor-pointer"><span class="header-search"><i data-feather="search"></i></span></li>
-                 <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
+                {{-- <div class="mode"><i class="fa fa-moon-o"></i></div> -->
+                <li class="cursor-pointer"><span class="header-search"><i data-feather="search"></i></span></li>
+                <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
                 <li class="profile-nav onhover-dropdown p-0 me-0">
                     <div class="media profile-media">
 
@@ -50,10 +49,9 @@
                         <li><i data-feather="user"> </i><span>{{auth()->user()->name}}</span></li>
                         <li><a href="javascript:void(0)" onclick="$('#logout-form').submit()"><i data-feather="log-in"> </i><span>Log Out</span></a></li>
                     </ul>
-                </li> -->
+                </li> --}}
             </ul>
         </div>
-        @endauth
 
     </div>
 </div>
