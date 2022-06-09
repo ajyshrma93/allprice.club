@@ -103,6 +103,7 @@
             success: function(response) {
                 if (response.success == true) {
                     $table.draw();
+                    myform[0].reset();
                     Modal.modal('hide');
                     hideloader();
                 }

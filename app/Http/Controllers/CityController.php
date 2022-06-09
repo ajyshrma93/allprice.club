@@ -46,6 +46,13 @@ class CityController extends Controller
         }
     }
 
+    public function destroy(City $city)
+    {
+        $city->delete();
+
+        return redirect(route('cities.index'));
+    }
+
 
     public function getList(Request $request)
     {
@@ -84,7 +91,14 @@ class CityController extends Controller
             $data_arr[] = array(
                 "id" => $record->id,
                 "name" => $record->name,
-                "action" => '<button data-bs-toggle="modal" data-bs-target="#edit_city_modal" data-id="' . $record->id . '" data-name="' . $record->name . '"  class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></button>'
+                "action" => '<form action="' . route('cities.destroy', $record->id) . '" method="POST">
+                <input type="hidden" name="_method" value="DELETE" data-bs-original-title="" title="">
+                ' . csrf_field() . '
+                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#edit_city_modal" data-id="' . $record->id . '" data-name="' . $record->name . '"  class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> </a>
+
+
+                <a  class="btn btn-danger btn-sm delete-product"><i class="fa fa-trash"></i></a>
+                </form>'
             );
         }
 

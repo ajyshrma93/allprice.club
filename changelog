@@ -2,14 +2,13 @@ Hello Mervyn,
 These points are done .Please check at
 https://test.allprice.club/login
 
-1. Update Label from add to purchase.
-2. Location Auto add functionality added.
-3. Report page changes done
-4. Is Offer and Is duty free always checked fixed
-5. My favorites product with same name dispalyed only once
+1. Change Label Public List to Public Purchase List.
+2. Sort fixed it is currently sorting according to price not by per kg or pcs price.
+3. Corrected Dropdown on Purchase History
+4. Corrected Label For Purchase History
+5. Now all filter are showing on Public purchase list
+
 
 Please clear cache before testing.
 
-Tracked Time : 6 hour
 
-Working On : Auto Calculate Price and Per Kg and Per Piece change

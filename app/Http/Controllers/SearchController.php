@@ -16,18 +16,18 @@ class SearchController extends Controller
         view()->share('menu', 'search');
     }
 
-    public function index(Request $request, $type)
+    public function index(Request $request)
     {
         $shops = Shop::get();
         $categories = Category::get();
         $locations = City::get();
-        $products = Product::orderByDesc('id')->paginate(8);
+        $products = Product::orderBY('price')->paginate(8);
         return view('search.index', compact('products', 'categories', 'shops', 'locations'));
     }
 
     public function filter(Request $request)
     {
-        $products = Product::orderByDesc('id');
+        $products = Product::query();
         if ($request->name) {
             $products = $products->where('name', 'like', '%' . $request->name . '%');
         }
@@ -51,6 +51,19 @@ class SearchController extends Controller
                 $query->where('city_id', $request->location_id);
             });
         }
+        if ($request->type) {
+            $products = $products->where('type', $request->type);
+        }
+        if ($request->year) {
+            $products = $products->whereYear('created_at', $request->year);
+        }
+        if ($request->month) {
+            $products = $products->whereMonth('created_at', $request->month);
+        }
+        if ($request->sort) {
+            $products = $products->orderBy('price', $request->sort);
+        }
+
         $products = $products->paginate(8);
         $html = view('search.partials.list', compact('products'))->render();
         $response['success'] = true;

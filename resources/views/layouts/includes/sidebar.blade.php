@@ -22,8 +22,8 @@
                     </li>
                     <li class="sidebar-main-title">
                         <div>
-                            <h6>Dashboard</h6>
-                            <p>Products and Shops</p>
+                            <h6>{{auth()->user()->name}}</h6>
+                            <p>{{auth()->user()->email}}</p>
                         </div>
                     </li>
                     <li class="sidebar-list">
@@ -33,9 +33,9 @@
                         </a>
                     </li>
                     <li class="sidebar-list">
-                        <a class="{{$menu =='search'?'active':''}} sidebar-link sidebar-title link-nav" href="{{route('search','grid')}}">
+                        <a class="{{$menu =='search'?'active':''}} sidebar-link sidebar-title link-nav" href="{{route('search')}}">
                             <i data-feather="globe"></i>
-                            <span>Public list (Grid)</span>
+                            <span>Public Purchase list</span>
                         </a>
                     </li>
                     <li class="sidebar-list">
@@ -52,11 +52,15 @@
                     </li>
                     @if (auth()->user()->role_id == \App\Models\User::ROLE_ADMIN)
                     <li class="sidebar-list">
-                        <a class="{{$menu =='cities'?'active':''}} sidebar-link sidebar-title link-nav" href="{{route('cities.index')}}">
-                            <i data-feather="globe"></i>
-                            <span>Cities</span>
+                        <a class="sidebar-link sidebar-title {{$menu =='cities'?'active':''}}" href="#">
+                            <i data-feather="settings"></i>
+                            <span>Admin Settings</span>
                         </a>
+                        <ul class="sidebar-submenu">
+                            <li><a class="{{$menu =='cities'?'active':''}}" href="{{route('cities.index')}}">Cities</a></li>
+                        </ul>
                     </li>
+
                     @endif
                     <li class="sidebar-list">
                         <a class="{{$menu =='reports'?'active':''}}  sidebar-link sidebar-title link-nav" href="{{route('reports.index')}}">
@@ -68,6 +72,12 @@
                         <a class="sidebar-link sidebar-title link-nav" href="{{url('geo-location')}}">
                             <i data-feather="pie-chart"></i>
                             <span>Check Location</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-list" onclick="$('#logout-form').submit()">
+                        <a class="sidebar-link sidebar-title link-nav" href="javascript:void(0)">
+                            <i data-feather="log-in"></i>
+                            <span>Logout</span>
                         </a>
                     </li>
                     @else

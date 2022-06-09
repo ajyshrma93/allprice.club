@@ -4,17 +4,19 @@
     <div class="container-fluid">
         <div class="page-title">
             <div class="row">
-                <div class="col-10 col-md-5">
-                    <h3>Public List (Grid view)</h3>
+                <div class="col-6 col-md-5">
+                    <h3>Public List</h3>
                 </div>
-                <div class="col-2 col-md-7">
+                <div class="col-6 col-md-7">
                     <div class="create-new-items justify-content-end">
-
-                        <a class="" type="button" data-bs-toggle="modal" data-bs-target="#product-modal-2-mobile" data-bs-original-title="" title="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter">
-                                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-                            </svg>
-                        </a>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <select name="sort" class="col-sm-12 form-select" onchange="applyFilter()">
+                                    <option value="asc">Lowest to Highest </option>
+                                    <option value="desc">Highest to Lowest </option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -42,12 +44,14 @@
 @endsection
 
 @section('modals')
+@php
+$currentYear = date('Y');
+@endphp
 <div class="modal fade" id="product-modal-2-mobile" tabindex="-1" role="dialog" aria-labelledby="product-modal-2-mobile" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content p-4">
             <div class="modal-header border-0 mb-3 p-0">
                 <h4 class="modal-title"><a href="#">Filter</a></h4>
-                <!-- <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button> -->
             </div>
             <form class="theme-form" id="gridSearchForm" action="{{route('filter-products')}}">
                 <div class="row">
@@ -78,10 +82,28 @@
                     </div>
                     <div class="col-12">
                         <div class="mb-3">
-                            <input name="created_at" class="form-control" type="date" />
+                            <select name="year" class=" col-sm-12" id="modalSelect-02">
+                                <option value="">All Year</option>
+                                @for($i=2021;$i<=$currentYear;$i++) <option value="{{$i}}">{{$i}}</option>
+                                    @endfor
+                            </select>
                         </div>
                     </div>
                     <div class="col-12">
+                        <div class="mb-3">
+                            <select name="month" class=" col-sm-12" id="modalSelect-02">
+                                <option value="">All Month</option>
+                                @for($i=1;$i<=12;$i++) <option value="{{date('m',strtotime($currentYear.'-'.$i))}}">{{ date('F',strtotime($currentYear.'-'.$i))}}</option>
+                                    @endfor
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <input name="created_at" class="form-control" type="date" placeholder="Select date " />
+                        </div>
+                    </div>
+                    <div class="col-12 ">
                         <div class="mb-3">
                             <select name="location_id" class=" col-sm-12" id="modalSelect-02">
                                 <option value="">All Location</option>
@@ -91,7 +113,16 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-xxl-3 col-6 d-flex  field-area">
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <select name="type" class=" col-sm-12" id="modalSelect-02">
+                                <option value="">KG and PCS Both</option>
+                                <option value="pcs">PCS Only</option>
+                                <option value="gram">KG Only</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xxl-3 col-6 d-flex">
                         <div class="offer-price-checkbox text-nowrap">
                             <div>
                                 <input type="checkbox" id="offer-price-id" name="is_offer">
@@ -99,7 +130,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-xxl-3 col-6 d-flex  field-area">
+                    <div class="col-lg-6 col-xxl-3 col-6 d-flex">
                         <div class="duty-free-checkbox text-nowrap">
                             <div>
                                 <input type="checkbox" id="duty-free-id" name="is_duty_free">
@@ -107,6 +138,7 @@
                             </div>
                         </div>
                     </div>
+
 
                 </div>
             </form>

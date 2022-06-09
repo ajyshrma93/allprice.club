@@ -128,11 +128,14 @@
     </div>
     @yield('modals')
     @include('layouts.includes.footer-files')
+    @auth
     <script>
         var compare_location_url = "{{route('user.compare.location')}}";
         var update_location_url = "{{route('user.update.location')}}"
     </script>
     <script src="{{asset('assets/geolocation.js')}}"></script>
+    @endauth
+
     @stack('scripts')
 
     <script type="text/javascript">

@@ -59,7 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'is_admin'], function () {
         Route::post('cities/list', [CityController::class, 'getList'])->name('cities.list');
         Route::post('cities/update', [CityController::class, 'update'])->name('cities.update');
-        Route::resource('cities', CityController::class)->except('update', 'edit', 'destroy');
+        Route::resource('cities', CityController::class)->except('update', 'edit');
     });
 
     Route::post('report/filter', [ReportController::class, 'filter'])->name('reports.filter');
@@ -67,7 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('report', [ReportController::class, 'index'])->name('reports.index');
 });
 Route::any('search/filter-products', [SearchController::class, 'filter'])->name('filter-products');
-Route::get('search/{type}', [SearchController::class, 'index'])->name('search');
+Route::get('search/{type?}', [SearchController::class, 'index'])->name('search');
 Route::get('geo-location', [HomeController::class, 'getLocation']);
 //Route::view('test', 'geolocation');
 Route::get('clear-cache', function () {
