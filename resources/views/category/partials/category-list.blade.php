@@ -6,9 +6,7 @@
             <div class="col-xl-3 col-sm-6">
                 <div class="card">
                     <div class="product-box">
-                        <div class="product-img">
-                            <div class="ribbon ribbon-info ribbon-right d-block d-md-none">1 pcs</div>
-                            <img class="img-fluid" src="{{asset($category->image)}}" alt="product image">
+                        <div class="product-img" style="background-image: url('{{asset($category->image)}}');background-size: 100% 100%;">
                             <div class="product-hover">
                                 <ul>
                                     <li>
