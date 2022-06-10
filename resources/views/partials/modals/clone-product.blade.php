@@ -71,6 +71,7 @@
                     <div class=" col-xxl-8 col-xl-6 col-md-12 col-12 field-area">
                         <div class="input-group mobile-design-change bootstrap-touchspin @error('price') is-invalid @enderror">
                             <span class="touchspin-value" onclick="increaseByTen('#clone_product_price',true)"> 10 </span>
+                            <span class="input-group-text">RM</span>
                             <input class="form-control" type="number" name="price" min="0" step="0.01" id="clone_product_price" placeholder="Price">
                             <span class="input-group-text bootstrap-touchspin-postfix" style="display: none;"></span>
                             <button onclick="decrease('#clone_product_price',true)" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button"><i class="fa fa-minus"></i></button>

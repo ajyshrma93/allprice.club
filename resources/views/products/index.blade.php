@@ -24,7 +24,7 @@
     .touchspin-value {
         text-align: center;
         width: 33px;
-        height: 36px;
+        height: 38px;
         background: #7366FF;
         font-size: 13px;
         color: white;
@@ -130,6 +130,7 @@
                                 </div>
                                 <div class="col-xl-6 col-md-6 col-12 mb-3 field-area">
                                     <div class="input-group mobile-design-change bootstrap-touchspin @error('value') is-invalid @enderror">
+                                        <span class="input-group-text">RM</span>
                                         <input class="form-control" type="number" min="1" id="kg_pc_price" name="kg_pc_price" placeholder="Enter Kg / Pc Price">
                                     </div>
                                 </div>
@@ -166,6 +167,7 @@
                                 <div class=" col-xxl-6 col-xl-6 col-md-12 col-12 mb-3 field-area">
                                     <div class="input-group mobile-design-change bootstrap-touchspin @error('price') is-invalid @enderror">
                                         <span class="touchspin-value" onclick="increaseByTen('#product_price',true)"> 10 </span>
+                                        <span class="input-group-text">RM</span>
                                         <input class="form-control" type="number" onchange="autoCompleteWeight('#kg_pc_price','#product_price','#product_value','.add_product_type')" onkeyup="autoCompleteWeight('#kg_pc_price','#product_price','#product_value','.add_product_type')" name="price" min="0" value="{{old('price')}}" step="0.01" id="product_price" placeholder="Price">
                                         <span class="input-group-text bootstrap-touchspin-postfix" style="display: none;"></span>
                                         <button onclick="increase('#product_price',true)" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button"><i class="fa fa-plus"></i></button>
