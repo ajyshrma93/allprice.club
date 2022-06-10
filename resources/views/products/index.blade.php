@@ -24,7 +24,7 @@
     .touchspin-value {
         text-align: center;
         width: 33px;
-        height: 36px;
+        height: 38px;
         background: #7366FF;
         font-size: 13px;
         color: white;
@@ -128,11 +128,16 @@
                                     </span>
                                     @enderror
                                 </div>
-
+                                <div class="col-xl-6 col-md-6 col-12 mb-3 field-area">
+                                    <div class="input-group mobile-design-change bootstrap-touchspin @error('value') is-invalid @enderror">
+                                        <span class="input-group-text">RM</span>
+                                        <input class="form-control" type="number" min="1" id="kg_pc_price" name="kg_pc_price" placeholder="Enter Kg / Pc Price">
+                                    </div>
+                                </div>
                                 <div class="col-xl-6 col-md-6 col-12 mb-3 field-area">
                                     <div class="input-group mobile-design-change bootstrap-touchspin @error('value') is-invalid @enderror">
                                         <span class="touchspin-value" onclick="increaseByTen('#product_value')">10</span>
-                                        <input class="form-control" type="number" min="1" value="1" id="product_value" name="value" placeholder="Weight" style="display: block;" value="{{old('value')}}">
+                                        <input class="form-control" type="number" onchange="autoCompletePrice('#kg_pc_price','#product_price','#product_value','.add_product_type')" onkeyup="autoCompletePrice('#kg_pc_price','#product_price','#product_value','.add_product_type')" min="1" value="1" id="product_value" name="value" placeholder="Weight" style="display: block;" value="{{old('value')}}">
                                         <span class="input-group-text bootstrap-touchspin-postfix add-product-type" style="border: unset;">pcs</span>
                                         <button onclick="decrease('#product_value')" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button"><i class="fa fa-minus"></i></button>
                                         <button onclick="increase('#product_value')" class="btn btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button"><i class="fa fa-plus"></i></button>
@@ -162,7 +167,8 @@
                                 <div class=" col-xxl-6 col-xl-6 col-md-12 col-12 mb-3 field-area">
                                     <div class="input-group mobile-design-change bootstrap-touchspin @error('price') is-invalid @enderror">
                                         <span class="touchspin-value" onclick="increaseByTen('#product_price',true)"> 10 </span>
-                                        <input class="form-control" type="number" name="price" min="0" value="{{old('price')}}" step="0.01" id="product_price" placeholder="Price">
+                                        <span class="input-group-text">RM</span>
+                                        <input class="form-control" type="number" onchange="autoCompleteWeight('#kg_pc_price','#product_price','#product_value','.add_product_type')" onkeyup="autoCompleteWeight('#kg_pc_price','#product_price','#product_value','.add_product_type')" name="price" min="0" value="{{old('price')}}" step="0.01" id="product_price" placeholder="Price">
                                         <span class="input-group-text bootstrap-touchspin-postfix" style="display: none;"></span>
                                         <button onclick="increase('#product_price',true)" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button"><i class="fa fa-plus"></i></button>
                                         <button onclick="increase('#product_price',true,0.1)" class="btn btn-custom-width btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button">0.1</i></button>
@@ -263,8 +269,34 @@
 @push('scripts')
 
 <script>
-    function previewAddImage() {
+    function autoCompletePrice(kg_pc_price, price, weight, type) {
+        let typeValue = $(type + ":checked").val();
+        let kg_pc_priceValue = $(kg_pc_price).val();
+        let priceValue = $(price).val();
+        let weightValue = $(weight).val();
+        if (typeValue == 'pcs') {
+            let itemPrice = parseFloat(kg_pc_priceValue) * parseFloat(weightValue);
+            $(price).val(itemPrice);
+        } else {
+            let itemPrice = (parseFloat(kg_pc_priceValue) / parseFloat(1000)) * parseFloat(weightValue);
+            $(price).val(itemPrice.toFixed(2));
+        }
+    }
 
+    function autoCompleteWeight(kg_pc_price, price, weight, type) {
+        let typeValue = $(type + ":checked").val();
+        let kg_pc_priceValue = $(kg_pc_price).val();
+        let priceValue = $(price).val();
+        let weightValue = $(weight).val();
+        if (typeValue == 'pcs') {
+            let itemPrice = parseFloat(kg_pc_priceValue) / parseFloat(priceValue);
+
+            console.log(itemPrice);
+            $(weight).val(itemPrice);
+        } else {
+            let itemPrice = (parseFloat(priceValue) / parseFloat(kg_pc_priceValue)) * 1000;
+            $(weight).val(itemPrice.toFixed(2));
+        }
     }
 </script>
 @endpush

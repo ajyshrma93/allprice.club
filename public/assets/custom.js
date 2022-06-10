@@ -679,7 +679,7 @@ function increase(input, price = false, increaseBy = 1) {
     if (price) {
         newValue = newValue.toFixed(2);
     }
-    $(input).val(newValue);
+    $(input).val(newValue).trigger("change");
 }
 function decrease(input, price = false, decreaseBy = 1) {
     let value = $(input).val();
@@ -691,7 +691,7 @@ function decrease(input, price = false, decreaseBy = 1) {
         if (price) {
             newValue = newValue.toFixed(2);
         }
-        $(input).val(newValue);
+        $(input).val(newValue).trigger("change");
     } else {
         $(input).val(0);
     }
@@ -706,12 +706,13 @@ function increaseByTen(input, price = false) {
         newValue = newValue.toFixed(2);
     }
 
-    $(input).val(newValue);
+    $(input).val(newValue).trigger("change");
 }
 
 $("body").on("change", ".add_product_type", function () {
     let val = $(".add_product_type:checked").val();
     $(".add-product-type").text(val);
+    $("#product_value").trigger("change");
 });
 $("body").on("change", ".edit_product_type", function () {
     let val = $(".edit_product_type:checked").val();
