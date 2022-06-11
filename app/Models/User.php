@@ -59,4 +59,9 @@ class User extends Authenticatable
         $location = $this->city ? $this->city->name : '';
         return $location;
     }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

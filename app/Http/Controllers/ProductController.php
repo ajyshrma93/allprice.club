@@ -169,7 +169,6 @@ class ProductController extends Controller
     {
         if ($product->user_id = auth()->id()) {
             if ($product->delete()) {
-                Storage::delete($product->image);
                 return response()->json(['success' => true, 'product_id' => $product->id, 'message' => 'Product has been deleted successfully']);
             }
         }

@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\UserController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -56,15 +57,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('user-compare-location', [HomeController::class, 'compareLocation'])->name('user.compare.location');
     Route::post('user-update-location', [HomeController::class, 'updateLocation'])->name('user.update.location');
 
+    Route::post('report/filter', [ReportController::class, 'filter'])->name('reports.filter');
+    Route::get('report/{id}/details', [ReportController::class, 'details'])->name('reports.details');
+    Route::get('report', [ReportController::class, 'index'])->name('reports.index');
     Route::group(['middleware' => 'is_admin'], function () {
         Route::post('cities/list', [CityController::class, 'getList'])->name('cities.list');
         Route::post('cities/update', [CityController::class, 'update'])->name('cities.update');
         Route::resource('cities', CityController::class)->except('update', 'edit');
+        Route::resource('users', UserController::class)->except('create', 'show', 'update', 'store');
     });
-
-    Route::post('report/filter', [ReportController::class, 'filter'])->name('reports.filter');
-    Route::get('report/{id}/details', [ReportController::class, 'details'])->name('reports.details');
-    Route::get('report', [ReportController::class, 'index'])->name('reports.index');
 });
 Route::any('search/filter-products', [SearchController::class, 'filter'])->name('filter-products');
 Route::get('search/{type?}', [SearchController::class, 'index'])->name('search');

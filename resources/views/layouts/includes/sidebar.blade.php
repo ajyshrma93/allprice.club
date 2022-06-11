@@ -58,6 +58,7 @@
                         </a>
                         <ul class="sidebar-submenu">
                             <li><a class="{{$menu =='cities'?'active':''}}" href="{{route('cities.index')}}">Cities</a></li>
+                            <li><a class="{{$menu =='users'?'active':''}}" href="{{route('users.index')}}">Users</a></li>
                         </ul>
                     </li>
 
