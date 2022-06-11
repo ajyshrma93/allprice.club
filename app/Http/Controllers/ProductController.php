@@ -38,7 +38,7 @@ class ProductController extends Controller
         $locatedShops = $locatedShops->get();
         $shops = Shop::get();
         $categories = Category::get();
-        $products = Product::where('user_id', auth()->id())->groupBy('name')->orderBy('id', 'desc')->get();
+        $products = Product::where('user_id', auth()->id())->orderBy('id', 'desc')->get();
         return view('products.index', compact('products', 'countries', 'categories', 'shops', 'cities', 'locatedShops'));
     }
     /**
@@ -204,12 +204,12 @@ class ProductController extends Controller
             }
             foreach ($files as $key => $file) {
                 $product = new Product();
-                $product->price = 1.00;
-                $product->name = 'Product ' . ++$lastInsertedId;
+                $product->price = 0;
+                // $product->name = 'Product ' . ++$lastInsertedId;
                 $product->type = 'pcs';
                 $product->value = '1';
                 $product->shop_id = $request->shop_id;
-                $product->category_id = $request->category_id;
+                $product->category_id = 11; //$request->category_id;
                 $product->user_id = auth()->id();
 
                 $fileName = Str::random(20) . '_' . $file->getExtension();
@@ -276,7 +276,7 @@ class ProductController extends Controller
         $product->is_duty_free = $request->is_duty_free ? 1 : 2;
         $product->value = $request->value;
         $product->shop_id = $request->shop_id;
-        $product->category_id = $request->category_id;
+        $product->category_id = 11; // $request->category_id ? ;
         $product->type = $request->type;
         $product->country = $request->country;
 

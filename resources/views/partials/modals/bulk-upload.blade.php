@@ -16,7 +16,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 d-none">
                     <label class="col-form-label pt-0">Category Shop</label>
                     <select name="category_id" class="col-sm-12 select2-hidden-accessible" id="modalSelect-3" tabindex="-1" aria-hidden="true">
                         <option value="">Select Category</option>
