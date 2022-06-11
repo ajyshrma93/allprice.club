@@ -131,7 +131,7 @@
                                 <div class="col-xl-6 col-md-6 col-12 mb-3 field-area">
                                     <div class="input-group mobile-design-change bootstrap-touchspin @error('value') is-invalid @enderror">
                                         <span class="input-group-text">RM</span>
-                                        <input class="form-control" type="number" min="1" id="kg_pc_price" name="kg_pc_price" placeholder="Enter Kg / Pc Price">
+                                        <input class="form-control" type="number" min="1" id="kg_pc_price" name="kg_pc_price" onchange="autoCompletePrice('#kg_pc_price','#product_price','#product_value','.add_product_type')" onkeyup="autoCompletePrice('#kg_pc_price','#product_price','#product_value','.add_product_type')" placeholder="Enter Kg / Pc Price">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-md-6 col-12 mb-3 field-area">
@@ -276,7 +276,7 @@
         let weightValue = $(weight).val();
         if (typeValue == 'pcs') {
             let itemPrice = parseFloat(kg_pc_priceValue) * parseFloat(weightValue);
-            $(price).val(itemPrice);
+            $(price).val(itemPrice.toFixed(2));
         } else {
             let itemPrice = (parseFloat(kg_pc_priceValue) / parseFloat(1000)) * parseFloat(weightValue);
             $(price).val(itemPrice.toFixed(2));
@@ -290,8 +290,6 @@
         let weightValue = $(weight).val();
         if (typeValue == 'pcs') {
             let itemPrice = parseFloat(kg_pc_priceValue) / parseFloat(priceValue);
-
-            console.log(itemPrice);
             $(weight).val(itemPrice);
         } else {
             let itemPrice = (parseFloat(priceValue) / parseFloat(kg_pc_priceValue)) * 1000;
