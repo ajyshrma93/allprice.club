@@ -39,7 +39,8 @@ class ReportController extends Controller
     public function details($id, Request $request)
     {
         $product = Product::findOrFail($id);
+        $shop = $product->shop;
         $products = Product::where('shop_id', $product->shop_id)->whereDate('created_at', $product->created_at->format("Y-m-d"))->get();
-        return view('reports.details', compact('products', 'product'));
+        return view('reports.details', compact('products', 'product', 'shop'));
     }
 }

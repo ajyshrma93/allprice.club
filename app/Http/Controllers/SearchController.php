@@ -21,7 +21,7 @@ class SearchController extends Controller
         $shops = Shop::get();
         $categories = Category::get();
         $locations = City::get();
-        $products = Product::orderBY('price')->paginate(8);
+        $products = Product::orderBY('price')->paginate(100);
         return view('search.index', compact('products', 'categories', 'shops', 'locations'));
     }
 
@@ -64,7 +64,7 @@ class SearchController extends Controller
             $products = $products->orderBy('price', $request->sort);
         }
 
-        $products = $products->paginate(8);
+        $products = $products->paginate(100);
         $html = view('search.partials.list', compact('products'))->render();
         $response['success'] = true;
         $response['html'] = $html;

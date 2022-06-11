@@ -1,16 +1,5 @@
 <div class="page-header">
     <div class="header-wrapper row m-0">
-        <form class="form-inline search-full col" action="#" method="get">
-            <div class="form-group w-100">
-                <div class="Typeahead Typeahead--twitterUsers">
-                    <div class="u-posRelative">
-                        <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text" placeholder="Search Cuba .." name="q" title="" autofocus>
-                        <div class="spinner-border Typeahead-spinner" role="status"><span class="sr-only">Loading...</span></div><i class="close-search" data-feather="x"></i>
-                    </div>
-                    <div class="Typeahead-menu"></div>
-                </div>
-            </div>
-        </form>
         <div class="header-logo-wrapper col-auto p-0">
             <div class="logo-wrapper">
                 <a href="{{url('/home')}}">
@@ -44,14 +33,14 @@
                     <div class="media profile-media">
 
                         <img class="b-r-10" src="{{asset('assets/images/dashboard/profile.jpg')}}" alt="">
-                    </div>
-                    <ul class="profile-dropdown onhover-show-div" style=" left: unset !important;">
-                        <li><i data-feather="user"> </i><span>{{auth()->user()->name}}</span></li>
-                        <li><a href="javascript:void(0)" onclick="$('#logout-form').submit()"><i data-feather="log-in"> </i><span>Log Out</span></a></li>
-                    </ul>
-                </li> --}}
-            </ul>
         </div>
-
+        <ul class="profile-dropdown onhover-show-div" style=" left: unset !important;">
+            <li><i data-feather="user"> </i><span>{{auth()->user()->name}}</span></li>
+            <li><a href="javascript:void(0)" onclick="$('#logout-form').submit()"><i data-feather="log-in"> </i><span>Log Out</span></a></li>
+        </ul>
+        </li> --}}
+        </ul>
     </div>
+
+</div>
 </div>

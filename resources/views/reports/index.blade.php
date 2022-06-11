@@ -5,12 +5,18 @@
     <div class="container-fluid">
         <div class="page-title">
             <div class="row">
-                <div class="col-8">
+                <div class="col-7">
                     <h3>Purchase History</h3>
                 </div>
-                <div class="col-4">
+                <div class="col-5">
                     <div class="create-new-items justify-content-end">
-
+                        <div class="input-group">
+                            <select name="date" class="form-control" onchange="draw()">
+                                @for ($i=date('m');$i>=1;$i--)
+                                <option value="{{date('Y-').$i}}">{{date('F Y',strtotime(date('Y-').$i.'-01'))}}</option>
+                                @endfor
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -21,23 +27,9 @@
         <div class="row">
             <!-- API-3 start -->
             <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row justify-content-lg-start  mb-3">
-                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
-                                <label>Date :</label>
-                                <div class="input-group">
-                                    <select name="date" class="form-control" onchange="draw()">
-                                        @for ($i=date('m');$i>=1;$i--)
-                                        <option value="{{date('Y-').$i}}">{{date('F Y',strtotime(date('Y-').$i.'-01'))}}</option>
-                                        @endfor
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="Chart" class="row">
-                            @include('reports.partials.list')
-                        </div>
+                <div class="product-wrapper-grid">
+                    <div id="Chart" class="row">
+                        @include('reports.partials.list')
                     </div>
                 </div>
             </div>
