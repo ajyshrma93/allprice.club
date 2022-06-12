@@ -4,8 +4,8 @@
     .switch {
         position: relative;
         display: inline-block;
-        width: 60px;
-        height: 34px;
+        width: 60px !important;
+        height: 25px !important;
     }
 
     /* Hide default HTML checkbox */
@@ -31,8 +31,8 @@
     .slider:before {
         position: absolute;
         content: "";
-        height: 26px;
-        width: 26px;
+        height: 18px;
+        width: 20px;
         left: 4px;
         bottom: 4px;
         background-color: white;
@@ -84,7 +84,7 @@
                 <li> Share List Public</li>
                 <li>
                     <!-- Rounded switch -->
-                    <label class="switch">
+                    <label class="switch m-0">
                         <input type="checkbox" name="show_public" @if(auth()->user()->is_public) checked @endif>
                         <span class="slider round"></span>
                     </label>
