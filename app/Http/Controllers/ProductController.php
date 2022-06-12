@@ -87,7 +87,9 @@ class ProductController extends Controller
     {
         $data['success'] = true;
         $data['product'] = $product;
-
+        if ($product->kg_pcs_price == null) {
+            dd('sss');
+        }
         return response()->json($data);
     }
 
