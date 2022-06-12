@@ -32,19 +32,17 @@
                             <table class="display table" id="cityDatatable">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>User Name</th>
-                                        <th>User Email</th>
-                                        <th>Item Added</th>
+                                        <!-- <th>#</th> -->
+                                        <th>User </th>
+                                        <th>Purchases</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($users as $user)
                                     <tr>
-                                        <td>{{$loop->iteration}}</td>
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
+                                        <!-- <td>{{$loop->iteration}}</td> -->
+                                        <td>{{$user->name}}<br />{{$user->email}}</td>
                                         <td>{{$user->products()->count()}}</td>
                                         <td>
                                             <form action="{{route('users.destroy', $user->id) }}" method="POST">
