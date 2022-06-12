@@ -87,8 +87,16 @@ class ProductController extends Controller
     {
         $data['success'] = true;
         $data['product'] = $product;
-        if ($product->kg_pcs_price == null) {
-            dd('sss');
+        if ($product->kg_pc_price == null) {
+            if ($product->type == 'pcs') {
+                $product->kg_pc_price = round($product->price / $product->value, 2);
+            } else {
+                $price = $product->price;
+                $weight = $product->value;
+                $gramPrice = $product->price / $product->value;
+
+                $product->kg_pc_price = round($gramPrice * 1000, 2);
+            }
         }
         return response()->json($data);
     }
