@@ -12,7 +12,7 @@
                     <input name="id" type="hidden" id="edit_category_id">
                     <input class="form-control" type="text" placeholder="e.g. Alibaba" name="name" id="edit_catgeory_name">
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 d-none">
                     <label class="col-form-label pt-0">Category Image</label>
                     <div class="input-group">
                         <input accept="image/*" type="file" class="form-control" onchange="previewFile(event,'edit_catgeory_image_preview')" id="edit_category_image" name="catgeory_image" aria-describedby="inputGroupFileAddon04" aria-label="Upload">

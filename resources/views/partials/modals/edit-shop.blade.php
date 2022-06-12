@@ -22,7 +22,7 @@
                     </select>
                     <span id="shop_city_id_error" class=" invalid-feedback"></span>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 d-none">
                     <label class="col-form-label pt-0">Shop Image</label>
                     <div class="input-group">
                         <input accept="image/*" type="file" class="form-control" onchange="previewFile(event,'edit_shop_image_preview')" id="edit_shop_image" name="shop_image" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
