@@ -79,9 +79,9 @@
         <div class="left-header col-auto horizontal-wrapper ps-0">
 
         </div>
-        <div class="nav-right col-6 pull-right right-header p-0 ms-auto">
+        <div class="nav-right col-auto pull-right right-header p-0 ms-auto">
             <ul class="nav-menus me-0">
-                <li> Share List Public</li>
+                <li> Share Purchase Publicly</li>
                 <li>
                     <!-- Rounded switch -->
                     <label class="switch m-0">
