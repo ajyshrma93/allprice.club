@@ -38,7 +38,7 @@
                     <div class="col-xl-6 col-md-6 col-12 mb-3 field-area">
                         <div class="input-group mobile-design-change bootstrap-touchspin @error('value') is-invalid @enderror">
                             <span class="input-group-text">RM</span>
-                            <input class="form-control" type="number" min="1" id="edit_kg_pc_price" name="kg_pc_price" onchange="autoCompletePrice('#edit_kg_pc_price','#edit_product_price','#edit_product_value','.edit_product_type')" onkeyup="autoCompletePrice('#edit_kg_pc_price','#edit_product_price','#edit_product_value','.edit_product_type')" placeholder="Enter Kg / Pc Price">
+                            <input class="form-control" type="number" step="0.01" min="1" id="edit_kg_pc_price" name="kg_pc_price" onchange="autoCompletePrice('#edit_kg_pc_price','#edit_product_price','#edit_product_value','.edit_product_type')" onkeyup="autoCompletePrice('#edit_kg_pc_price','#edit_product_price','#edit_product_value','.edit_product_type')" placeholder="Enter Kg / Pc Price">
                         </div>
                     </div>
                 </div>

@@ -34,14 +34,14 @@ class Product extends Model
         $weight = $this->value;
         $gramPrice = $this->price / $this->value;
 
-        return round($gramPrice * 1000, 2) . ' /  kg';
+        return round($gramPrice * 1000, 2);
     }
 
     public function getPiecePrice()
     {
         $price = $this->price / $this->value;
 
-        return round($price, 2) . ' / pcs';
+        return round($price, 2)  . ' /  kg';
     }
 
 
@@ -51,6 +51,7 @@ class Product extends Model
             return $this->getKiloPrice();
         }
 
-        return $this->getPiecePrice();
+        return $this->getPiecePrice() . ' / pcs';
     }
+
 }
