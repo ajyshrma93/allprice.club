@@ -17,13 +17,9 @@
         </div>
         <div class="nav-right col-6 pull-right right-header p-0 ms-auto">
             <ul class="nav-menus me-0">
-                @if(Request::is('search'))
                 <li>
-                    <a class="" type="button" data-bs-toggle="modal" data-bs-target="#product-modal-2-mobile" data-bs-original-title="" title="">
-                        <i class="fa fa-filter" style="font-size:20px !important;"></i>
-                    </a>
+
                 </li>
-                @endif
             </ul>
         </div>
 

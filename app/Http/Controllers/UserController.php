@@ -31,4 +31,16 @@ class UserController extends Controller
         Session::flash('success', 'User has been deleted successfully');
         return redirect()->back();
     }
+    public function updatePublicStatus(Request $request)
+    {
+        $user = auth()->user();
+        if ($user->is_public) {
+            $message = 'Your purchases will be no more publicly shared';
+        } else {
+            $message = 'You have successfully shared you purchases publicly';
+        }
+        $user->is_public = $user->is_public ? 0 : 1;
+        $user->save();
+        return response()->json(['success' => true, 'message' => $message]);
+    }
 }

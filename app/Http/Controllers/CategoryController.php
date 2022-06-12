@@ -54,7 +54,7 @@ class CategoryController extends Controller
         try {
             if ($request->file('category_image')) {
                 $file = $request->file('category_image');
-                $fileName = Str::random(20) . '_' . $file->getExtension();
+                $fileName = Str::random(20) . '_' . $file->getClientOriginalExtension();
                 $filePath = $file->storeAs('uploads/category', $fileName, 'public');
                 $data['image'] = 'storage/' . $filePath;
             } else {
@@ -101,9 +101,9 @@ class CategoryController extends Controller
 
         try {
             if ($request->file('category_image')) {
-                Storage::delete($category->image);
+                Storage::disk('public')->delete(str_replace('storage', '', $category->image));
                 $file = $request->file('category_image');
-                $fileName = Str::random(20) . '_' . $file->getExtension();
+                $fileName = Str::random(20) . '.' . $file->getClientOriginalExtension();
                 $filePath = $file->storeAs('uploads/category', $fileName, 'public');
                 $data['image'] = 'storage/' . $filePath;
             }
@@ -146,7 +146,7 @@ class CategoryController extends Controller
 
         if ($request->file('category_image')) {
             $file = $request->file('category_image');
-            $fileName = Str::random(20) . '_' . $file->getExtension();
+            $fileName = Str::random(20) . '.' . $file->getClientOriginalExtension();
             $filePath = $file->storeAs('uploads/category', $fileName, 'public');
             $image = 'storage/' . $filePath;
         }
@@ -176,7 +176,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         if ($category->delete()) {
-            Storage::delete($category->image);
+            Storage::disk('public')->delete(str_replace('storage', '', $category->image));
             Session::flash('success', 'Category has been deleted successfully');
         }
 

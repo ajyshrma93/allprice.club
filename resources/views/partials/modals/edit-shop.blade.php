@@ -29,10 +29,11 @@
                         <button class="btn btn-outline-primary" type="button" id="inputGroupFileAddon04">Upload</button>
                     </div>
                 </div>
-                <div class="mb-3">
-                    <div class="product-img text-center">
-                        <img class="img-fluid" src="{{asset('assets/images/no-data-available.png')}}" id="edit_shop_image_preview" alt="shop image">
+                <div class="m-3 user-profile" style="position:relative;">
+                    <div class="product-img text-center ">
+                        <img src="{{asset('assets/images/no-data-available.png')}}" style="border-radius: 50%" alt="product image" width="150px" id="edit_shop_image_preview" height="150px">
                     </div>
+                    <div class="icon-wrapper" onclick="$('#edit_shop_image').trigger('click')"><i class="fa fa-pencil"></i></div>
                 </div>
             </form>
             <div class="modal-footer border-0 text-center text-sm-end">

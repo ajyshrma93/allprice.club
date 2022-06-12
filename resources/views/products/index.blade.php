@@ -74,7 +74,7 @@
                         <div class="card-body">
 
                             <div class="row" id="product_add_box">
-                                <div class="col-xl-6 col-6 mb-3">
+                                <div class="col-xl-6 col-6 mb-3 d-none">
                                     <div class="row">
                                         <div class="col-xxl-7 col-xl-6 col-md-8 col-sm-7 newItem">
                                             <select name="category_id" class="select2 col-sm-12 @error('category_id') is-invalid @enderror" id="product_cat">
@@ -97,7 +97,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-6 col-6 mb-3">
+                                <div class="col-xl-12 col-12 mb-3">
                                     <div class="row">
                                         <div class="col-xxl-7 col-xl-6 col-md-8 col-sm-7 newItem">
                                             <select name="shop_id" class="form-control select2 col-sm-12  @error('shop_id') is-invalid @enderror" id="product_shop">
@@ -289,7 +289,7 @@
         let priceValue = $(price).val();
         let weightValue = $(weight).val();
         if (typeValue == 'pcs') {
-            let itemPrice = parseFloat(kg_pc_priceValue) / parseFloat(priceValue);
+            let itemPrice = parseFloat(priceValue) / parseFloat(kg_pc_priceValue);
             $(weight).val(itemPrice);
         } else {
             let itemPrice = (parseFloat(priceValue) / parseFloat(kg_pc_priceValue)) * 1000;

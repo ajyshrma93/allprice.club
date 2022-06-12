@@ -14,14 +14,19 @@ class Product extends Model
         parent::boot();
 
         static::deleting(function ($product) {
-            Storage::delete($product->image);
-            Storage::delete($product->thumbnail);
+            Storage::disk('public')->delete(str_replace('storage', '', $product->image));
+            Storage::disk('public')->delete(str_replace('storage', '', $product->thumbnail));
         });
     }
 
     public function shop()
     {
         return $this->belongsTo(Shop::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
     public function getKiloPrice()
     {

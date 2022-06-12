@@ -60,6 +60,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('report/filter', [ReportController::class, 'filter'])->name('reports.filter');
     Route::get('report/{id}/details', [ReportController::class, 'details'])->name('reports.details');
     Route::get('report', [ReportController::class, 'index'])->name('reports.index');
+
+    Route::post('update-user-public-status', [UserController::class, 'updatePublicStatus'])->name('users.update.status');
     Route::group(['middleware' => 'is_admin'], function () {
         Route::post('cities/list', [CityController::class, 'getList'])->name('cities.list');
         Route::post('cities/update', [CityController::class, 'update'])->name('cities.update');

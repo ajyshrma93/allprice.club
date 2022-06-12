@@ -66,7 +66,7 @@ class ShopController extends Controller
         $shop->image = 'assets/images/no-data-available.png';
         if ($request->file('shop_image')) {
             $file = $request->file('shop_image');
-            $fileName = Str::random(20) . '_' . $file->getExtension();
+            $fileName = Str::random(20) . '.' . $file->getClientOriginalExtension();
             $filePath = $file->storeAs('uploads/shop', $fileName, 'public');
             $shop->image = 'storage/' . $filePath;
         }
@@ -131,9 +131,9 @@ class ShopController extends Controller
         $shop->city_id = $request->city_id;
         $shop->user_id = auth()->user()->id;
         if ($request->file('shop_image')) {
-            Storage::delete($shop->image);
+            Storage::disk('public')->delete(str_replace('storage', '', $shop->image));
             $file = $request->file('shop_image');
-            $fileName = Str::random(20) . '_' . $file->getExtension();
+            $fileName = Str::random(20) . '.' . $file->getClientOriginalExtension();
             $filePath = $file->storeAs('uploads/shop', $fileName, 'public');
             $shop->image = 'storage/' . $filePath;
         }
@@ -159,6 +159,7 @@ class ShopController extends Controller
     {
         if ($shop->delete()) {
             Product::where('shop_id', $shop->id)->delete();
+            Storage::disk('public')->delete(str_replace('storage', '', $shop->image));
             Session::flash('success', 'Shop has been deleted successfully');
         } else {
             Session::flash('error', 'Something went wrong. While deleteing shop');

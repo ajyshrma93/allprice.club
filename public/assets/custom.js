@@ -8,7 +8,7 @@ $("#editcategory").on("show.bs.modal", function (event) {
         success: function (response) {
             modal.find("#edit_category_id").val(response.data.id);
             modal.find("#edit_catgeory_name").val(response.data.name);
-            modal.find("#edit_catgeory_image").attr("src", response.data.image);
+            modal.find("#edit_catgeory_image_preview").attr("src", response.data.image);
         },
     });
     var modal = $(this);
@@ -172,7 +172,7 @@ $("#editShop").on("show.bs.modal", function (event) {
                 .val(response.data.city_id)
                 .trigger("change");
             modal.find("#edit_shop_name").val(response.data.name);
-            modal.find("#edit_shop_image").attr("src", response.data.image);
+            modal.find("#edit_shop_image_preview").attr("src", response.data.image);
         },
     });
     var modal = $(this);
@@ -244,6 +244,7 @@ $("#editProductModal").on("show.bs.modal", function (event) {
                 $("#edit_product_id").val(product.id);
                 $("#edit_product_shop").val(product.shop_id).trigger("change");
                 modal.find("#edit_product_name").val(product.name);
+                modal.find("#edit_kg_pc_price").val(product.kg_pc_price);
                 modal.find("#edit_product_country").val(product.country);
                 modal.find("#edit_product_value").val(product.value);
                 modal.find("#edit_product_price").val(product.price);
@@ -344,6 +345,7 @@ $("#cloneProductModal").on("show.bs.modal", function (event) {
                 $("#clone_product_id").val(product.id);
                 $("#clone_product_shop").val(product.shop_id).trigger("change");
                 modal.find("#clone_product_name").val(product.name);
+                modal.find("#clone_kg_pc_price").val(product.kg_pc_price);
                 modal.find("#clone_product_country").val(product.country);
                 modal.find("#clone_product_value").val(product.value);
                 modal.find("#clone_product_price").val(product.price);

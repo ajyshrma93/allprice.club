@@ -8,7 +8,7 @@
             <form action="{{route('products.clone')}}" class="theme-form" id="clone_product_form" onsubmit="event.preventDefault();" method="POST">
                 @csrf
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-6 d-none">
                         <div class="mb-3">
                             <input type="hidden" name="product_id" id="clone_product_id">
                             <!-- <label class="col-form-label pt-0">Select Category</label> -->
@@ -20,7 +20,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-12">
                         <div class="mb-3">
                             <!-- <label class="col-form-label pt-0">Select Shop</label> -->
                             <select name="shop_id" class=" col-sm-12" id="clone_product_shop">
@@ -35,13 +35,19 @@
                         <!-- <label class="col-form-label pt-0">Product Name</label> -->
                         <input class="form-control" type="text" placeholder="Name" name="name" id="clone_product_name" value="Product dummy Name">
                     </div>
+                    <div class="col-xl-6 col-md-6 col-12 mb-3 field-area">
+                        <div class="input-group mobile-design-change bootstrap-touchspin @error('value') is-invalid @enderror">
+                            <span class="input-group-text">RM</span>
+                            <input class="form-control" type="number" min="1" id="clone_kg_pc_price" name="kg_pc_price" onchange="autoCompletePrice('#clone_kg_pc_price','#clone_product_price','#clone_product_value','.clone_product_type')" onkeyup="autoCompletePrice('#clone_kg_pc_price','#clone_product_price','#clone_product_value','.clone_product_type')" placeholder="Enter Kg / Pc Price">
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mb-3 row">
                     <div class="col-xl-6 col-md-12 col-12 mb-3 field-area">
                         <div class="input-group mobile-design-change bootstrap-touchspin @error('value') is-invalid @enderror">
                             <span class="touchspin-value" onclick="increaseByTen('#clone_product_value')">10</span>
-                            <input class="form-control" type="number" min="0" step="0.01" id="clone_product_value" name="value" placeholder="Weight" style="display: block;">
+                            <input class="form-control" type="number" min="0" step="0.01" id="clone_product_value" onchange="autoCompletePrice('#clone_kg_pc_price','#clone_product_price','#clone_product_value','.clone_product_type')" onkeyup="autoCompletePrice('#clone_kg_pc_price','#clone_product_price','#clone_product_value','.clone_product_type')" name="value" placeholder="Weight" style="display: block;">
                             <span class="input-group-text bootstrap-touchspin-postfix clone-product-type" style="border: unset;">pcs</span>
                             <!-- <button onclick="decrease('#clone_product_value')" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button"><i class="fa fa-minus"></i></button> -->
                             <button onclick="increase('#clone_product_value')" class="btn btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button"><i class="fa fa-plus"></i></button>
@@ -72,7 +78,7 @@
                         <div class="input-group mobile-design-change bootstrap-touchspin @error('price') is-invalid @enderror">
                             <span class="touchspin-value" onclick="increaseByTen('#clone_product_price',true)"> 10 </span>
                             <span class="input-group-text">RM</span>
-                            <input class="form-control" type="number" name="price" min="0" step="0.01" id="clone_product_price" placeholder="Price">
+                            <input class="form-control" type="number" name="price" min="0" onchange="autoCompleteWeight('#clone_kg_pc_price','#clone_product_price','#clone_product_value','.clone_product_type')" onkeyup="autoCompleteWeight('#clone_kg_pc_price','#clone_product_price','#clone_product_value','.clone_product_type')" step="0.01" id="clone_product_price" placeholder="Price">
                             <span class="input-group-text bootstrap-touchspin-postfix" style="display: none;"></span>
                             <button onclick="decrease('#clone_product_price',true)" class="btn btn-primary btn-square bootstrap-touchspin-down touchspin-btn" type="button"><i class="fa fa-minus"></i></button>
                             <button onclick="increase('#clone_product_price',true)" class="btn btn-primary btn-square bootstrap-touchspin-up touchspin-btn" type="button"><i class="fa fa-plus"></i></button>

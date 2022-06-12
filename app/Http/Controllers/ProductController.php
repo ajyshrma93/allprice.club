@@ -147,6 +147,7 @@ class ProductController extends Controller
                 $product->image = $oldProduct->image;
                 $product->thumbnail = $oldProduct->thumbnail;
             }
+
             $product->save();
             $html = $this->getProductListHtml();
 
@@ -250,7 +251,8 @@ class ProductController extends Controller
     protected function validateRequest(Request $request)
     {
         $rules = [
-            'category_id' => 'required',
+            //   'category_id' => 'required',
+            'kg_pc_price' => 'required',
             'shop_id' => 'required',
             'name' => 'required',
             'value' => 'required|gt:0',
@@ -261,7 +263,8 @@ class ProductController extends Controller
             'category_id.required' => 'Please select a category',
             'shop_id.required' => 'Please select a shop',
             'name.required' => 'Product name is required field',
-            'value.required' => 'This field is requierd'
+            'value.required' => 'This field is requierd',
+            'kg_pc_price.required' => 'Please enter Kg or Pc price of the item'
         ];
         $validator = Validator::make($request->all(), $rules, $messages);
         return  $validator;
@@ -271,6 +274,7 @@ class ProductController extends Controller
     protected function setProductAttribute($product, $request, $type = 'add')
     {
         $product->name = $request->name;
+        $product->kg_pc_price = $request->kg_pc_price;
         $product->price = $request->price;
         $product->is_offer = $request->is_offer ? 1 : 2;
         $product->is_duty_free = $request->is_duty_free ? 1 : 2;
@@ -286,9 +290,14 @@ class ProductController extends Controller
             $product->user_id = auth()->id();
         }
         if ($request->has('product_image') && $request->file != 'undefined') {
+
+            if ($type == 'update') {
+                Storage::disk('public')->delete(str_replace('storage', '', $product->image));
+                Storage::disk('public')->delete(str_replace('storage', '', $product->thumbnail));
+            }
             $file = $request->file('product_image');
-            $fileName = Str::random(20) . '_' . $file->getExtension();
-            $filePath = $file->storeAs('uploads/products/', $fileName, 'public');
+            $fileName = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('uploads/products', $fileName, 'public');
             $product->image = 'storage/' . $filePath;
 
             // save thumbnail
