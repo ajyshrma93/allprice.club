@@ -154,8 +154,16 @@ class ProductController extends Controller
             $product = new Product();
             $product = $this->setProductAttribute($product, $request);
             if (!$request->has('product_image')) {
-                $product->image = $oldProduct->image;
-                $product->thumbnail = $oldProduct->thumbnail;
+                $newFile =  Str::random(20) . basename($oldProduct->image);
+                $path = storage_path('app/public/uploads/products/') . $newFile;
+                $oldoriginal_path = storage_path('app/public') . str_replace('storage', '', $oldProduct->image);
+                copy($oldoriginal_path, $path);
+                $product->image = 'storage/uploads/products/' . $newFile;
+                $thumbname = Str::random(20) . basename($oldProduct->thumbnail);
+                $thumbpath = storage_path('app/public/uploads/products/thumbnail/') . $thumbname;
+                $oldoriginal_thumbpath = storage_path('app/public') . str_replace('storage', '', $oldProduct->thumbnail);
+                copy($oldoriginal_thumbpath, $thumbpath);
+                $product->thumbnail = 'storage/uploads/products/thumbnail/' . $thumbname;
             }
 
             $product->save();
@@ -223,7 +231,7 @@ class ProductController extends Controller
                 $product->category_id = 11; //$request->category_id;
                 $product->user_id = auth()->id();
 
-                $fileName = Str::random(20) . '_' . $file->getExtension();
+                $fileName = Str::random(20) . '.' . $file->getClientOriginalExtension();
                 $filePath = $file->storeAs('uploads/products/', $fileName, 'public');
                 $product->image = 'storage/' . $filePath;
 
