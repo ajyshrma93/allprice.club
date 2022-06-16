@@ -23,7 +23,7 @@
 <div class="page-body">
     <div class="container-fluid mt-5">
         <div class="page-title ">
-            <div class="row">
+            <div class="row mt-2">
                 <div class="col-7">
                     <h3>{{$shop->name}}</h3>
 
