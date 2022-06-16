@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="product-details">
-                <h4>{{$product->name}}</h4>
+                <h4>{{$product->name ?? ' '}}</h4>
                 <div class="product-price">RM {{$product->price}}</div>
             </div>
         </div>

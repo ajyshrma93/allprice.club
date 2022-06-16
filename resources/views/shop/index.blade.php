@@ -27,18 +27,15 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div class="card">
-                    <div class="card-body p-2">
-                        <div class="row">
-                            <div class="col-xl-6 col-8 mb-3 col-xxl-7 col-xl-6 col-md-8 ">
-                                <select class="form-select select2" id="filter_shop">
-                                    <option value="">All Location</option>
-                                    @foreach ($cities as $city)
-                                    <option value="{{$city->id}}">{{$city->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
+
+                <div class="row">
+                    <div class="col-xl-6  mb-3 col-xxl-7 col-xl-6 col-md-8 col-12">
+                        <select class="form-select select2" id="filter_shop">
+                            <option value="">All Location</option>
+                            @foreach ($cities as $city)
+                            <option value="{{$city->id}}">{{$city->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
             </div>

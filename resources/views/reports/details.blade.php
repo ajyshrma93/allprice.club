@@ -2,23 +2,15 @@
 @section('header')
 <div class="page-header">
     <div class="header-wrapper row m-0">
-        <div class="header-logo-wrapper col-auto p-0">
-            <div class="logo-wrapper">
-                <a href="{{url('/home')}}">
-                    <img class="img-fluid" src="{{asset('assets/images/logo/logo.png')}}" alt="">
-                </a>
-            </div>
-            <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i></div>
-        </div>
         <div class="left-header col-auto horizontal-wrapper ps-0">
             <ul>
                 <a href="{{route('reports.index')}}" class="btn btn-sm btn-primary">Back</a>
             </ul>
         </div>
-        <div class="nav-right col-6 pull-right right-header p-0 ms-auto">
+        <div class="nav-right col-6 pull-right right-header  ms-auto">
             <ul class="nav-menus me-0">
                 <li>
-
+                    <h3> RM : {{$products->sum('price')}}</h3>
                 </li>
             </ul>
         </div>
@@ -29,16 +21,15 @@
 @endsection
 @section('content')
 <div class="page-body">
-    <div class="container-fluid">
-        <div class="page-title">
+    <div class="container-fluid mt-5">
+        <div class="page-title ">
             <div class="row">
                 <div class="col-7">
-                    <h3>{{$shop->name}}<br /> {{$product->created_at->format('Y-m-d')}}</h3>
+                    <h3>{{$shop->name}}</h3>
+
                 </div>
                 <div class="col-5">
-                    <div class="create-new-items justify-content-end">
-                        <h3> RM : {{$products->sum('price')}}</h3>
-                    </div>
+                    <h5>{{$product->created_at->format('Y-m-d')}}</h5>
                 </div>
             </div>
         </div>

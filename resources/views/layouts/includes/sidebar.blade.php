@@ -44,12 +44,7 @@
                             <span>Shop List</span>
                         </a>
                     </li>
-                    <li class="sidebar-list">
-                        <a class="{{$menu =='category'?'active':''}}  sidebar-link sidebar-title link-nav" href="{{route('category.index')}}">
-                            <i data-feather="tag"></i>
-                            <span>Category List</span>
-                        </a>
-                    </li>
+
                     @if (auth()->user()->role_id == \App\Models\User::ROLE_ADMIN)
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title {{$menu =='cities'?'active':''}}" href="#">
@@ -59,6 +54,7 @@
                         <ul class="sidebar-submenu">
                             <li><a class="{{$menu =='cities'?'active':''}}" href="{{route('cities.index')}}">Cities</a></li>
                             <li><a class="{{$menu =='users'?'active':''}}" href="{{route('users.index')}}">Users</a></li>
+                            <li><a class="{{$menu =='category'?'active':''}}" href="{{route('category.index')}}">Catgeory List</a></li>
                         </ul>
                     </li>
 

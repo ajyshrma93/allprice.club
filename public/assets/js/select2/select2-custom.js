@@ -4,7 +4,7 @@
     // Single Search Select
     $(".js-example-basic-single").select2();
     $(".select2").select2({
-        dropdownParent: $(".card-body"),
+        dropdownParent: $("body"),
     });
     $(".select2-basic").select2();
     $(".js-example-basic-multiple").select2();
