@@ -26,6 +26,14 @@
                     </a>
                 </li>
                 @endif
+                @guest
+                <li>
+                    <a href="{{route('login')}}" type="button">
+                        <i data-feather="log-in"></i>
+                        Login
+                    </a>
+                </li>
+                @endguest
                 {{-- <div class="mode"><i class="fa fa-moon-o"></i></div> -->
                 <li class="cursor-pointer"><span class="header-search"><i data-feather="search"></i></span></li>
                 <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>

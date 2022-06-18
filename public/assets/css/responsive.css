@@ -980,7 +980,7 @@
       .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper.close_icon .sidebar-main .sidebar-links {
         height: unset; }
   .page-wrapper.compact-wrapper .page-body-wrapper .page-body {
-    margin-top: 63px;
+    margin-top: 46px;
     padding: 0 15px; }
   .page-wrapper.compact-sidebar .page-header .header-wrapper .maximize {
     display: none; }
@@ -2011,7 +2011,7 @@
   .page-wrapper .page-body-wrapper .page-title .btn-group .btn {
     padding: 8px 30px; }
   .page-wrapper.compact-wrapper .page-body-wrapper .page-body {
-    margin-top: 60px; }
+    margin-top: 45px; }
   .page-wrapper.compact-wrapper .page-body-wrapper.sidebar-wrapper .sidebar-main .sidebar-links {
     height: calc(100vh - 79px); }
   .alert-dismissible {

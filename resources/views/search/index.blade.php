@@ -10,7 +10,7 @@
                 <div class="col-6 col-md-7">
                     <div class="create-new-items justify-content-end">
                         <div class="col-12">
-                            <div class="mb-3">
+                            <div class="mb-3 mt-2">
                                 <select name="sort" class="col-sm-12 form-select" onchange="applyFilter()">
                                     <option value="asc">Lowest to Highest </option>
                                     <option value="desc">Highest to Lowest </option>

@@ -182,4 +182,29 @@ class ShopController extends Controller
 
         return response()->json(['html' => $html]);
     }
+
+
+    public function getUserFavoriteShops(Request $request)
+    {
+
+        $shops = Shop::query();
+
+        if ($request->type == 'Favorite') {
+            $shops = $shops->whereHas('products', function ($query) {
+                return $query->where('user_id', auth()->id());
+            });
+        }
+        if (auth()->user()->city_id) {
+            $shops = $shops->where('city_id', auth()->user()->city_id);
+        }
+        $shops = $shops->get();
+        $response = [];
+        foreach ($shops as $shop) {
+            $response[] = array(
+                "id" => $shop->id,
+                "text" => $shop->name
+            );
+        }
+        return response()->json($response);
+    }
 }

@@ -8,7 +8,9 @@ $("#editcategory").on("show.bs.modal", function (event) {
         success: function (response) {
             modal.find("#edit_category_id").val(response.data.id);
             modal.find("#edit_catgeory_name").val(response.data.name);
-            modal.find("#edit_catgeory_image_preview").attr("src", response.data.image);
+            modal
+                .find("#edit_catgeory_image_preview")
+                .attr("src", response.data.image);
         },
     });
     var modal = $(this);
@@ -172,7 +174,9 @@ $("#editShop").on("show.bs.modal", function (event) {
                 .val(response.data.city_id)
                 .trigger("change");
             modal.find("#edit_shop_name").val(response.data.name);
-            modal.find("#edit_shop_image_preview").attr("src", response.data.image);
+            modal
+                .find("#edit_shop_image_preview")
+                .attr("src", response.data.image);
         },
     });
     var modal = $(this);
@@ -649,7 +653,6 @@ function showToast(message, type = "success", reset = true) {
     if (reset) {
         $("select").val(null).trigger("change");
     }
-
     toastr[type](message);
 }
 

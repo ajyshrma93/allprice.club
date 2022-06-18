@@ -12,4 +12,11 @@ class Shop extends Model
     protected $fillable = [
         'name', 'user_id', 'image'
     ];
+
+
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

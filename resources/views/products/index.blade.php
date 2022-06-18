@@ -97,7 +97,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-12 col-12 mb-3">
+                                <div class="col-xl-10 col-10 mb-3">
                                     <div class="row">
                                         <div class="col-xxl-7 col-xl-6 col-md-8 col-sm-7 newItem">
                                             <select name="shop_id" class="form-control select2 col-sm-12  @error('shop_id') is-invalid @enderror" id="product_shop">
@@ -113,12 +113,22 @@
                                             @enderror
                                         </div>
                                         <div class="col-xxl-5 col-xl-6 col-md-4 col-sm-auto ms-md-0 mt-sm-0 ms-auto mt-3 text-end newItemBtn">
-                                            <button class="btn btn-primary new-shop-btn cus-new-shop-btn" type="button" data-bs-toggle="modal" data-bs-target="#add_shop_modal">
-                                                <span>Add New Shop</span>
-                                                <i data-feather="plus"></i>
+                                            <button class="btn btn-primary new-shop-btn cus-new-shop-btn" type="button" id="add_favorite_btn" onclick="loadFavoriteShop('product_shop','add_all_shop_btn','add_favorite_btn','Favorite')">
+                                                <span>Favorite Shop</span>
+                                                <i data-feather="heart"></i>
+                                            </button>
+                                            <button class="btn btn-primary new-shop-btn cus-new-shop-btn d-none" type="button" id="add_all_shop_btn" onclick="loadFavoriteShop('product_shop','add_favorite_btn','add_all_shop_btn','All')">
+                                                <span>All Shop</span>
+                                                <i data-feather="shopping-bag"></i>
                                             </button>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col-xl-2 col-2 ms-md-0 mt-sm-0 ms-auto mt-3 text-end newItemBtn">
+                                    <button class="btn btn-primary new-shop-btn cus-new-shop-btn" type="button" data-bs-toggle="modal" data-bs-target="#add_shop_modal">
+                                        <span>Add New Shop</span>
+                                        <i data-feather="plus"></i>
+                                    </button>
                                 </div>
                                 <div class="col-lg-6 mb-3 product-name-field">
                                     <input class="form-control @error('name') is-invalid @enderror" value="{{old('name')}}" type="text" name="name" placeholder="Product Name">
@@ -267,8 +277,32 @@
 
 
 @push('scripts')
-
 <script>
+    function loadFavoriteShop(select, show, hide, type = 'Favorite') {
+        $('#' + select).select2({
+            ajax: {
+                url: "{{ route('shops.users-favorite') }}",
+                type: "post",
+                delay: 250,
+                data: {
+                    type: type
+                },
+                dataType: 'json',
+                processResults: function(response) {
+                    return {
+                        results: response
+                    };
+                },
+                cache: true
+            }
+        }).trigger({
+            type: 'select2:open',
+        });
+        $('#' + show).removeClass('d-none');
+        $('#' + hide).addClass('d-none');
+        showToast(type + " shop loaded successfully", 'success');
+    }
+
     function autoCompletePrice(kg_pc_price, price, weight, type) {
         let typeValue = $(type + ":checked").val();
         let kg_pc_priceValue = $(kg_pc_price).val();

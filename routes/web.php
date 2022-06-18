@@ -46,6 +46,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('category', CategoryController::class)->except(['create', 'show', 'update']);
 
     ///// shop routes
+
+    Route::post('load-user-favorite-shops', [ShopController::class, 'getUserFavoriteShops'])->name('shops.users-favorite');
     Route::post('shops/ajax-update', [ShopController::class, 'ajaxUpdate'])->name('shops.ajax-update');
     Route::post('shops/filter', [ShopController::class, 'filter'])->name('shops.filter');
     Route::resource('shops', ShopController::class)->except(['show', 'update']);
